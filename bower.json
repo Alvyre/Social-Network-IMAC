@@ -1,0 +1,25 @@
+{
+  "name": "IMAC-Social-Network",
+  "authors": [
+    "Arctic76 <belum76@gmail.com>"
+  ],
+  "description": "IMAC WEB project",
+  "main": "index.html",
+  "keywords": [
+    "IMAC"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^1.0.24",
+    "slim": "https://github.com/slimphp/Slim.git#^3.4.1"
+  }
+}
