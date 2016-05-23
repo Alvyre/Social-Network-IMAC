@@ -1,0 +1,25 @@
+{
+  "name": "Forum IMAC",
+  "homepage": "https://github.com/Arctic76/Social-Network-IMAC",
+  "authors": [
+    "Arctic76 <belum76@gmail.com>"
+  ],
+  "description": "Forum des IMACS",
+  "main": "index.html",
+  "keywords": [
+    "IMAC"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^1.0.24"
+  }
+}
