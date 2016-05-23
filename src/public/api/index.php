@@ -6,6 +6,8 @@
 require './vendor/autoload.php';
 require './config.php';
 
+use \Slim\App;
+
 // instantiate the App object
 $app = new \Slim\App();
 
