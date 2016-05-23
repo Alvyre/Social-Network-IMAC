@@ -1,4 +1,4 @@
-#Semaine Web - ReactJS + Browserify
+# IMAC Social Network project
 
 ###How to use
 ```
