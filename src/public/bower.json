@@ -20,6 +20,9 @@
     "tests"
   ],
   "dependencies": {
-    "vue": "^1.0.24"
+    "vue": "^1.0.24",
+    "vue-router": "^0.7.13",
+    "vue-loader": "https://github.com/vuejs/vue-loader.git#^8.4.0",
+    "webpack": "https://gist.github.com/sokra/8805639.js"
   }
 }
