@@ -5,15 +5,18 @@
   <title>Ladyz</title>
 </head>
 <body>
+
   <header>
     <h1>CATEGORIES</h1>
     <ul>
-      <?php foreach ($variable as $key => $value) {
-        # code...
+      <?php include("Database.php");
+      $categories = getAllCategories();
+      foreach ($categories as $key => $cat) {
+        echo "<li>".$cat["TitleCat"]."</li>";
       } ?>
-      <li><?php  ?></li>
     </ul>
   </header>
+
   <h2>CONNEXION</h2>
   <form method="post" action="">
     <input type="text" name="PseudoUser" placeholder="Login">
