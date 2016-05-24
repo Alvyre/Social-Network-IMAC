@@ -25,8 +25,14 @@ $app->get('/subject', App\Action\SubjectAction::class)
 	->setName("subject");
 
 //users
-$app->get('/user', 'App\Action\UserAction:readAll')
+$app->get('/user-getAll', 'App\Action\UserAction:readAll')
 	->setName("user");
+<<<<<<< HEAD
+=======
+//users
+$app->get('/user-get', 'App\Action\UserAction:readOne')
+	->setName("user");
+>>>>>>> 0ee744bcce246ba131486e9c13319e44d1038793
 
 //vote
 $app->get('/vote', App\Action\VoteAction::class)
