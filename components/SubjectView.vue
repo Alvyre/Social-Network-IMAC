@@ -1,0 +1,16 @@
+<template>
+  	<p>SubjectView</p>
+</template>
+
+<script>
+
+
+export default {
+  components: {
+  }
+}
+</script>
+
+<style type="text/css">
+
+</style>
