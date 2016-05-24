@@ -50,11 +50,13 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = User::all();
+        $datas = User::where('idUser', 2)->get();
   
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas->toJson();
+        
+        // $this->view->render($response, 'home.twig', [
+        //     'datas' => $datas
+        // ]);
 
         return $response;
     }

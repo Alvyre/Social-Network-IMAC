@@ -24,8 +24,12 @@ $app->get('/comment', App\Action\CommentAction::class)
 $app->get('/subject', App\Action\SubjectAction::class)
 	->setName("subject");
 //users
-$app->get('/user', 'App\Action\UserAction:readAll')
+$app->get('/user-getAll', 'App\Action\UserAction:readAll')
 	->setName("user");
+//users
+$app->get('/user-get', 'App\Action\UserAction:readOne')
+	->setName("user");
+
 //vote
 $app->get('/vote', App\Action\VoteAction::class)
 	->setName("vote");
