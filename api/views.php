@@ -13,6 +13,7 @@
     <ul>
       <?php
       $categories = readAllCategories();
+      json_encode($categories); // Passer en JSON le tableau
       foreach ($categories as $key => $cat) {
         echo "<li>".$cat["TitleCat"]."</li>";
       } ?>

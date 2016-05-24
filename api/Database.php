@@ -49,7 +49,12 @@ function readAllCategories()
 
   $result = $mysqli->query($sql);
 
-  return $result;
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
 }
 
 function deleteCategory($id) {
@@ -58,8 +63,6 @@ function deleteCategory($id) {
   $sql = "DELETE FROM category WHERE ".$id." = IdCategory";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function deleteComment($id) {
@@ -68,8 +71,6 @@ function deleteComment($id) {
   $sql = "DELETE FROM comment WHERE ".$id." = IdComment";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function deleteVote($id) {
@@ -78,8 +79,6 @@ function deleteVote($id) {
   $sql = "DELETE FROM vote WHERE ".$id." = IdVote";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function deleteUser($id) {
@@ -88,8 +87,6 @@ function deleteUser($id) {
   $sql = "DELETE FROM user WHERE ".$id." = IdUser";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function deleteSubject($id) {
@@ -98,8 +95,6 @@ function deleteSubject($id) {
   $sql = "DELETE FROM subject WHERE ".$id." = IdSubject";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function createCategory($TitleCat) {
@@ -108,8 +103,6 @@ function createCategory($TitleCat) {
   $sql = "INSERT INTO category VALUES ('','".$TitleCat."')";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function createComment($DateComment, $ContentComment, $IdUser) {
@@ -118,8 +111,6 @@ function createComment($DateComment, $ContentComment, $IdUser) {
   $sql = "INSERT INTO comment VALUES ('','".$DateComment."','".$ContentComment."','".$IdUser."')";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function createVote($UpVote, $DownVote, $IdUser, $IdComment) {
@@ -128,8 +119,6 @@ function createVote($UpVote, $DownVote, $IdUser, $IdComment) {
   $sql = "INSERT INTO vote VALUES ('','".$UpVote."','".$DownVote."','".$IdUser."','".$IdComment."')";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function createUser($PSeudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser, $AdminUser) {
@@ -138,8 +127,6 @@ function createUser($PSeudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, 
   $sql = "INSERT INTO vote VALUES (','".$PSeudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function createSubject($TitleSubject, $ContentSubject, $DateSubject, $IdVote, $IdUser, $IdCat) {
@@ -148,8 +135,6 @@ function createSubject($TitleSubject, $ContentSubject, $DateSubject, $IdVote, $I
   $sql = "INSERT INTO vote VALUES ('','".$TitleSubject."','".$ContentSubject."','".$DateSubject."','".$IdVote.",'".$IdUser.",'".$IdCat."')";
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function updateUserStatus($id, $StatusUser) {
@@ -158,8 +143,6 @@ function updateUserStatus($id, $StatusUser) {
   $sql = "UPDATE user SET StatusUser='".$StatusUser."' WHERE IdUser = ".$id;
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function updateUserEmail($id, $EmailUser) {
@@ -168,8 +151,6 @@ function updateUserEmail($id, $EmailUser) {
   $sql = "UPDATE user SET EmailUser='".$EmailUser."' WHERE IdUser = ".$id;
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function updateUserBio($id, $BioUser) {
@@ -178,8 +159,6 @@ function updateUserBio($id, $BioUser) {
   $sql = "UPDATE user SET BioUser='".$BioUser."' WHERE IdUser = ".$id;
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 function updateUserPhoto($id, $PhotoUser) {
@@ -188,8 +167,6 @@ function updateUserPhoto($id, $PhotoUser) {
   $sql = "UPDATE user SET PhotoUser='".$PhotoUser."' WHERE IdUser = ".$id;
 
   $result = $mysqli->query($sql);
-
-  return $result;
 }
 
 	//COMMENT
@@ -200,7 +177,13 @@ function readAllComments()
   $sql = "SELECT IdComment FROM 'comment'";
 
   $result = $mysqli->query($sql);
-  return $result;
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
 }
 
 	//USER
@@ -211,7 +194,13 @@ function readAllPseudos()
   $sql = "SELECT PSeudoUser FROM 'user'";
 
   $result = $mysqli->query($sql);
-  return $result;
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
 }
 
 
