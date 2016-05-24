@@ -31,9 +31,11 @@ $app->get('/user-get', 'App\Action\UserAction:readOne')
 	->setName("user");
 $app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
 	->setName("user");
+$app->get('/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}', 'App\Action\UserAction:create')
+	->setName("user");
 
 // afficher tous les votes
-$app->get('/voteAll', App\Action\VoteAction::readAll())
+$app->get('/voteAll', App\Action\VoteAction::class)
 	->setName("voteAll");
 
 //vote

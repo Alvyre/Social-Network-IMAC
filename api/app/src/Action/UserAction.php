@@ -24,10 +24,17 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
+        $user = User::firstOrCreate(array(
+            'pseudoUser' => $args['pseudoUser'], 
+            'statusUser' => $args['statusUser'], 
+            'photoUser' => $args['photoUser'], 
+            'emailUser' => $args['emailUser'], 
+            'sexUser' => $args['sexUser'],
+            'bioUser' => $args['bioUser'], 
+            'passUser' => $args['passUser']));
+
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'Utilisateur ajouté !'
         ]);
 
         return $response;
@@ -54,10 +61,6 @@ final class UserAction
   
         echo $datas->toJson();
         
-        // $this->view->render($response, 'home.twig', [
-        //     'datas' => $datas
-        // ]);
-
         return $response;
     }
 
@@ -78,13 +81,10 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $route = $request->getAttribute('route');
-        $pseudoUser = $route->getArgument('pseudoUser');
-
-        $datas = User::delete($pseudoUser);
+        $datas = User::where('pseudoUser',$args['pseudoUser'])->delete();
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'Utilisateur supprimé !'
         ]);
 
         return $response;

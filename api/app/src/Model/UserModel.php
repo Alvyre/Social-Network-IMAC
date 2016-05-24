@@ -11,6 +11,8 @@ class UserModel extends Model
 
     public $timestamps = false;
 
+	protected $fillable = array('pseudoUser', 'statusUser', 'photoUser','emailUser', 'sexUser', 'bioUser', 'passUser');
+
 }
 
 ?>
