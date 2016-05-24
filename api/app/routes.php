@@ -21,8 +21,21 @@ $app->get('/comment-delete', 'App\Action\CommentAction::delete')
 	->setName("comment-delete");
 
 //subjects
-$app->get('/subject', App\Action\SubjectAction::class)
+$app->get('/subject', 'App\Action\SubjectAction:create')
 	->setName("subject");
+
+$app->get('/subject', 'App\Action\SubjectAction:readAll')
+	->setName("subject");
+
+$app->get('/subject', 'App\Action\SubjectAction:readOne')
+	->setName("subject");
+
+$app->get('/subject','App\Action\SubjectAction:update')
+	->setName("subject");
+
+$app->get('/subject', 'App\Action\SubjectAction:delete')
+	->setName("subject");
+
 
 //users
 $app->get('/user-getAll', 'App\Action\UserAction:readAll')
