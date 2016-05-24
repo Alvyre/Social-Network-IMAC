@@ -19,10 +19,8 @@ $app->get('/subject', App\Action\SubjectAction::class)
 //users
 $app->get('/user', App\Action\UserAction::class)
 	->setName("user");
-//vote
-$app->get('/vote', App\Action\VoteAction::class)
-	->setName("vote");
-
-
+// afficher tous les votes
+$app->get('/voteAll', App\Action\VoteAction::readAll())
+	->setName("voteAll");
 
 ?>
