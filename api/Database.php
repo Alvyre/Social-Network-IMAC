@@ -1,8 +1,5 @@
 <?php
 
-class Database
-{
-
   /*******************
   Lecture du fichier de connexion
   à la base de donnée
@@ -14,46 +11,35 @@ class Database
   // password
   // Nom
 
-  private $monfichier = fopen('connexion.txt', 'r');
+  $monfichier = fopen('connexion.txt', 'r');
 
   // On fait ici nos opérations sur le fichier...
-  private $localhost = fgets($monfichier);
-  private $user = fgets($monfichier);
-  private $password = fgets($monfichier);
-  private $name = fgets($monfichier);
+  $localhost = fgets($monfichier);
+  $user = fgets($monfichier);
+  $password = fgets($monfichier);
+  $BDDname = fgets($monfichier);
 
-  private $db;
 
   //Connexion à la base de donnée
-  public function __construct()
-  {
-    $this->db = new mysqli($this->localhost, $this->user, $this->password, $this->name);
-  }
+    $mysqli = new mysqli($localhost, $user, $password, $BDDname);
+    if (mysqli_connect_errno()) {
+      printf("Connect failed: %s\n", mysqli_connect_error());
+      exit();
+    }
 
   // On a fini de l'utiliser, on ferme le fichier
-  fclose($monfichier);
+    fclose($monfichier);
 
   /*******************
   On récupère toutes les catégories
   ********************/
-  public function getAllCategories()
+  function getAllCategories()
   {
     $sql = "SELECT TitleCat FROM category";
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-    if ($stmt->num_rows == 1) {
-      $result = $mysqli->query($sql);
-
-
-    } else {
-      throw new Exception("Utilisateur Inconnu");
-    }
-
-    return $result;
+    $result = $mysqli->query($sql);
+    $categories = $result->fetch_assoc();
+    echo "<p>{$categories['TitleCat']}</p>";
   }
-
-
-}
 
 ?>
