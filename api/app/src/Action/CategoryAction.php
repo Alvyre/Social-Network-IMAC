@@ -3,29 +3,50 @@ namespace App\Action;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
-use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use App\Model\CategoryModel as Category;
 
-final class HomeAction
+final class CategoryAction
 {
     private $view;
     private $logger;
     protected $table;
 
-    public function __construct(Twig $view, LoggerInterface $logger, Builder $table)
+    public function __construct(Twig $view, LoggerInterface $logger, $table)
     {
         $this->view = $view;
         $this->logger = $logger;
         $this->table = $table;
     }
 
-    public function __invoke(Request $request, Response $response, $args)
+    public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        User::firstOrCreate(array(
+            'pseudoUser' => $args['pseudoUser'], 
+            'statusUser' => $args['statusUser'], 
+            'photoUser' => $args['photoUser'], 
+            'emailUser' => $args['emailUser'], 
+            'sexUser' => $args['sexUser'],
+            'bioUser' => $args['bioUser'], 
+            'passUser' => $args['passUser'])
+        );
+
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Utilisateur ajouté !'
+        ]);
+
+        return $response;
+    }
+
+    public function readAll(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
         
+        $datas = Category::all();
+  
         $this->view->render($response, 'home.twig', [
             'datas' => $datas
         ]);
@@ -33,14 +54,40 @@ final class HomeAction
         return $response;
     }
 
-     public function tg(Request $request, Response $response, $args)
+    public function readOne(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+        
+        $datas = User::where('idUser', 2)->get();
+  
+        echo $datas->toJson();
+        
+        return $response;
+    }
+
+    public function update(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        $datas = User::where('pseudoUser',  $args['pseudoUser'])->get();
+
+        User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
+
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Utilisateur modifié !'
+        ]);
+
+        return $response;
+    }
+
+    public function delete(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+
+        User::where('pseudoUser',$args['pseudoUser'])->delete();
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'Utilisateur supprimé !'
         ]);
 
         return $response;

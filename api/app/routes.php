@@ -5,16 +5,16 @@ $app->get('/', App\Action\HomeAction::class)
 ->setName("home");
 
 //categories
-$app->get('/category-getall', 'App\Action\CategoryAction::readAll')
-->setName("category-getall");
-$app->get('/category-get', 'App\Action\CategoryAction::readOne')
-->setName("category-get");
-$app->get('/category-create', 'App\Action\CategoryAction::')
-->setName("category-create");
-$app->get('/category-update', 'App\Action\CategoryAction::readAll')
-->setName("category-update");
-$app->get('/category-delete', 'App\Action\CategoryAction::readAll')
-->setName("category-delete");
+$app->get('/category-getall', 'App\Action\CategoryAction:readAll')
+	->setName("category-getall");
+$app->get('/category-get', 'App\Action\CategoryAction:readOne')
+	->setName("category-get");
+$app->get('/category-create', 'App\Action\CategoryAction:create')
+	->setName("category-create");
+$app->get('/category-update', 'App\Action\CategoryAction:update')
+	->setName("category-update");
+$app->get('/category-delete', 'App\Action\CategoryAction:delete')
+	->setName("category-delete");
 
 //comments
 $app->get('/comment-getall', 'App\Action\CommentAction:readAll')
@@ -48,7 +48,7 @@ $app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
 //users
 $app->get('/user-getall', 'App\Action\UserAction:readAll')
 ->setName("user");
-$app->get('/user-get', 'App\Action\UserAction:readOne')
+$app->get('/user-get/{idUser}', 'App\Action\UserAction:readOne')
 ->setName("user");
 $app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
 ->setName("user");

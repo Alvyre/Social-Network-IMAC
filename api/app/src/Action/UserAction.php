@@ -58,7 +58,7 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = User::where('idUser', 2)->get();
+        $datas = User::where('idUser', $args['idUser'])->get();
   
         echo $datas->toJson();
         
