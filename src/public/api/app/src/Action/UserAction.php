@@ -3,11 +3,11 @@ namespace App\Action;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
-use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use App\Model\UserModel as User;
 
-final class HomeAction
+final class UserAction
 {
     private $view;
     private $logger;
@@ -21,6 +21,63 @@ final class HomeAction
     }
 
     public function __invoke(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+
+        $datas = $this->table->get();
+        
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
+
+        return $response;
+    }
+
+    public function create(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+
+        $datas = $this->table->get();
+        
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
+
+        return $response;
+    }
+
+    public function read(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+        
+        $datas = Home::all();
+
+        $route = $request->getAttribute('route');
+        $userId = $route->getArgument('id');
+
+        $datas = $this->table->get();
+        
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
+
+        return $response;
+    }
+
+    public function delete(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+
+        $datas = $this->table->get();
+        
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
+
+        return $response;
+    }
+
+    public function edit(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 

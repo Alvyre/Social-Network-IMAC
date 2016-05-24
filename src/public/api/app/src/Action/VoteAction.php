@@ -3,9 +3,9 @@ namespace App\Action;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
-use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use App\Model\VoteModel as vote;
 
 final class HomeAction
 {
