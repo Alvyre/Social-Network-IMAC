@@ -1,11 +1,12 @@
 <?php
 
+/****************************
+Connexion à la base de donnée
+*****************************/
 function connexionBDD()
 {
-  /*******************************
-  Lecture du fichier de connexion
-  à la base de donnée
-  ********************************/
+
+  //Lecture du fichier de connexion à la base de donnée
 
   // le fichier doit être écrit comme ça :
   // localhost
@@ -28,6 +29,7 @@ function connexionBDD()
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
   }
+  $mysqli->set_charset("utf8");
 
   // // On a fini de l'utiliser, on ferme le fichier
   // fclose($monfichier);
