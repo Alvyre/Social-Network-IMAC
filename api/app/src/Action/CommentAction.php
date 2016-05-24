@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Model\CommentModel as Comment;
 
-final class HomeAction
+final class CommentAction
 {
     private $view;
     private $logger;
@@ -58,18 +58,22 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
-        echo $datas->toJson();
+        User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
 
-        return $response;
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Utilisateur modifié !'
+        ]);
     }
 
     public function delete(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = Comment::where('titleComment', $args['titleComment'])->delete();
+        User::where('idComment',$args['idComment'])->delete();
+        
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'commentaire supprimé !'
+        ]);
     
         return $response;
     }
