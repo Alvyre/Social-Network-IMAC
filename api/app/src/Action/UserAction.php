@@ -78,7 +78,10 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        $route = $request->getAttribute('route');
+        $pseudoUser = $route->getArgument('pseudoUser');
+
+        $datas = User::delete($pseudoUser);
         
         $this->view->render($response, 'home.twig', [
             'datas' => $datas

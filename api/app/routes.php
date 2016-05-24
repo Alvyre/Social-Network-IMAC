@@ -29,6 +29,8 @@ $app->get('/user-getAll', 'App\Action\UserAction:readAll')
 	->setName("user");
 $app->get('/user-get', 'App\Action\UserAction:readOne')
 	->setName("user");
+$app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
+	->setName("user");
 
 //vote
 $app->get('/vote', App\Action\VoteAction::class)
