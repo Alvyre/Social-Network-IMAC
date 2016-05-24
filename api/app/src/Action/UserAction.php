@@ -24,14 +24,15 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $user = User::firstOrCreate(array(
+        User::firstOrCreate(array(
             'pseudoUser' => $args['pseudoUser'], 
             'statusUser' => $args['statusUser'], 
             'photoUser' => $args['photoUser'], 
             'emailUser' => $args['emailUser'], 
             'sexUser' => $args['sexUser'],
             'bioUser' => $args['bioUser'], 
-            'passUser' => $args['passUser']));
+            'passUser' => $args['passUser'])
+        );
 
         $this->view->render($response, 'home.twig', [
             'datas' => 'Utilisateur ajouté !'
@@ -68,10 +69,12 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
+        $datas = User::where('pseudoUser',  $args['pseudoUser'])->get();
+
+        User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
+
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'Utilisateur modifié !'
         ]);
 
         return $response;
@@ -81,7 +84,7 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::where('pseudoUser',$args['pseudoUser'])->delete();
+        User::where('pseudoUser',$args['pseudoUser'])->delete();
         
         $this->view->render($response, 'home.twig', [
             'datas' => 'Utilisateur supprimé !'
