@@ -47,7 +47,7 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::first();
+        $datas = Comment::first();
 
         echo $datas->toJson();
 
@@ -69,10 +69,8 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
-        echo $datas->toJson();
-
+        $datas = Comment::where('titleComment', $args['titleComment'])->delete();
+    
         return $response;
     }
 }

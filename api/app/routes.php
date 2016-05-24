@@ -25,7 +25,7 @@ $app->get('/comment-create', 'App\Action\CommentAction::create')
 	->setName("comment-create");
 $app->get('/comment-update', 'App\Action\CommentAction::update')
 	->setName("comment-update");
-$app->get('/comment-delete', 'App\Action\CommentAction::delete')
+$app->get('/comment-delete/{idComment}', 'App\Action\CommentAction::delete')
 	->setName("comment-delete");
 
 //subjects
