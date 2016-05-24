@@ -1,14 +1,21 @@
 Options +FollowSymlinks -Indexes
- 
 RewriteEngine On
- 
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l
-RewriteRule ^.*$ - [NC,L]
- 
-RewriteCond %{REQUEST_URI} !/robots\.txt$ [nocase]
-RewriteRule ^(.*)$ %{ENV:BASE}src/public/index.html [NC,L]
- 
-RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$
-RewriteRule ^(.*) - [E=BASE:%1]
-RewriteRule ^(.*)$ %{ENV:BASE}src/public/index.html [NC,L]
+
+RewriteCond %{REQUEST_URI} !/src/public/ [NC]
+RewriteRule ^(.*)$ %{ENV:BASE}src/public/$1
+
+AcceptPathInfo Off
+
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+
+RewriteCond %{REQUEST_URI} ^/404/$
+RewriteRule ^(.*)$ %{ENV:BASE}src/public/404.html [L]
+
+RewriteCond %{REQUEST_URI} ^/403/$
+RewriteRule ^(.*)$ %{ENV:BASE}src/public/403.html [L]
+
+RewriteCond %{REQUEST_URI} ^/500/$
+RewriteRule ^(.*)$ %{ENV:BASE}src/public/500.html [L]
+
