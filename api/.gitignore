@@ -1,3 +1,4 @@
+/vendor
 log/*
 cache/*
 src/public/api/app/settings.php
