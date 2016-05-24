@@ -1,3 +1,5 @@
+<?php include 'Database.php'; ?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -9,8 +11,8 @@
   <header>
     <h1>CATEGORIES</h1>
     <ul>
-      <?php include("Database.php");
-      $categories = getAllCategories();
+      <?php
+      $categories = readAllCategories();
       foreach ($categories as $key => $cat) {
         echo "<li>".$cat["TitleCat"]."</li>";
       } ?>
