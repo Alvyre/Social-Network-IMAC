@@ -25,9 +25,14 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        Comment::firstOrCreate(array(
+            'dateComment' => $args['dateComment'], 
+            'contentComment' => $args['contentComment'], 
+        ));
 
-        echo $datas->toJson();
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Utilisateur ajouté !'
+        ]);
 
         return $response;
     }
@@ -58,7 +63,7 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
+        Comment::where('idcomment', 'like', $args['idComment'])->update(array('idComment' => $args['idComment']));
 
         $this->view->render($response, 'home.twig', [
             'datas' => 'Utilisateur modifié !'
@@ -69,7 +74,7 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        User::where('idComment',$args['idComment'])->delete();
+        Comment::where('idComment',$args['idComment'])->delete();
         
         $this->view->render($response, 'home.twig', [
             'datas' => 'commentaire supprimé !'

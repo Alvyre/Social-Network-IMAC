@@ -4,12 +4,14 @@ namespace App\Model;
 
 use \Illuminate\Database\Eloquent\Model;
 
-class Home extends Model
+class CommentModel extends Model
 {
 
     protected $table = 'comment';
 
     public $timestamps = false;
+
+    protected $fillable = array('dateComment', 'contentComment');
 
 }
 
