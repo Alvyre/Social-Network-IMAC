@@ -78,11 +78,9 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        $datas = Subject::where('titleSubject',$args['titleSubject'])->delete();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+
 
         return $response;
     }

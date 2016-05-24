@@ -41,7 +41,7 @@ $app->get('/subject-get', 'App\Action\SubjectAction:readOne')
 $app->get('/subject-update','App\Action\SubjectAction:update')
 	->setName("subject");
 
-$app->get('/subject-delete', 'App\Action\SubjectAction:delete')
+$app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
 	->setName("subject");
 
 
