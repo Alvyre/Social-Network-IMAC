@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Model\SubjectModel as Subject;
 
-final class HomeAction
+final class SubjectAction
 {
     private $view;
     private $logger;
@@ -24,11 +24,16 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
+        Subject::firstOrCreate(array(
+            'titleSubject' => $args['titleSubject'], 
+            'contentSubject' => $args['contentSubject'], 
+            'dateSubject' => $args['dateSubject'])
+        );
+  
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'La CorentAction du subject fonctionne!'
         ]);
+
 
         return $response;
     }
@@ -37,7 +42,7 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = User::all();
+        $datas = Subject::all();
   
         $this->view->render($response, 'home.twig', [
             'datas' => $datas
@@ -50,13 +55,13 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = User::first();
+        $datas = Subject::first();
   
         echo $datas->toJson();
         
-        // $this->view->render($response, 'home.twig', [
-        //     'datas' => $datas
-        // ]);
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Sujet supprimé!'
+         ]);
 
         return $response;
     }
@@ -65,10 +70,13 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        Subject::where('idSubject', 'like', $args['idSubject'])->update(array(
+            'titleSubject' => $args['titleSubject'],
+            'contentSubject' => $args['contentSubject']
+        ));
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'Sujet mis à jour magueule'
         ]);
 
         return $response;

@@ -7,7 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Model\VoteModel as Vote;
 
-final class HomeAction
+final class VoteAction
 {
     private $view;
     private $logger;
@@ -24,10 +24,13 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        Vote::firstOrCreate(array(
+            'upVote' => $args['upVote'], 
+            'downVote' => $args['downVote'])
+        );
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'A voté !'
         ]);
 
         return $response;
@@ -50,7 +53,7 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = Vote::where('active', 1)->first();
+        $datas = Vote::first();
         
         $this->view->render($response, 'home.twig', [
             'datas' => $datas
@@ -63,10 +66,13 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        Vote::where('idVote', 'like', $args['idVote'])->update(array(
+            'upVote' => $args['upVote'],
+            'downVote' => $args['downVote']
+            ));
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'vote modifie, ya que les imbeciles qui ne changent pas d avis'
         ]);
 
         return $response;
@@ -76,10 +82,10 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        $datas = Vote::where('upVote',$args['upVote'])->delete();
         
         $this->view->render($response, 'home.twig', [
-            'datas' => $datas
+            'datas' => 'vote supprimé :('
         ]);
 
         return $response;

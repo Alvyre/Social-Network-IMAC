@@ -29,7 +29,7 @@ $app->get('/comment-delete/{idComment}', 'App\Action\CommentAction:delete')
 ->setName("comment-delete");
 
 //subjects
-$app->get('/subject-create', 'App\Action\SubjectAction:create')
+$app->get('/subject-create/{titleSubject}&{contentSubject}&{dateSubject}', 'App\Action\SubjectAction:create')
 ->setName("subject");
 
 $app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
@@ -38,7 +38,7 @@ $app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
 $app->get('/subject-get', 'App\Action\SubjectAction:readOne')
 ->setName("subject");
 
-$app->get('/subject-update','App\Action\SubjectAction:update')
+$app->get('/subject-update/{idSubject}&{titleSubject}&{contentSubject}','App\Action\SubjectAction:update')
 ->setName("subject");
 
 $app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
@@ -57,12 +57,26 @@ $app->get('/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUs
 $app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
 ->setName("user");
 
-// afficher tous les votes
-$app->get('/voteAll', App\Action\VoteAction::class)
-->setName("voteAll");
 
 //vote
-$app->get('/vote', App\Action\VoteAction::class)
+$app->get('/vote-create/{upVote}&{downVote}', 'App\Action\VoteAction:create')
+->setName("vote");
+
+$app->get('/vote-getall', 'App\Action\VoteAction:readAll')
+->setName("vote");
+
+$app->get('/vote-get', 'App\Action\VoteAction:readOne')
+->setName("vote");
+
+$app->get('/vote-update/{idVote}&{upVote}&{downVote}', 'App\Action\VoteAction:update')
+->setName("vote");
+
+$app->get('/vote-delete/{upVote}', 'App\Action\VoteAction:delete')
 ->setName("vote");
 
 ?>
+
+
+
+
+

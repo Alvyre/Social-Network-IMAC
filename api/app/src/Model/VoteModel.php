@@ -11,6 +11,8 @@ class VoteModel extends Model
 
     public $timestamps = false;
 
+    protected $fillable = array('upVote', 'downVote');
+
 }
 
 ?>

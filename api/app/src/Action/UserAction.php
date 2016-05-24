@@ -69,7 +69,6 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::where('pseudoUser',  $args['pseudoUser'])->get();
 
         User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
 
