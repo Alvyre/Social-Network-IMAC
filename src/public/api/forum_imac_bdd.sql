@@ -40,7 +40,6 @@ CREATE TABLE `subject` (
   `contentSubject` text NOT NULL,
   `dateSubject` date NOT NULL,
   `idUser` int(11) NOT NULL,
-  `idVote` int(11) NOT NULL,
   `idCat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,8 +57,16 @@ CREATE TABLE `user` (
   `emailUser` varchar(100) NOT NULL,
   `sexUser` enum('Homme','Femme','Autre') NOT NULL,
   `bioUser` text,
-  `adminUser` tinyint(1) NOT NULL DEFAULT '0'
+  `adminUser` tinyint(1) NOT NULL DEFAULT '0',
+  `passUser` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`idUser`, `pseudoUser`, `statusUser`, `photoUser`, `emailUser`, `sexUser`, `bioUser`, `adminUser`, `passUser`) VALUES
+(1, '', NULL, NULL, '', '', NULL, 0, '');
 
 -- --------------------------------------------------------
 
@@ -71,7 +78,8 @@ CREATE TABLE `vote` (
   `idVote` int(11) NOT NULL,
   `upVote` int(11) NOT NULL DEFAULT '0',
   `downVote` int(11) NOT NULL DEFAULT '0',
-  `idUser` int(11) NOT NULL
+  `idUser` int(11) NOT NULL,
+  `idSubject` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -131,7 +139,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `vote`
 --
