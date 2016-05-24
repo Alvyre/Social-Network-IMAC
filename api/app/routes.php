@@ -29,19 +29,19 @@ $app->get('/comment-delete', 'App\Action\CommentAction::delete')
 	->setName("comment-delete");
 
 //subjects
-$app->get('/subject', 'App\Action\SubjectAction:create')
+$app->get('/subject-create', 'App\Action\SubjectAction:create')
 	->setName("subject");
 
-$app->get('/subject', 'App\Action\SubjectAction:readAll')
+$app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
 	->setName("subject");
 
-$app->get('/subject', 'App\Action\SubjectAction:readOne')
+$app->get('/subject-get', 'App\Action\SubjectAction:readOne')
 	->setName("subject");
 
-$app->get('/subject','App\Action\SubjectAction:update')
+$app->get('/subject-update','App\Action\SubjectAction:update')
 	->setName("subject");
 
-$app->get('/subject', 'App\Action\SubjectAction:delete')
+$app->get('/subject-delete', 'App\Action\SubjectAction:delete')
 	->setName("subject");
 
 
