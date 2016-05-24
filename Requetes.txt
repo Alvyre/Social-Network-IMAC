@@ -1,0 +1,55 @@
+Requêtes liées à USER :
+	SELECT IdUser FROM 'user'
+	SELECT PSeudoUser FROM 'user'
+	SELECT StatusUser FROM 'user'
+	SELECT PhotoUser FROM 'user'
+	SELECT EmailUser FROM 'user'
+	SELECT SexUser FROM 'user'
+	SELECT BioUser FROM 'user'
+	SELECT AdminUser FROM 'user'
+
+	INSERT INTO 'user' VALUES ('valeur 1', 'valeur 2', ...)
+
+Requêtes liées à VOTE :
+	SELECT IdVote FROM 'vote'
+	SELECT UpVote FROM 'vote'
+	SELECT DownVote FROM 'vote'
+	SELECT IdUSer FROM 'vote'
+
+	INSERT INTO 'vote' VALUES ('valeur 1', 'valeur 2', ...)
+
+Requêtes liées à SUBJECT :
+	SELECT IdSubject FROM 'subject'
+	SELECT TitleSubject FROM 'subject'
+	SELECT ContentSubject FROM 'subject'
+	SELECT DateSubject FROM 'subject'
+	SELECT IdVote FROM 'subject'
+	SELECT IdCat FROM 'subject'
+
+	INSERT INTO 'subject' VALUES ('valeur 1', 'valeur 2', ...)
+
+Requêtes liées à COMMENT :
+	SELECT IdComment FROM 'comment'
+	SELECT DateComment FROM 'comment'
+	SELECT ContentComment FROM 'comment'
+	SELECT IdVote FROM 'comment'
+	SELECT IdUser FROM 'comment'
+	SELECT IdSubject FROM 'comment'
+
+	INSERT INTO 'comment' VALUES ('valeur 1', 'valeur 2', ...)
+
+Requêtes liées à CATEGORY :
+	SELECT IdCat FROM 'category'
+	SELECT TitleCat FROM 'category'
+
+	INSERT INTO 'category' VALUES ('valeur 1', 'valeur 2', ...)
+
+Récupérer les 5 SUBJECT les plus récents :
+	SELECT * FROM `subject` ORDER BY DateSubject LIMIT 5
+
+Récupérer les 5 SUBJECT qui ont le plus de commentaires
+	SELECT * FROM `subject` QUELQUE CHOSE QUE JESAISPO
+
+
+
+
