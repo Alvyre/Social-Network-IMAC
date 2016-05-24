@@ -8,21 +8,20 @@ $app->get('/', App\Action\HomeAction::class)
 
 //all datas -> test
 //categories
-$app->get('/', App\Action\CategoryAction::class)
-    ->setName("home");
+$app->get('/category', App\Action\CategoryAction::class)
+    ->setName("category");
 //comments
-$app->get('/', App\Action\CommentAction::class)
-	->setName("home");
+$app->get('/comment', App\Action\CommentAction::class)
+	->setName("comment");
 //subjects
-$app->get('/', App\Action\SubjectAction::class)
-	->setName("home");
+$app->get('/subject', App\Action\SubjectAction::class)
+	->setName("subject");
 //users
-$app->get('/', App\Action\UserAction::class)
-	->setName("home");
+$app->get('/user', App\Action\UserAction::class)
+	->setName("user");
 //vote
-$app->get('/', App\Action\VoteAction::class)
-
-   
+$app->get('/vote', App\Action\VoteAction::class)
+	->setName("vote");
 
 
 
