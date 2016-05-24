@@ -23,7 +23,7 @@ function connexionBDD()
 
 
   //Connexion à la base de donnée
-  $mysqli = new mysqli('localhost', 'root', 'maumau007', 'Ladyz_BDD');
+  $mysqli = new mysqli('localhost', 'root', '', 'Hellowizz');
   if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
@@ -48,5 +48,28 @@ function readAllCategories()
   // $categories = $result->fetch_assoc();
   return $result;
 }
+
+	//COMMENT
+function readAllComments()
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT IdComment FROM 'comment'";
+
+  $result = $mysqli->query($sql);
+  return $result;
+}
+
+	//USER
+function readAllPseudos()
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT PSeudoUser FROM 'user'";
+
+  $result = $mysqli->query($sql);
+  return $result;
+}
+
 
 ?>
