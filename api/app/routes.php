@@ -7,13 +7,13 @@ $app->get('/', App\Action\HomeAction::class)
 //categories
 $app->get('/category-getall', 'App\Action\CategoryAction:readAll')
 	->setName("category-getall");
-$app->get('/category-get', 'App\Action\CategoryAction:readOne')
+$app->get('/category-get/{idCat}', 'App\Action\CategoryAction:readOne')
 	->setName("category-get");
-$app->get('/category-create', 'App\Action\CategoryAction:create')
+$app->get('/category-create/{titleCat}', 'App\Action\CategoryAction:create')
 	->setName("category-create");
-$app->get('/category-update', 'App\Action\CategoryAction:update')
+$app->get('/category-update/{idCat}&{titleCat}', 'App\Action\CategoryAction:update')
 	->setName("category-update");
-$app->get('/category-delete', 'App\Action\CategoryAction:delete')
+$app->get('/category-delete/{titleCat}', 'App\Action\CategoryAction:delete')
 	->setName("category-delete");
 
 //comments

@@ -11,6 +11,8 @@ class CategoryModel extends Model
 
     public $timestamps = false;
 
+    protected $fillable = array('titleCat');
+
 }
 
 ?>

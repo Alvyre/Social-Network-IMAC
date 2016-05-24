@@ -24,18 +24,10 @@ final class CategoryAction
     {
         $this->logger->info("Home page action dispatched");
 
-        User::firstOrCreate(array(
-            'pseudoUser' => $args['pseudoUser'], 
-            'statusUser' => $args['statusUser'], 
-            'photoUser' => $args['photoUser'], 
-            'emailUser' => $args['emailUser'], 
-            'sexUser' => $args['sexUser'],
-            'bioUser' => $args['bioUser'], 
-            'passUser' => $args['passUser'])
-        );
+        Category::firstOrCreate(array('titleCat' => $args['titleCat']));
 
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur ajouté !'
+            'datas' => 'Catégorie ajouté !'
         ]);
 
         return $response;
@@ -58,7 +50,7 @@ final class CategoryAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = User::where('idUser', 2)->get();
+        $datas = Category::where('idCat', $args['idCat'])->get();
   
         echo $datas->toJson();
         
@@ -69,12 +61,10 @@ final class CategoryAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::where('pseudoUser',  $args['pseudoUser'])->get();
-
-        User::where('idUser', 'like', $args['idUser'])->update(array('pseudoUser' => $args['pseudoUser']));
+        Category::where('idCat', 'like', $args['idCat'])->update(array('titleCat' => $args['titleCat']));
 
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur modifié !'
+            'datas' => 'Catégorie modifié !'
         ]);
 
         return $response;
@@ -84,10 +74,10 @@ final class CategoryAction
     {
         $this->logger->info("Home page action dispatched");
 
-        User::where('pseudoUser',$args['pseudoUser'])->delete();
+        Category::where('titleCat',$args['titleCat'])->delete();
         
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur supprimé !'
+            'datas' => 'Catégorie supprimé !'
         ]);
 
         return $response;
