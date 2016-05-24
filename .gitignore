@@ -1,2 +1,3 @@
-src/public/api/logs/*
-src/public/api/templates/cache/*
+api/logs/*
+api/templates/cache/*
+node_modules/*
