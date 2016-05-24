@@ -46,7 +46,7 @@ $app->get('/subject', 'App\Action\SubjectAction:delete')
 
 
 //users
-$app->get('/user-getAll', 'App\Action\UserAction:readAll')
+$app->get('/user-getall', 'App\Action\UserAction:readAll')
 	->setName("user");
 $app->get('/user-get', 'App\Action\UserAction:readOne')
 	->setName("user");
