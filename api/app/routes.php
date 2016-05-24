@@ -29,17 +29,13 @@ $app->get('/user-getAll', 'App\Action\UserAction:readAll')
 	->setName("user");
 $app->get('/user-get', 'App\Action\UserAction:readOne')
 	->setName("user");
-<<<<<<< HEAD
+
 // afficher tous les votes
 $app->get('/voteAll', App\Action\VoteAction::readAll())
 	->setName("voteAll");
-=======
 
 //vote
 $app->get('/vote', App\Action\VoteAction::class)
 	->setName("vote");
-
-
->>>>>>> be8792c7a50602b245b851071677c1f00393cb25
 
 ?>
