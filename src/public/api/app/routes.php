@@ -1,6 +1,13 @@
 <?php
-
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 // Routes
+$app->get('/hello/{name}', function (Request $request, Response $response) {
+    $name = $request->getAttribute('name');
+    $response->getBody()->write("Hello, $name ssoulet");
+
+    return $response;
+});
 
 //accueil
 $app->get('/', App\Action\HomeAction::class)
@@ -17,7 +24,7 @@ $app->get('/comment', App\Action\CommentAction::class)
 $app->get('/subject', App\Action\SubjectAction::class)
 	->setName("subject");
 //users
-$app->get('/user', App\Action\UserAction::class)
+$app->get('/user', 'App\Action\UserAction:readAll')
 	->setName("user");
 //vote
 $app->get('/vote', App\Action\VoteAction::class)
