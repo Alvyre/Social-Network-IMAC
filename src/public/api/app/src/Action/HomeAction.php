@@ -3,9 +3,9 @@ namespace App\Action;
 
 use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
-use Illuminate\Database\Query\Builder;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use App\Model\HomeModel as Home;
 
 final class HomeAction
 {
@@ -13,7 +13,7 @@ final class HomeAction
     private $logger;
     protected $table;
 
-    public function __construct(Twig $view, LoggerInterface $logger, Builder $table)
+    public function __construct(Twig $view, LoggerInterface $logger, $table)
     {
         $this->view = $view;
         $this->logger = $logger;
@@ -24,7 +24,7 @@ final class HomeAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
+        $datas = Home::all();
         
         $this->view->render($response, 'home.twig', [
             'datas' => $datas

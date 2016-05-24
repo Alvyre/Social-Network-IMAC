@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Model;
 
-use \Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
-class Home extends Model
+class HomeModel extends Model
 {
 
     protected $table = 'category';
