@@ -5,8 +5,16 @@ $app->get('/', App\Action\HomeAction::class)
  	->setName("home");
 
 //categories
-$app->get('/category', App\Action\CategoryAction::class)
-    ->setName("category");
+$app->get('/category-getall', 'App\Action\CategoryAction::readAll')
+    ->setName("category-getall");
+$app->get('/category-get', 'App\Action\CategoryAction::readOne')
+    ->setName("category-get");
+$app->get('/category-create', 'App\Action\CategoryAction::')
+    ->setName("category-create");
+$app->get('/category-update', 'App\Action\CategoryAction::readAll')
+    ->setName("category-update");
+$app->get('/category-delete', 'App\Action\CategoryAction::readAll')
+    ->setName("category-delete");
 
 //comments
 $app->get('/comment-getall', 'App\Action\CommentAction:readAll')
