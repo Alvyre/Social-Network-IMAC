@@ -37,7 +37,6 @@ export default {
   }
 }
 </script>
-
 <!-- GET DATA JSON
 
 ,
@@ -61,3 +60,8 @@ export default {
       )
     }
 -->
+
+<style type="text/css">
+
+</style>
+
