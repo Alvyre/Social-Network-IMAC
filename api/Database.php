@@ -115,7 +115,7 @@ function createCategory($TitleCat) {
 function createComment($DateComment, $ContentComment, $IdUser) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO comment VALUES ('""','".$DateComment."','".$ContentComment."','".$IdUser."')";
+  $sql = "INSERT INTO comment VALUES ('','".$DateComment."','".$ContentComment."','".$IdUser."')";
 
   $result = $mysqli->query($sql);
 
@@ -125,7 +125,7 @@ function createComment($DateComment, $ContentComment, $IdUser) {
 function createVote($UpVote, $DownVote, $IdUser, $IdComment) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO vote VALUES ('""','".$UpVote."','".$DownVote."','".$IdUser."','".$IdComment."')";
+  $sql = "INSERT INTO vote VALUES ('','".$UpVote."','".$DownVote."','".$IdUser."','".$IdComment."')";
 
   $result = $mysqli->query($sql);
 
@@ -135,7 +135,7 @@ function createVote($UpVote, $DownVote, $IdUser, $IdComment) {
 function createUser($PSeudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser, $AdminUser) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO vote VALUES ('""','".$PSeudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
+  $sql = "INSERT INTO vote VALUES (','".$PSeudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
 
   $result = $mysqli->query($sql);
 
@@ -145,7 +145,7 @@ function createUser($PSeudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, 
 function createSubject($TitleSubject, $ContentSubject, $DateSubject, $IdVote, $IdUser, $IdCat) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO vote VALUES ('""','".$TitleSubject."','".$ContentSubject."','".$DateSubject."','".$IdVote.",'".$IdUser.",'".$IdCat."')";
+  $sql = "INSERT INTO vote VALUES ('','".$TitleSubject."','".$ContentSubject."','".$DateSubject."','".$IdVote.",'".$IdUser.",'".$IdCat."')";
 
   $result = $mysqli->query($sql);
 
