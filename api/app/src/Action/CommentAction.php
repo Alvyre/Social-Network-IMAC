@@ -26,10 +26,8 @@ public function create(Request $request, Response $response, $args)
         $this->logger->info("Home page action dispatched");
 
         $datas = $this->table->get();
-        
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+
+        echo $datas->toJson();
 
         return $response;
     }
@@ -39,10 +37,8 @@ public function create(Request $request, Response $response, $args)
         $this->logger->info("Home page action dispatched");
         
         $datas = Comment::all();
-  
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+
+        echo $datas->toJson();
 
         return $response;
     }
@@ -50,12 +46,10 @@ public function create(Request $request, Response $response, $args)
     public function readOne(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
-        $datas = Comment::all();
-  
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+
+        $datas = Comment::first();
+
+        echo $datas->toJson();
 
         return $response;
     }
@@ -66,9 +60,7 @@ public function create(Request $request, Response $response, $args)
 
         $datas = $this->table->get();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas->toJson();
 
         return $response;
     }
@@ -77,12 +69,8 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = $this->table->get();
-        
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
-
+        $datas = Comment::where('titleComment', $args['titleComment'])->delete();
+    
         return $response;
     }
 }
