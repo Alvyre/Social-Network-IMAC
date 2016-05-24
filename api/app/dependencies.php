@@ -56,3 +56,23 @@ $container['db'] = function ($c) {
 $container[App\Action\HomeAction::class] = function ($c) {
     return new App\Action\HomeAction($c->get('view'), $c->get('logger'), $c->get('db'));
 };
+
+$container[App\Action\UserAction::class] = function ($c) {
+    return new App\Action\UserAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};
+
+$container[App\Action\CategoryAction::class] = function ($c) {
+    return new App\Action\CategoryAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};
+
+$container[App\Action\CommentAction::class] = function ($c) {
+    return new App\Action\CommentAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};
+
+$container[App\Action\SubjectAction::class] = function ($c) {
+    return new App\Action\SubjectAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};
+
+$container[App\Action\VoteAction::class] = function ($c) {
+    return new App\Action\VoteAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};

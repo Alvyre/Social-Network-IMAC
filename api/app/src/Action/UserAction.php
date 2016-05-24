@@ -13,24 +13,11 @@ final class UserAction
     private $logger;
     protected $table;
 
-    public function __construct(Twig $view, LoggerInterface $logger, Builder $table)
+    public function __construct(Twig $view, LoggerInterface $logger, $table)
     {
         $this->view = $view;
         $this->logger = $logger;
         $this->table = $table;
-    }
-
-    public function __invoke(Request $request, Response $response, $args)
-    {
-        $this->logger->info("Home page action dispatched");
-
-        $datas = $this->table->get();
-        
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
-
-        return $response;
     }
 
     public function create(Request $request, Response $response, $args)
@@ -46,14 +33,35 @@ final class UserAction
         return $response;
     }
 
-    public function read(Request $request, Response $response, $args)
+    public function readAll(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Home::all();
+        $datas = User::all();
+  
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
 
-        $route = $request->getAttribute('route');
-        $userId = $route->getArgument('id');
+        return $response;
+    }
+
+    public function readOne(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+        
+        $datas = User::all();
+  
+        $this->view->render($response, 'home.twig', [
+            'datas' => $datas
+        ]);
+
+        return $response;
+    }
+
+    public function update(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
 
         $datas = $this->table->get();
         
@@ -65,19 +73,6 @@ final class UserAction
     }
 
     public function delete(Request $request, Response $response, $args)
-    {
-        $this->logger->info("Home page action dispatched");
-
-        $datas = $this->table->get();
-        
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
-
-        return $response;
-    }
-
-    public function edit(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
