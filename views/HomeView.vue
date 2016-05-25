@@ -24,6 +24,32 @@
 					<li><a href="">Les débouchés</a></li>
 				</ul>
 			</div>
+			<div class="talks-field row">
+				<div class="col-md-6">
+					<div class="more-recent-talks">
+						<p class="title text-uppercase">Sujets<br>recents</p>
+						<ul class="subjects">
+							<li><a href="">Sujet 1</a></li>
+							<li><a href="">Sujet 2</a></li>
+							<li><a href="">Sujet 3</a></li>
+							<li><a href="">Sujet 4</a></li>
+							<li><a href="">Sujet 5</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="more-commented-talks">
+						<p class="title text-uppercase">Sujets<br>populaires</p>
+						<ul class="subjects">
+							<li><a href="">Sujet 1</a></li>
+							<li><a href="">Sujet 2</a></li>
+							<li><a href="">Sujet 3</a></li>
+							<li><a href="">Sujet 4</a></li>
+							<li><a href="">Sujet 5</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -168,6 +194,30 @@ export default {
 	.home .container .menu-cat ul li {
 	    display: inline-block;
 	    padding: 1em;
+	}
+
+	.home .talks-field{
+		width: 100%;
+		margin: 7em auto;
+	}
+
+	.home .talks-field .more-recent-talks, .home .talks-field .more-commented-talks{
+		position: relative;
+		text-align: center;
+		margin-bottom: 2em;
+	}
+
+	.home .talks-field .title{
+		font-weight: 800;
+    	font-size: 2em;
+    	letter-spacing: 1px;
+    	vertical-align: middle;
+	}
+
+	.home .talks-field .subjects{
+	    font-size: 1em;
+	    list-style: none;
+	    padding: 0;
 	}
 
 </style>

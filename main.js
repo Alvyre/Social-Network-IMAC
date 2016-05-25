@@ -54,4 +54,6 @@ router.redirect({
 
 router.start(App, 'app')
 
+router.go()
+
 

@@ -1,7 +1,7 @@
 <template>
 	<header>
-		<div class="go-home"><a href="#"><img src="../assets/logo.svg" width="50" height="50" />IMAC Talks</a></div>
-		<div class="connect"><a href="#!/signup">S'inscire / Connexion</a></div>
+		<div class="go-home"><a v-link="'home'"><img src="../assets/logo.svg" width="50" height="50" />IMAC Talks</a></div>
+		<div class="connect"><a v-link="'signup'">S'inscrire / Connexion</a></div>
 		<div class="clear">
 	</header>
 </template>

@@ -1,10 +1,13 @@
 <template>
 	<header-component></header-component>
-	<router-view
+
+	<div class="container-fluid">
+		<router-view
       keep-alive
       transition
       transition-mode="out-in">
-    </router-view>
+    	</router-view>
+    </div>
   <footer-component></footer-component>
 </template>
 
@@ -36,12 +39,4 @@ export default {
     	color: #333333;
     	text-decoration: none;
 	}
-
-	.container-fluid{
-		padding: 0;
-		margin: 0;
-	}
-
-	
-
 </style>
