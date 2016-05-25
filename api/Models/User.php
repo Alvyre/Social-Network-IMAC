@@ -11,7 +11,7 @@ function readAllPseudos()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT PSeudoUser FROM 'user'";
+  $sql = "SELECT * FROM 'user'";
 
   $result = $mysqli->query($sql);
 

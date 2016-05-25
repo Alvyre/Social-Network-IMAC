@@ -11,7 +11,7 @@ function readAllComments()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT IdComment FROM 'comment'";
+  $sql = "SELECT * FROM 'comment'";
 
   $result = $mysqli->query($sql);
 

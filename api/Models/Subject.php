@@ -7,6 +7,54 @@ require_once("./Database.php");
 
 // READ
 
+function readAllSubjects()
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM 'subject'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readMostRecent()
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM 'subject' ORDER BY DateSubject LIMIT 5";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readMostCommented()
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM subject, (SELECT IdSubject, COUNT(IdSubject) as nbCom from comment group by IdSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 // DELETE
 
 function deleteSubject($id) {

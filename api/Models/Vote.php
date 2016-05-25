@@ -7,7 +7,21 @@ require_once("./Database.php");
 
 // READ
 
+function readAllVotes()
+{
+  $mysqli = connexionBDD();
 
+  $sql = "SELECT * FROM 'vote'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
 
 // CREATE
 
