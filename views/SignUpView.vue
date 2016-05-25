@@ -1,4 +1,4 @@
-  
+
 
 <template>
   <div class="row">
@@ -11,31 +11,31 @@
       <div class="inscription" id="inscription" v-show="!connect && sign">
         <form action="" method="POST" role="form">
           <legend>Inscription</legend>
-        
+
           <div class="form-group">
           <div class="alert alert-danger" v-if='!pseudo'>
-            <strong>Ce champs est nécéssaire</strong>
+            <strong>Ce champs est nécessaire</strong>
           </div>
             <label for="pseudo">Pseudo :</label>
             <input type="text" name="pseudo" class="form-control" id="pseudo" placeholder="Pseudo" required v-model="pseudo">
             </div>
           <div class="form-group">
             <div class="alert alert-danger" v-if='!password'>
-              <strong>Ce champs est nécéssaire</strong>
+              <strong>Ce champs est nécessaire</strong>
             </div>
             <label for="pwd">Mot de passe :</label>
             <input type="password" name="password" class="form-control" id="password" required v-model="password">
           </div>
           <div class="form-group">
             <div class="alert alert-danger" v-if='!status'>
-            <strong>Ce champs est nécéssaire</strong>
+            <strong>Ce champs est nécessaire</strong>
             </div>
             <label for="status">Status :</label>
             <input type="text" name="status" class="form-control" id="status" placeholder="IMAC201X, Prof, ..." required v-model="status">
           </div>
           <div class="form-group">
             <div class="alert alert-danger" v-if='!mail'>
-            <strong>Ce champs est nécéssaire</strong>
+            <strong>Ce champs est nécessaire</strong>
             </div>
             <div class="alert alert-warning" v-if="mail && !mail.includes('@')">
               <strong>Votre @mail n'est pas valide</strong>
@@ -55,7 +55,7 @@
             <label for="bio">Informations Supplémentaires :</label>
             <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="message" placeholder="Portfolio, links, .."></textarea>
           </div>
-          
+
           <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
         </form>
       </div>
