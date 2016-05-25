@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 24 Mai 2016 à 12:43
+-- Généré le :  Mer 25 Mai 2016 à 10:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `projetwebs2`
+-- Base de données :  `ladyz_bdd`
 --
 
 -- --------------------------------------------------------
@@ -63,14 +63,23 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `IdUser_2` (`IdUser`),
   KEY `IdSubject` (`IdSubject`),
   KEY `IdUser_3` (`IdUser`,`IdSubject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `comment`
 --
 
 INSERT INTO `comment` (`IdComment`, `DateComment`, `ContentComment`, `IdUser`, `IdSubject`) VALUES
-(1, '2016-05-24', 'Oh trop sympa !', 4, 9);
+(1, '2016-05-24', 'Oh trop sympa !', 4, 9),
+(2, '2016-05-25', 'Je suis intéressé moi !', 1, 1),
+(4, '2016-05-25', 'C''est vraiment cool !', 4, 9),
+(6, '2016-05-25', 'Je crois que c''est le jeudi 26.', 2, 10),
+(7, '2016-05-25', 'Non, c''est jeudi prochain !', 3, 10),
+(8, '2016-05-25', 'Ahh bon ? J''étais pas sur !', 3, 10),
+(9, '2016-05-25', 'Si tu veux on se voit demain pour régler le problème.', 1, 5),
+(10, '2016-05-25', 'C''est bon, on m''a aidé aujourd''hui !', 3, 5),
+(11, '2016-05-25', 'Je te conseille de réviser, ce n''était pas super simple l''an dernier.', 1, 3),
+(12, '2016-05-25', 'Mais je peux t''aider aussi , si tu veux. Ca te va ce jeudi ?', 1, 3);
 
 -- --------------------------------------------------------
 
