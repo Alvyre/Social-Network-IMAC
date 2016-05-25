@@ -42,11 +42,9 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Subject::all();
+        $datas = Subject::with('cat')->get();
   
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas;
 
         return $response;
     }

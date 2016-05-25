@@ -39,9 +39,7 @@ final class CategoryAction
         
         $datas = Category::all();
   
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas->toJson();
 
         return $response;
     }

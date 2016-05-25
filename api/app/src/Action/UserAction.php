@@ -47,9 +47,7 @@ final class UserAction
         
         $datas = User::all();
   
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas->toJson();
 
         return $response;
     }

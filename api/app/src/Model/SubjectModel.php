@@ -13,6 +13,16 @@ class SubjectModel extends Model
 
     protected $fillable = array('titleSubject', 'contentSubject', 'dateSubject');
 
+    public function cat()
+    {
+        return $this->belongsTo('App\Model\CategoryModel','idCat','idCat');
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany('App\Model\UserModel','idUser');
+    }
+
 
 }
 
