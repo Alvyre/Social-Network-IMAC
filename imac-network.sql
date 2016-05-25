@@ -3,11 +3,14 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 25 Mai 2016 à 10:19
+-- Généré le :  Mer 25 Mai 2016 à 10:33
 -- Version du serveur :  10.1.13-MariaDB
 -- Version de PHP :  5.6.21
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -234,6 +237,51 @@ ALTER TABLE `user`
 --
 ALTER TABLE `vote`
   MODIFY `idVote` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Métadonnées
+--
+USE `phpmyadmin`;
+
+--
+-- Métadonnées pour category
+--
+
+--
+-- Métadonnées pour comment
+--
+
+--
+-- Métadonnées pour subject
+--
+
+--
+-- Métadonnées pour user
+--
+
+--
+-- Métadonnées pour vote
+--
+
+--
+-- Métadonnées pour imac-network
+--
+
+--
+-- Contenu de la table `pma__relation`
+--
+
+INSERT INTO `pma__relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
+('imac-network', 'comment', 'idSubject', 'imac-network', 'subject', 'idSubject'),
+('imac-network', 'comment', 'idUser', 'imac-network', 'user', 'idUser'),
+('imac-network', 'comment', 'idVote', 'imac-network', 'vote', 'idVote'),
+('imac-network', 'subject', 'idCat', 'imac-network', 'category', 'idCat'),
+('imac-network', 'subject', 'idUser', 'imac-network', 'user', 'idUser'),
+('imac-network', 'vote', 'idSubject', 'imac-network', 'subject', 'idSubject'),
+('imac-network', 'vote', 'idUser', 'imac-network', 'user', 'idUser');
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
