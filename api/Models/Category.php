@@ -40,12 +40,28 @@ function readTitleCategories($title)
   return $rows;
 }
 
+function readIdCategories($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM category WHERE IdCat = ".$id;
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 // DELETE
 
 function deleteCategory($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM category WHERE ".$id." = IdCategory";
+  $sql = "DELETE FROM category WHERE ".$id." = IdCat";
 
   $result = $mysqli->query($sql);
 }
