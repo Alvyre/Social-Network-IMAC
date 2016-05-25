@@ -11,7 +11,7 @@ function readAllUser()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'user'";
+  $sql = "SELECT * FROM user";
   $result = $mysqli->query($sql);
 
   $rows = array();
@@ -26,7 +26,7 @@ function readPseudoUser($pseudo)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'user' WHERE PSeudoUser = ".$pseudo;
+  $sql = "SELECT * FROM user WHERE PSeudoUser = ".$pseudo."";
 
   $result = $mysqli->query($sql);
 
@@ -42,7 +42,7 @@ function readIdUser($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'user' WHERE IdUser = ".$id;
+  $sql = "SELECT * FROM user WHERE IdUser = ".$id."";
 
   $result = $mysqli->query($sql);
 
@@ -59,7 +59,7 @@ function readIdUser($id)
 function updateUserStatus($id, $StatusUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET StatusUser='".$StatusUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET StatusUser ='".$StatusUser."' WHERE IdUser = ".$id."";
 
   $result = $mysqli->query($sql);
 }
@@ -67,7 +67,7 @@ function updateUserStatus($id, $StatusUser) {
 function updateUserEmail($id, $EmailUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET EmailUser='".$EmailUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET EmailUser ='".$EmailUser."' WHERE IdUser = ".$id."";
 
   $result = $mysqli->query($sql);
 }
@@ -75,7 +75,7 @@ function updateUserEmail($id, $EmailUser) {
 function updateUserBio($id, $BioUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET BioUser='".$BioUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET BioUser ='".$BioUser."' WHERE IdUser = ".$id."";
 
   $result = $mysqli->query($sql);
 }
@@ -83,7 +83,7 @@ function updateUserBio($id, $BioUser) {
 function updateUserPhoto($id, $PhotoUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET PhotoUser='".$PhotoUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET PhotoUser ='".$PhotoUser."' WHERE IdUser = ".$id."";
 
   $result = $mysqli->query($sql);
 }
