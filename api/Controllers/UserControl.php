@@ -39,6 +39,13 @@ function createUser(){
       $BioUser = real_escape_string($_POST['BioUser']);
     }
   }
+  $result = createUser($PseudoUser, $PassUser, $StatusUser, NULL, $EmailUser, $SexUser, $BioUser);
+  
+  if($result){
+    //aficher le profil
+  }else{
+    echo "SEGFAULT"
+  }
 }
 
 function login(){
