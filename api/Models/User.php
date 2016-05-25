@@ -90,12 +90,19 @@ function updateUserPhoto($id, $PhotoUser) {
 
 // CREATE
 
-function createUser($PseudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser, $AdminUser) {
+function createUser($PseudoUser, $PassUser ,$StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO vote VALUES (','".$PseudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
+  $sql = "INSERT INTO user (PseudoUser, PassUser, StatusUser, PhotoUser, EmailUser, SexUser, BioUser) VALUES (?,?,?,?,?,?,?)";
 
-  $result = $mysqli->query($sql);
+  $stmt = $mysqli->prepare($sql);
+  $stmt->bind_param('sssssss', $PseudoUser, md5($PassUser), $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
+  $stmt->execute();
+  if ($stmt->affected_rows == 1) {
+      return true;
+  } else {
+      return false;
+  }
 }
 
 // DELETE
