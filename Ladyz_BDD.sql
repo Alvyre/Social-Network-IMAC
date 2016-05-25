@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 25 Mai 2016 à 10:10
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Client: localhost
+-- Généré le: Mer 25 Mai 2016 à 14:05
+-- Version du serveur: 5.5.49-0ubuntu0.14.04.1
+-- Version de PHP: 5.5.9-1ubuntu4.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `ladyz_bdd`
+-- Base de données: `Ladyz`
 --
 
 -- --------------------------------------------------------
@@ -66,6 +66,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
+-- RELATIONS POUR LA TABLE `comment`:
+--   `IdUser`
+--       `user` -> `IdUser`
+--   `IdSubject`
+--       `subject` -> `IdSubject`
+--
+
+--
 -- Contenu de la table `comment`
 --
 
@@ -104,6 +112,16 @@ CREATE TABLE IF NOT EXISTS `subject` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
+-- RELATIONS POUR LA TABLE `subject`:
+--   `IdCat`
+--       `category` -> `IdCat`
+--   `IdVote`
+--       `vote` -> `IdVote`
+--   `IdUser`
+--       `user` -> `IdUser`
+--
+
+--
 -- Contenu de la table `subject`
 --
 
@@ -127,7 +145,7 @@ INSERT INTO `subject` (`IdSubject`, `TitleSubject`, `ContentSubject`, `DateSubje
 
 CREATE TABLE IF NOT EXISTS `user` (
   `IdUser` int(5) NOT NULL AUTO_INCREMENT,
-  `PSeudoUser` varchar(30) DEFAULT NULL,
+  `PseudoUser` varchar(30) DEFAULT NULL,
   `StatusUser` varchar(15) DEFAULT NULL,
   `PhotoUser` varchar(200) DEFAULT NULL,
   `EmailUser` text,
@@ -141,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`IdUser`, `PSeudoUser`, `StatusUser`, `PhotoUser`, `EmailUser`, `SexUser`, `BioUser`, `AdminUser`) VALUES
+INSERT INTO `user` (`IdUser`, `PseudoUser`, `StatusUser`, `PhotoUser`, `EmailUser`, `SexUser`, `BioUser`, `AdminUser`) VALUES
 (1, 'Pauline', 'IMAC2018', NULL, 'test@pauline.com', 'femme', 'Coucou !', 0),
 (2, 'Maureen', 'autre', NULL, 'maureen@roche.com', 'femme', 'Je suis Maureen !', 0),
 (3, 'Coralie', 'prof', NULL, 'coralie@gold.com', NULL, 'Coralie', 0),
@@ -165,6 +183,14 @@ CREATE TABLE IF NOT EXISTS `vote` (
   KEY `IdComment_2` (`IdComment`),
   KEY `IdComment_3` (`IdComment`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- RELATIONS POUR LA TABLE `vote`:
+--   `IdComment`
+--       `comment` -> `IdComment`
+--   `IdUser`
+--       `user` -> `IdUser`
+--
 
 --
 -- Contenu de la table `vote`

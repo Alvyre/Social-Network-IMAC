@@ -1,4 +1,4 @@
-<?php 
+<?php
 /****************************
 Fonctions sur les utilisateurs
 *****************************/
@@ -90,10 +90,10 @@ function updateUserPhoto($id, $PhotoUser) {
 
 // CREATE
 
-function createUser($PSeudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser, $AdminUser) {
+function createUser($PseudoUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser, $AdminUser) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO vote VALUES (','".$PSeudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
+  $sql = "INSERT INTO vote VALUES (','".$PseudoUser."','".$StatusUser."','".$PhotoUser."','".$EmailUser.",'".$SexUser.",'".$BioUser.",'".$AdminUser."')";
 
   $result = $mysqli->query($sql);
 }
@@ -109,4 +109,3 @@ function deleteUser($id) {
 }
 
  ?>
-
