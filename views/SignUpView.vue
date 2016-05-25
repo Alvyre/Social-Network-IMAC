@@ -53,7 +53,7 @@
           <div class="form-group">
 
             <label for="bio">Informations Supplémentaires :</label>
-            <textarea class="form-control " rows="6" id="bio" name ="bio" v-model="message" placeholder="Portfolio, links, .."></textarea>
+            <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="message" placeholder="Portfolio, links, .."></textarea>
           </div>
           
           <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
@@ -137,6 +137,11 @@
     padding: 10px;
   }
   #btn-choice{
-    margin-bottom: 100px;
+    margin: 100px 0;
+  }
+  .boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
   }
 </style>
