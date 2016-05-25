@@ -2,18 +2,18 @@
 	<menu-component></menu-component>
 	<div class="container-fluid">
 		<div class="row">
-			<img src="../assets/avatar.jpg" class="col-xs-3" />
+			<img v-bind:src="'../assets/'+user.photoUser" class="col-xs-3" />
 			<div class="col-xs-9">
-				<p>Pseudo : Alichou</p>
-				<p>Statut : IMAC 2017</p>
-				<p>email : alice.maixent@gmail.com</p>
+				<p>Pseudo : {{user.pseudoUser}} </p>
+				<p>Statut : {{user.statusUser}}</p>
+				<p>email : {{user.emailUser}}</p>
 			</div>
 
 		</div>
 		<div class="row">
 			<div class="col-xs-10">
 				<p>Bio :</p>
-				<p>Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. Ceci est une bio. </p>
+				<p> {{user.bioUser}} </p>
 			</div>
 		</div>
 	</div>
@@ -24,9 +24,32 @@
 import MenuComponent from '../components/MenuComponent.vue'
 
 export default {
-  components: {
-  	MenuComponent
-  }
+	data() {
+      return {
+		user : {
+		        "idUser":0,
+		        "pseudoUser":"Alichou",
+		        "statusUser":"IMAC2017",
+		        "photoUser":"avatar.jpg",
+		        "emailUser":"alichou@gmail.com",
+		        "sexUser":"F",
+		        "bioUser": "Coucou les licornes c'est chouette ! Presque autant que les poneys en fait. Mais pas tout à fait ! Parce que les poneys c'est réel du coup c'est forcément mieux",
+		        "adminUser":0,
+		        "passUser":""
+		    }
+      }
+    }/*,
+    created(){
+  		this.$http.get('category').then(
+  			(response)=>{this.subjects = response.subjects},
+  			(reject)=>{
+          console.log("pas bien")
+          //this.subjects = []
+        }
+  		)
+  	},
+  	components: {
+  	}*/
 }
 </script>
 
