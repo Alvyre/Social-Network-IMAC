@@ -1,10 +1,10 @@
 <template>
+  <header-component></header-component>
 	<router-view
       keep-alive
       transition
       transition-mode="out-in">
     </router-view>
-  <header-component></header-component>
   <container-component></container-component>
 </template>
 
