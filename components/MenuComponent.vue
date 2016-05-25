@@ -9,6 +9,7 @@
 		            <li><a href="#">Vie étudiante</a></li>
 		            <li><a href="#">Tutos</a></li>
 		            <li><a href="#">Divers</a></li>
+		            <li><a href="#">Actualités</a></li>
 		        </ul>
 		    </li>
 		    <li id="search">
@@ -81,8 +82,8 @@
 	    color: white;
 	    outline: none;
 	    background: #333333;
-	    border-bottom: 1px solid #ffffff;
-	    border-left:1px solid #ffffff;
+	    border-bottom: 2px solid #ffffff;
+	    border-left:2px solid #ffffff;
 	    float: left;
 	    box-sizing: border-box;
 	    transition: all 0.15s;
@@ -108,7 +109,7 @@
 	    height: 52px;
 	    cursor: pointer;
 	    background: #333;
-	    border-bottom:1px solid #ffffff;
+	    border-bottom:2px solid #ffffff;
 	    border-radius: 0;
 	}
 
