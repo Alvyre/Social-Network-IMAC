@@ -24,6 +24,22 @@ function readAllCategories()
   return $rows;
 }
 
+function readTitleCategories($title)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM category WHERE TitleCat = ".$title;
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 // DELETE
 
 function deleteCategory($id) {
