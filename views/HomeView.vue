@@ -1,52 +1,62 @@
 <template>
-  	<div class="home">
-		<div class="header">
-			<div class="title">
-				<span>IMAC</span>
-				<span>talks</span>
-				<span>with you.</span>
-			</div>
-			<div class="description">Le réseau social de l'IMAC permet l'échange entre professeurs, étudiants et professionnels.</div>
-			<i class="home-arrow fa fa-long-arrow-down" aria-hidden="true"></i>
-		</div>
-		<div class="container">
-			<div class="search">
-				<form class="terminal-form">
-					<input class="morphsearch-input" type="search" placeholder="Search...">
-				</form>
-			</div>
-			<div class="menu-cat">
-				<ul>
-					<li><a href="">Les matières</a></li>
-					<li><a href="">L'étranger</a></li>
-					<li><a href="">Se loger</a></li>
-					<li><a href="">Se nourrir</a></li>
-					<li><a href="">Les débouchés</a></li>
-				</ul>
-			</div>
-			<div class="talks-field row">
-				<div class="col-md-6">
-					<div class="more-recent-talks">
-						<p class="title text-uppercase">Sujets<br>recents</p>
-						<ul class="subjects">
-							<li><a href="">Sujet 1</a></li>
-							<li><a href="">Sujet 2</a></li>
-							<li><a href="">Sujet 3</a></li>
-							<li><a href="">Sujet 4</a></li>
-							<li><a href="">Sujet 5</a></li>
-						</ul>
-					</div>
+  	<div class="container-fluid">
+	  	<div class="home">
+			<div class="header">
+				<div class="title">
+					<span>IMAC</span>
+					<span>talks</span>
+					<span>with you.</span>
 				</div>
-				<div class="col-md-6">
-					<div class="more-commented-talks">
-						<p class="title text-uppercase">Sujets<br>populaires</p>
-						<ul class="subjects">
-							<li><a href="">Sujet 1</a></li>
-							<li><a href="">Sujet 2</a></li>
-							<li><a href="">Sujet 3</a></li>
-							<li><a href="">Sujet 4</a></li>
-							<li><a href="">Sujet 5</a></li>
-						</ul>
+				<div class="description">Le réseau social de l'IMAC permet l'échange entre professeurs, étudiants et professionnels.</div>
+				<i class="home-arrow fa fa-long-arrow-down" aria-hidden="true"></i>
+			</div>
+			<div class="container">
+				<div class="search">
+					<div class="terminal-form">
+						<form action="" method="get">
+			            	<input type="text" name="search_text" id="search_text" placeholder="Rechercher..."/>
+			            	<button type="submit" id="search_button" name="search_button" class="btn btn-success">
+	                			<i class="fa fa-search"></i>
+	            			</button>
+			        	</form>
+			        	<div class="clear"></div>
+		        	</div>
+				</div>
+				<div class="clear"></div>
+				<div class="menu-cat">
+					<ul>
+						<li><a href="#">Enseignement</a></li>
+		            	<li><a href="#">Logement</a></li>
+		            	<li><a href="#">Vie étudiante</a></li>
+		            	<li><a href="#">Tutos</a></li>
+		            	<li><a href="#">Divers</a></li>
+		            	<li><a href="#">Actualités</a></li>
+					</ul>
+				</div>
+				<div class="talks-field row">
+					<div class="col-md-6">
+						<div class="more-recent-talks">
+							<p class="title text-uppercase">Sujets<br>recents</p>
+							<ul class="subjects">
+								<li><a href="">Sujet 1</a></li>
+								<li><a href="">Sujet 2</a></li>
+								<li><a href="">Sujet 3</a></li>
+								<li><a href="">Sujet 4</a></li>
+								<li><a href="">Sujet 5</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="more-commented-talks">
+							<p class="title text-uppercase">Sujets<br>populaires</p>
+							<ul class="subjects">
+								<li><a href="">Sujet 1</a></li>
+								<li><a href="">Sujet 2</a></li>
+								<li><a href="">Sujet 3</a></li>
+								<li><a href="">Sujet 4</a></li>
+								<li><a href="">Sujet 5</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -122,6 +132,10 @@ export default {
 		display: block;
 	}
 
+	.home .header .container .clear{
+		clear: both;
+	}
+
 	.home .header .home-arrow{
 		font-size: 4em;
 		color: #333;
@@ -137,39 +151,70 @@ export default {
 		display: inline-block;
 	}
 
+	.home .container .search{
+		margin: 3em auto;
+	}
+
+	.home .container .search .clear{
+		clear: both;
+	}
+
 	.home .container .search .terminal-form{
     	width: 80%;
-    	height: 160px;
     	margin: 0 auto;
     	position: relative;
+    	max-width: 800px;
+	    border-bottom:3px solid #333333;
 	}
 
-	.home .container .search .terminal-form .morphsearch-input {
-    	font-size: 4em;
-    	width: 100%;
-	    height: 100%;
-	    padding: 0 10% 0 10px;
-	    border: none;
+	.home .container .search .terminal-form .info-search{
+		display: block;
+		font-size: 1em;
+		font-style: italic;
+		margin: 1em 0;
+	}
+
+	.home .container .search .terminal-form #search_text, .home .container .search .terminal-form #search_button{
+		font-size: 4em;
+		border: none;
 	    background: transparent;
-	    color: #333333;
-	    outline: none;
+	   	border: 0 none;
+	   	color: #333333;
+	   	outline: none;
 	    line-height: normal;
-	    text-align: center;
+	    display: block;
+	    margin: 0 auto;
+	    padding: 20px;
+	    height: 100%;
 	}
 
-	.home .container .search .terminal-form .morphsearch-submit {
-	    pointer-events: auto;
-	    opacity: 1;
-	    -webkit-transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
-	    transform: translate3d(-30px,-50%,0) scale3d(1,1,1);
-	    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
-	    transition: opacity 0.3s, transform 0.3s;
-	    -webkit-transition-delay: 0.5s;
-	    transition-delay: 0.5s;
-	    position: absolute;
-	    width: 80px;
-	    height: 80px;
-	    opacity: 0;
+	.home .container .search .terminal-form #search_text {
+    	width: 80%;
+	    max-width: 600px;
+	    border-left: 3px solid #333;
+	    text-align: left;
+	    float: left;
+	}
+
+	.home .container .search .terminal-form #search_text::-webkit-input-placeholder { /* WebKit browsers */
+	    color: #333333;
+	}
+	.home .container .search .terminal-form #search_text:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: #333333;
+	}
+	.home .container .search .terminal-form #search_text::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: #333333;
+	}
+	.home .container .search .terminal-form #search_text:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: #333333;
+	}
+
+	.home .container .search .terminal-form #search_button {
+	    width: 19%;
+	    text-align: center;
+	    cursor: pointer;
+	    border-radius: 0;
+	    float: right;
 	}
 
 	.home .container .search .terminal-form input[type="search"] {
@@ -183,6 +228,9 @@ export default {
 
 	.home .container .menu-cat {
 	    text-align: center;
+	    max-width: 900px;
+	    width: 100%;
+	    margin: 0 auto;
 	}
 
 	.home .container .menu-cat ul {
@@ -192,12 +240,14 @@ export default {
 
 	.home .container .menu-cat ul li {
 	    display: inline-block;
-	    padding: 1em;
+	    padding: 1em 0;
+	    width: 33%;
 	}
 
 	.home .talks-field{
 		width: 100%;
 		margin: 7em auto;
+		display: block;
 	}
 
 	.home .talks-field .more-recent-talks, .home .talks-field .more-commented-talks{
@@ -218,4 +268,24 @@ export default {
 	    list-style: none;
 	    padding: 0;
 	}
+
+	@media screen and (max-width: 600px) {
+
+		.home .header .title{
+			font-size: 4em;
+			line-height: 1.5em;
+		}
+
+	    .home .container .search .terminal-form #search_text, .home .container .search .terminal-form #search_button{
+	    	font-size: 2em;
+	    }
+	}
+
+	@media screen and (max-width: 800px) {
+		.home .container .menu-cat ul li {
+		    display: inline-block;
+		    width: 49%;
+		}
+	}
+
 </style>

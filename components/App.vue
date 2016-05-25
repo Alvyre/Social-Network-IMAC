@@ -1,12 +1,9 @@
 <template>
 	<header-component></header-component>
-
-	<div class="container-fluid">
 		<router-view
-      keep-alive
-      >
+      		keep-alive
+      	>
     	</router-view>
-    </div>
   <footer-component></footer-component>
 </template>
 
