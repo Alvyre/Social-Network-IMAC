@@ -4,6 +4,7 @@ return [
         // Slim Settings
         'determineRouteBeforeAppMiddleware' => false,
         'displayErrorDetails' => true,
+        'addContentLengthHeader' => false,
 
         // View settings
         'view' => [
@@ -27,7 +28,7 @@ return [
             'host' => 'localhost',
             'database' => 'imac-network',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
