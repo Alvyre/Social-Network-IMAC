@@ -1,19 +1,20 @@
 // main.js
 
 import Vue from 'vue'
-import Bootstrap from 'bootstrap'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
 
 import App from './components/App.vue'
-import HomeView from './components/HomeView.vue'
-import ProfileView from './components/ProfileView.vue'
-import CategoryView from './components/CategoryView.vue'
-import SubjectView from './components/SubjectView.vue'
-import SignUpView from './components/SignUpView.vue'
+import HomeView from './views/HomeView.vue'
+import ProfileView from './views/ProfileView.vue'
+import CategoryView from './views/CategoryView.vue'
+import SubjectView from './views/SubjectView.vue'
+import SignUpView from './views/SignUpView.vue'
 
 // install router
 Vue.use(Router)
+Vue.use(Resource)
+Vue.http.options.root = "localhost"
 
 // routing
 var router = new Router()
@@ -49,5 +50,4 @@ router.redirect({
 router.start(App, 'app')
 
 
-Vue.use(Resource)
-Vue.http.options.root = "localhost"
+

@@ -1,5 +1,5 @@
 <template>
-  <img src="assets/logoIMAC.png">
+  <img src="../assets/logoIMAC.png">
   <p>Ceci est un header</p>
 </template>
 
