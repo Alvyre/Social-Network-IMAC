@@ -17,4 +17,5 @@ function connexionBDD()
 
   return $mysqli;
 }
+
 ?>

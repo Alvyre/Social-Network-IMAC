@@ -3,7 +3,7 @@
 Fonctions sur les utilisateurs
 *****************************/
 
-require_once("./Database.php");
+include_once("../Database.php");
 
 // READ
 

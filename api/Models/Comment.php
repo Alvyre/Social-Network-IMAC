@@ -3,7 +3,7 @@
 Fonctions sur les commentaires
 *****************************/
 
-require_once("./Database.php");
+include_once("../Database.php");
 
 // READ
 
