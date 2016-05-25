@@ -23,7 +23,10 @@ class SubjectModel extends Model
         return $this->belongsToMany('App\Model\UserModel','idUser');
     }
 
-
+    public function comment()
+    {
+        return $this->HasMany('App\Model\CommentModel', 'idComment', 'idComment');
+    }
 }
 
 ?>

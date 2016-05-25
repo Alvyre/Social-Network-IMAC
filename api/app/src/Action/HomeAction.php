@@ -5,7 +5,7 @@ use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use App\Model\HomeModel as Home;
+use App\Model\SubjectModel as Subject;
 
 final class HomeAction
 {
@@ -20,12 +20,29 @@ final class HomeAction
         $this->table = $table;
     }
 
-    public function __invoke(Request $request, Response $response, $args)
+    public function getRecentSubjects(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
         
-        $this->view->render($response, 'home.twig');
+        $datas = Subject::orderBy('dateSubject', 'desc')
+                ->take(5)
+                ->get();
+  
+        echo $datas->toJson();
+        
+        return $response;
+    }
 
+    public function getMostPopular(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+        
+        $comments = Subject::with('comment')->get()->first();
+
+
+        echo "\n\n\n5 Most popular :";
+        echo $comments->toJson();
+        
         return $response;
     }
 }

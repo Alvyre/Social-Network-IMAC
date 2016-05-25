@@ -1,7 +1,9 @@
 <?php
 
 //accueil
-$app->get('/', App\Action\HomeAction::class)
+$app->get('/', 'App\Action\HomeAction:getRecentSubjects')
+->setName("home");
+$app->get('/getMostPopular', 'App\Action\HomeAction:getMostPopular')
 ->setName("home");
 
 //categories
@@ -47,15 +49,15 @@ $app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
 
 //users
 $app->get('/user-getall', 'App\Action\UserAction:readAll')
-->setName("user");
+	->setName("user");
 $app->get('/user-get/{idUser}', 'App\Action\UserAction:readOne')
-->setName("user");
+	->setName("user");
 $app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
-->setName("user");
+	->setName("user");
 $app->get('/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}', 'App\Action\UserAction:create')
-->setName("user");
+	->setName("user");
 $app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
-->setName("user");
+	->setName("user");
 
 
 //vote
