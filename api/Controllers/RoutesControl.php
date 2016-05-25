@@ -32,5 +32,36 @@
 				# code...
 				break;
 		}
+
+		switch ($segments[2]) {
+			case "User":
+					switch ($segments[3]) {
+						/*case "User-create":
+								createUser();
+							break;*/
+						
+						case "User-get":
+								if(is_int($segment[4])) $retour = readIdUser($segment[4]);
+								else $retour = readPseudoUser($segment[4]);
+							break;
+
+						/*case "User-update":
+								$retour = updateUser();
+							break;*/
+
+						case "User-delete":
+								$retour = deleteUser($segment[4]);
+							break;
+
+						default:
+							# code...
+							break;
+					}
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 	}
 ?>
