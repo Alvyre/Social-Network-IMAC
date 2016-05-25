@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'Models/Category.php';
 ?>
 
@@ -23,7 +23,7 @@ include 'Models/Category.php';
   </header>
 
   <h2>CONNEXION</h2>
-  <form method="post" action="">
+  <form method="post" action="Controllers/UserControl.php?fonction=login">
     <input type="text" name="PseudoUser" placeholder="Login">
     <br>
     <input type="password" name="PassUser" placeholder="Password">
@@ -35,7 +35,7 @@ include 'Models/Category.php';
   <input type="button" name="deco" value="deconnexion">
 
   <h2>CRÉER UN COMPTE</h2>
-  <form method="post" action="">
+  <form method="post" action="Controllers/UserControl.php?fonction=createUser">
     <input type="text" name="PseudoUser" placeholder="Login">
     <br>
     <input type="password" name="PassUser" placeholder="Password">
@@ -55,7 +55,7 @@ include 'Models/Category.php';
     <br>
     <textarea name="BioUser" rows="8" cols="40" placeholder="Ecrit ta biographie"></textarea>
     <br>
-    <input type="submit" name="submit" id="submit" value="Login">
+    <input type="submit" name="submit" id="submit" value="Créer un compte">
   </form>
 </body>
 </html>
