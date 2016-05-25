@@ -12,7 +12,7 @@ function readAllCategories()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT TitleCat FROM category";
+  $sql = "SELECT * FROM category";
 
   $result = $mysqli->query($sql);
 
