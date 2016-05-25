@@ -17,8 +17,6 @@
 </template>
 
 <script>
-
-
 export default {
   components: {
   }
@@ -27,6 +25,5 @@ export default {
 
 <style type="text/css">
 img {
-
 }
 </style>

@@ -1,11 +1,8 @@
 // main.js
 
 import Vue from 'vue'
-import Bootstrap from 'bootstrap'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
-
-
 
 import App from './components/App.vue'
 import HomeView from './views/HomeView.vue'
@@ -56,4 +53,8 @@ router.start(App, 'app')
 
 router.go()
 
+
+
+Vue.use(Resource)
+Vue.http.options.root = "localhost"
 

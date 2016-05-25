@@ -64,7 +64,6 @@ export default {
 </script>
 
 <style type="text/css">
-
 	.home, .container{
 		width: 100%;
 		margin: 0 auto;
@@ -219,5 +218,4 @@ export default {
 	    list-style: none;
 	    padding: 0;
 	}
-
 </style>

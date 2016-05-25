@@ -25,8 +25,6 @@
 </template>
 
 <script>
-
-
 export default {
 	data() {
 		return {subject: {}}
@@ -43,5 +41,4 @@ export default {
 </script>
 
 <style type="text/css">
-
 </style>
