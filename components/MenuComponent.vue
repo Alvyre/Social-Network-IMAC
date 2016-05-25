@@ -1,7 +1,15 @@
 <template>
 	<div class="menu">
 		<ul class="nav">
-			<li id="options">
+		    <li id="search">
+		        <form action="" method="get">
+		            <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+		            <button type="submit" id="search_button" name="search_button" class="btn btn-success">
+                		<i class="fa fa-search"></i>
+            		</button>
+		        </form>
+		    </li>
+		    <li id="options">
 		        <a href="#">Catégories <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 		        <ul class="subnav">
 		            <li><a href="#">Enseignement</a></li>
@@ -12,14 +20,6 @@
 		            <li><a href="#">Actualités</a></li>
 		        </ul>
 		    </li>
-		    <li id="search">
-		        <form action="" method="get">
-		            <input type="text" name="search_text" id="search_text" placeholder="Search"/>
-		            <button type="submit" id="search_button" name="search_button" class="btn btn-success">
-                		<i class="fa fa-search"></i>
-            		</button>
-		        </form>
-		    </li>
 		</ul>
 		<div class="clear"></div>	
 	</div>
@@ -29,6 +29,7 @@
 
 	.menu{
 		background: #333333;
+		font-family: 'Lato';
 	}
 
 	.menu .clear{
@@ -48,17 +49,16 @@
 	}
 
 	.menu .nav li a {
-	    font-size: 16px;
 	    color: #ffffff;
 	    display: block;
 	    line-height: 60px;
 	    padding: 0 26px;
 	    text-decoration: none;
 	    border-left: 1px solid #ffffff;
-	    font-family: Montserrat, sans-serif;
+	    font-size: 16px;
 	}
 	.menu .nav li a:hover {
-	    background-color: #2e2e2e;
+	    background-color: #333333;
 	}
 	 
 	.menu #settings a {
@@ -74,7 +74,7 @@
 	}
 	.menu #search_text{
 	    width: 297px;
-	    padding: 15px 0 15px 20px;
+	    padding: 15px 0 15px 26px;
 	    font-size: 16px;
 	    border: 0 none;
 	    height: 52px;
@@ -83,7 +83,6 @@
 	    outline: none;
 	    background: #333333;
 	    border-bottom: 2px solid #ffffff;
-	    border-left:2px solid #ffffff;
 	    float: left;
 	    box-sizing: border-box;
 	    transition: all 0.15s;
@@ -110,6 +109,7 @@
 	    cursor: pointer;
 	    background: #333;
 	    border-bottom:2px solid #ffffff;
+	    border-right:2px solid #ffffff;
 	    border-radius: 0;
 	}
 
@@ -151,8 +151,51 @@
 		z-index: 9;
 	}
 
-	.menu #options:focus a, .menu #options:hover:hover a, .menu #options ul li a:focus, .menu #options ul li a:hover{
+	.menu #options > a:focus, .menu #options > a:hover, .menu > a:focus, .menu > a:hover{
 		background: #333333;
+	}
+
+	@media screen and (max-width: 600px) {
+		.menu .nav{
+			float: none;
+			width: 100%;
+			padding: 1em 1em 0.2em 1em;
+		}
+		.menu #search{
+			width: 100%;
+			margin: 0 auto;
+			display: block;
+		}
+
+		.menu #search_text{
+			width: 90%;
+		}
+
+		.menu #search_button{
+			width: 10%;
+		}
+
+		.menu #options{
+			width: 100%;
+			float: left;
+			display: block;
+			margin-top: 1em;
+		}
+
+		.menu #options a{
+		    padding: 0 25px;
+		}
+		
+		.menu #options a i{
+    		float: right;
+    		margin-top: 20px;
+    		display: block;
+		}
+
+		.menu .subnav{
+			left: 0;
+			width: 100%;
+		}
 	}
 
 </style>

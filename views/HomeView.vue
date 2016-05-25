@@ -8,7 +8,7 @@
 					<span>with you.</span>
 				</div>
 				<div class="description">Le réseau social de l'IMAC permet l'échange entre professeurs, étudiants et professionnels.</div>
-				<i class="home-arrow fa fa-long-arrow-down" aria-hidden="true"></i>
+				<i class="home-arrow fa fa-heart-o" aria-hidden="true"></i>
 			</div>
 			<div class="container">
 				<div class="search">
@@ -38,11 +38,7 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<li><a href="">Sujet 1</a></li>
-								<li><a href="">Sujet 2</a></li>
-								<li><a href="">Sujet 3</a></li>
-								<li><a href="">Sujet 4</a></li>
-								<li><a href="">Sujet 5</a></li>
+								<li v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -50,11 +46,7 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<li><a href="">Sujet 1</a></li>
-								<li><a href="">Sujet 2</a></li>
-								<li><a href="">Sujet 3</a></li>
-								<li><a href="">Sujet 4</a></li>
-								<li><a href="">Sujet 5</a></li>
+								<li  v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -68,8 +60,73 @@
 
 
 export default {
-  components: {
-  }
+data() {
+      return {
+        subjects: [
+          {
+              "idSubject":1,
+              "titleSubject":"Sujet 1",
+              "contentSubject":"contenu du sujet",
+              "dateSubject":"2016-05-20",
+              "upVote":45,
+              "downVote":7,
+              "idUser":3,
+              "idCat":1
+          },
+          {
+              "idSubject":2,
+              "titleSubject":"Sujet 2",
+              "contentSubject":"contenu du sujet 2",
+              "dateSubject":"2016-05-27",
+              "upVote":50,
+              "downVote":25,
+              "idUser":5,
+              "idCat":1
+          },
+          {
+              "idSubject":3,
+              "titleSubject":"Sujet 3",
+              "contentSubject":"Contenu du sujet 3",
+              "dateSubject":"2016-05-20",
+              "upVote":40,
+              "downVote":20,
+              "idUser":3,
+              "idCat":1
+          },
+          {
+              "idSubject":4,
+              "titleSubject":"Sujet 4",
+              "contentSubject":"Contenu du sujet 4",
+              "dateSubject":"2016-05-05",
+              "upVote":4,
+              "downVote":30,
+              "idUser":3,
+              "idCat":1
+          },
+          {
+              "idSubject":5,
+              "titleSubject":"Sujet 5",
+              "contentSubject":"Contenu du sujet 5",
+              "dateSubject":"2016-05-28",
+              "upVote":38,
+              "downVote":35,
+              "idUser":5,
+              "idCat":1
+          }
+        ]
+      }
+    }/*,
+    created(){
+  		this.$http.get('category').then(
+  			(response)=>{this.subjects = response.subjects},
+  			(reject)=>{
+          console.log("pas bien")
+          //this.subjects = []
+        }
+  		)
+  	},
+  	components: {
+  	}*/
 }
 </script>
 
@@ -235,13 +292,14 @@ export default {
 
 	.home .container .menu-cat ul {
 	    text-decoration: none;
-	    padding: 0;	
+	    padding: 0;
 	}
 
 	.home .container .menu-cat ul li {
 	    display: inline-block;
 	    padding: 1em 0;
 	    width: 33%;
+	    font-weight: 600;
 	}
 
 	.home .talks-field{

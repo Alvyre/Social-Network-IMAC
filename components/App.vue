@@ -1,8 +1,8 @@
 <template>
 	<header-component></header-component>
 		<router-view
-	      keep-alive
-	      >
+      		keep-alive
+      	>
     	</router-view>
   <footer-component></footer-component>
 </template>

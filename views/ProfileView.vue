@@ -7,14 +7,22 @@
 			<div class="line green"></div>
 			<div class="line blue"></div>
 			<div class="line red"></div>
-			<h1 class="text-center">Alice</h1>
+			<h1 class="text-center">{{user.pseudoUser}}</h1>
 
-			<div class="bio col-md-6">
-				Welcome to an all-too-familiar episode of <em>Sunday Night Anxiety</em>. Time to remind myself I've made it through 1325 weeks, and I'm likely to make it through another one. <br><br> <span id="herewego">Here we go.</span>
+			<div class="bio col-sm-6">
+				<p>{{user.bioUser}}</p>
+				<div class="br-bottom"></div>
 			</div>
 
+			<div class="clear"></div>
+
 			<div class="avatar col-md-12">
-				<div class="img-avatar" style="background-image:url('../assets/avatar.jpg')"/></div>
+				<div class="img-avatar" v-bind:style="{ backgroundImage: 'url(../assets/' + user.photoUser + ')' }"/></div>
+			</div>
+
+			<div class="more-info col-md-12">
+				<p><span>Statut :</span> {{user.statusUser}}</p>
+				<p><span>Email :</span> <a href="mailto:{{ user.emailUser }}">{{ user.emailUser }}</a></p>
 			</div>
 		</div>
 	</div>
@@ -25,9 +33,33 @@
 import MenuComponent from '../components/MenuComponent.vue'
 
 export default {
-  components: {
-  	MenuComponent
-  }
+	data() {
+      return {
+		user : {
+		        "idUser":0,
+		        "pseudoUser":"Alichou",
+		        "statusUser":"IMAC2017",
+		        "photoUser":"avatar.jpg",
+		        "emailUser":"alichou@gmail.com",
+		        "sexUser":"F",
+		        "bioUser": "Coucou les licornes c'est chouette ! Presque autant que les poneys en fait. Mais pas tout à fait ! Parce que les poneys c'est réel du coup c'est forcément mieux",
+		        "adminUser":0,
+		        "passUser":""
+		}
+      }
+    },/*,
+    created(){
+  		this.$http.get('category').then(
+  			(response)=>{this.subjects = response.subjects},
+  			(reject)=>{
+          console.log("pas bien")
+          //this.subjects = []
+        }
+  		)
+  	},*/
+  	components: {
+  		MenuComponent
+  	}
 }
 </script>
 
@@ -38,6 +70,10 @@ export default {
 	    width: 80%;
 	    margin: 1em auto 4em auto;
 	    min-height: 400px;
+	}
+
+	.page .clear{
+		clear: both;
 	}
 
 	.page .profile .line{
@@ -80,10 +116,32 @@ export default {
 	    float: right;
 	}
 
+	.page .profile .bio .br-bottom{
+		width: 6px;
+		background: #333333;
+		height: 300px;
+		margin: 1em auto;
+		display: none;
+	}
+
+	@media screen and (max-width: 767px) {
+		
+		.page .profile .bio {
+		    text-align: center;
+		    border-left: 0;
+		    padding: 10px;
+		    float: right;
+		}
+
+		.page .profile .bio .br-bottom{
+			margin: 70px auto 0 auto;
+			display: block;
+		}
+	}
+
 	.page .profile .avatar{
 		margin: 0 auto;
 	}
-
 
 	.page .profile .avatar .img-avatar{
 		width: 250px;
@@ -92,4 +150,15 @@ export default {
     	margin: 0 auto;
     	background-size: cover;
 	}
+
+	.page .profile .more-info{
+		margin: 2em auto;
+		font-size: 1.2em;
+		text-align: center;
+	}
+
+	.page .profile .more-info span{
+		font-weight: 800;
+	}
+
 </style>
