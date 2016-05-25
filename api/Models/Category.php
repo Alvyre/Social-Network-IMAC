@@ -3,7 +3,7 @@
 Fonctions sur les categories
 *****************************/
 
-include_once("../Database.php");
+include_once(__DIR__."/../Database.php");
 //require_once("./Config.php");
 
 // READ

@@ -23,6 +23,22 @@ function readAllComments()
   return $rows;
 }
 
+function readSubjectsComments($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM 'comment' WHERE IdSubject = '".$id."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 // CREATE
 
 function createComment($DateComment, $ContentComment, $IdUser) {
