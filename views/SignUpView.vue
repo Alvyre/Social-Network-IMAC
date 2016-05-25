@@ -56,7 +56,7 @@
             <textarea class="form-control " rows="6" id="bio" name ="bio" v-model="message" placeholder="Portfolio, links, .."></textarea>
           </div>
           
-          <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block">Inscription</button>
+          <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
         </form>
       </div>
       <div class="connexion" id="connexion" v-if="connect == true && sign == false">
@@ -72,7 +72,7 @@
               <label for="password">Password :</label>
               <input type="password" name="password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary center-block">Connexion</button>
+            <button type="submit" class="btn btn-primary center-block" @click.prevent="connexion">Connexion</button>
             </div>
         </form>
       </div>
@@ -93,7 +93,12 @@
       }
     },
     methods :{
-      
+      connexion: function(){
+        alert("Connexion feedback")
+      },
+      inscription: function(){
+        alert("Inscription feedback")
+      }
     },
     components: {
     }
