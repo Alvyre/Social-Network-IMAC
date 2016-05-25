@@ -6,8 +6,11 @@
       <form action="" method="POST" role="form">
         <legend>Créer un sujet</legend>
         <div class="form-group">
+        <div class="alert alert-danger" v-if="!title">
+          <strong>Il nous faut un titre !</strong>
+        </div>
           <label for="title">Titre:</label>
-          <input class="form-control" type="text" name="title" placeholder="Exemple : Cours de VueJS">
+          <input class="form-control" type="text" name="title" placeholder="Exemple : Cours de VueJS" v-model="title">
         </div>
         <div class="form-group">
           <label for="category">Categorie</label>
@@ -16,11 +19,14 @@
           </select>
         </div>
         <div class="form-group">
+        <div class="alert alert-danger" v-if="!content">
+          <strong>Tu ne vas pas envoyer un sujet vide quand même !</strong>
+        </div>
             <label for="content">Contenu</label>
-            <textarea class="form-control boxsizingBorder" rows="6" id="content" name ="content" v-model="content" placeholder=""></textarea>
+            <textarea class="form-control boxsizingBorder" rows="6" id="content" name ="content" v-model="content" placeholder="" v-model="content"></textarea>
           </div>
       
-        <button type="submit" class="btn btn-primary center-block" @click.prevent="envoieSujet">Envoyer</button>
+        <button type="submit" class="btn btn-primary center-block" v-if="title && content" @click.prevent="envoieSujet">Envoyer</button>
       </form>
     </div>
   </div>
@@ -30,7 +36,9 @@
   export default {
     data(){
       return {
-        categories : [{"IdCat":"1","TitleCat":"Enseignement"},{"IdCat":"2","TitleCat":"Logement"},{"IdCat":"3","TitleCat":"Vie \u00e9tudiante"},{"IdCat":"4","TitleCat":"Tutos"},{"IdCat":"5","TitleCat":"Divers"}] 
+        categories : [{"IdCat":"1","TitleCat":"Enseignement"},{"IdCat":"2","TitleCat":"Logement"},{"IdCat":"3","TitleCat":"Vie \u00e9tudiante"},{"IdCat":"4","TitleCat":"Tutos"},{"IdCat":"5","TitleCat":"Divers"}],
+        title: '',
+        content: ''
       }
     },
     methods :{
