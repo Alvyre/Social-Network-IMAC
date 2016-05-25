@@ -1,13 +1,10 @@
 <template>
 	<header-component></header-component>
-
-	<div class="container-fluid">
 		<router-view
       keep-alive
       transition
       transition-mode="out-in">
     	</router-view>
-    </div>
   <footer-component></footer-component>
 </template>
 
