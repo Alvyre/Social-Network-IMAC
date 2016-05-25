@@ -37,6 +37,11 @@ export default {
     	text-decoration: none;
 	}
 
+	.container-fluid{
+		padding: 0;
+		margin: 0;
+	}
+
 	
 
 </style>
