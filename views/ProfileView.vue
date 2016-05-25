@@ -17,7 +17,7 @@
 			<div class="clear"></div>
 
 			<div class="avatar col-md-12">
-				<div class="img-avatar" v-bind:style="{ backgroundImage: 'url(../assets/' + user.photoUser + ')' }"/></div>
+				<div class="img-avatar" v-bind:style="{ backgroundImage: 'url(../assets/' + user.photoUser + ')' }"></div>
 			</div>
 
 			<div class="more-info col-md-12">
