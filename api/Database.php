@@ -1,4 +1,5 @@
 <?php
+include("Config.php");
 
 /****************************
 Connexion à la base de donnée
@@ -24,7 +25,7 @@ function connexionBDD()
 
 
   //Connexion à la base de donnée
-  $mysqli = new mysqli('localhost', 'root', '', 'Ladyz_BDD');
+  $mysqli = new mysqli($connexion[0], $connexion[1], $connexion[2], $connexion[3]);
 
   if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
@@ -38,4 +39,6 @@ function connexionBDD()
   return $mysqli;
 }
 
+
+connexionBDD();
 ?>

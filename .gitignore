@@ -1,3 +1,4 @@
 *.log
 api/connexion.txt
 node_modules/*
+api/Config.php

@@ -4,6 +4,7 @@ Fonctions sur les categories
 *****************************/
 
 require_once("./Database.php");
+//require_once("./Config.php");
 
 // READ
 
