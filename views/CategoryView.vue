@@ -135,6 +135,7 @@ export default {
     text-align: center;
     padding: 1em 0 0 0;
     font-size: 5em;
+    margin-top:0;
     margin-bottom: 0.5em;
   }
 
@@ -192,10 +193,17 @@ export default {
     line-height: 3em; 
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
   }
+
+  .page .content .all-subjects .subject .title p{
+    margin: 0 auto;
+    text-align: left;
+  } 
 
   .page .content .all-subjects .subject .title p a{
     display: block;
+    text-align: left;
   } 
 
   .page .content .all-subjects .subject .vote{
