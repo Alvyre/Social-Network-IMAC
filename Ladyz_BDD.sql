@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mer 25 Mai 2016 à 14:05
+-- Généré le: Mer 25 Mai 2016 à 14:43
 -- Version du serveur: 5.5.49-0ubuntu0.14.04.1
 -- Version de PHP: 5.5.9-1ubuntu4.17
 
@@ -146,6 +146,7 @@ INSERT INTO `subject` (`IdSubject`, `TitleSubject`, `ContentSubject`, `DateSubje
 CREATE TABLE IF NOT EXISTS `user` (
   `IdUser` int(5) NOT NULL AUTO_INCREMENT,
   `PseudoUser` varchar(30) DEFAULT NULL,
+  `PassUser` varchar(50) DEFAULT NULL,
   `StatusUser` varchar(15) DEFAULT NULL,
   `PhotoUser` varchar(200) DEFAULT NULL,
   `EmailUser` text,
@@ -159,11 +160,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`IdUser`, `PseudoUser`, `StatusUser`, `PhotoUser`, `EmailUser`, `SexUser`, `BioUser`, `AdminUser`) VALUES
-(1, 'Pauline', 'IMAC2018', NULL, 'test@pauline.com', 'femme', 'Coucou !', 0),
-(2, 'Maureen', 'autre', NULL, 'maureen@roche.com', 'femme', 'Je suis Maureen !', 0),
-(3, 'Coralie', 'prof', NULL, 'coralie@gold.com', NULL, 'Coralie', 0),
-(4, 'Hellowizz', 'prof', NULL, NULL, 'femme', 'Test', 0);
+INSERT INTO `user` (`IdUser`, `PseudoUser`, `PassUser`, `StatusUser`, `PhotoUser`, `EmailUser`, `SexUser`, `BioUser`, `AdminUser`) VALUES
+(1, 'Pauline', NULL, 'IMAC2018', NULL, 'test@pauline.com', 'femme', 'Coucou !', 0),
+(2, 'Maureen', NULL, 'autre', NULL, 'maureen@roche.com', 'femme', 'Je suis Maureen !', 0),
+(3, 'Coralie', NULL, 'prof', NULL, 'coralie@gold.com', NULL, 'Coralie', 0),
+(4, 'Hellowizz', NULL, 'prof', NULL, NULL, 'femme', 'Test', 0);
 
 -- --------------------------------------------------------
 
