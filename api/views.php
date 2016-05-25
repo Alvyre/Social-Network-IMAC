@@ -1,4 +1,6 @@
-<?php include 'Database.php'; ?>
+<?php 
+include 'Models/Category.php';
+?>
 
 <!doctype html>
 <html lang="fr">
