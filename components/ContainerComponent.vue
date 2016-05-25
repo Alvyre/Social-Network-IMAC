@@ -1,5 +1,5 @@
 <template>
-  <p>Ceci est un container</p>
+  <p></p>
 </template>
 
 <script>

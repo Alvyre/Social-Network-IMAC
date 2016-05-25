@@ -4,6 +4,8 @@ import Vue from 'vue'
 import Resource from 'vue-resource'
 import Router from 'vue-router'
 
+
+
 import App from './components/App.vue'
 import HomeView from './views/HomeView.vue'
 import ProfileView from './views/ProfileView.vue'
@@ -13,6 +15,10 @@ import SignUpView from './views/SignUpView.vue'
 
 // install router
 Vue.use(Router)
+Vue.use(Resource)
+Vue.http.options.root = "localhost"
+
+
 Vue.use(Resource)
 Vue.http.options.root = "localhost"
 
@@ -48,6 +54,3 @@ router.redirect({
 })
 
 router.start(App, 'app')
-
-
-
