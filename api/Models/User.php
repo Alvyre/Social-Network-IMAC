@@ -2,7 +2,6 @@
 /****************************
 Fonctions sur les utilisateurs
 *****************************/
-
 require_once("../Database.php");
 
 // READ
@@ -56,7 +55,7 @@ function readIdUser($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM user WHERE IdUser = '.$id'";
+  $sql = "SELECT * FROM user WHERE IdUser = '".$id."'";
 
   $result = $mysqli->query($sql);
 

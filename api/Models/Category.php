@@ -3,7 +3,7 @@
 Fonctions sur les categories
 *****************************/
 
-require_once("./Database.php");
+include_once(__DIR__."/../Database.php");
 //require_once("./Config.php");
 
 // READ
@@ -28,7 +28,7 @@ function readTitleCategories($title)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM category WHERE TitleCat = ".$title;
+  $sql = "SELECT * FROM category WHERE TitleCat = '".$title."'";
 
   $result = $mysqli->query($sql);
 
@@ -36,7 +36,6 @@ function readTitleCategories($title)
   while($r = mysqli_fetch_assoc($result)) {
     $rows[] = $r;
   }
-
   return $rows;
 }
 
@@ -44,7 +43,7 @@ function readIdCategories($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM category WHERE IdCat = ".$id;
+  $sql = "SELECT * FROM category WHERE IdCat = '".$id."'";
 
   $result = $mysqli->query($sql);
 

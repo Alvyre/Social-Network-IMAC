@@ -3,7 +3,7 @@
 Fonctions sur les votes
 *****************************/
 
-require_once("./Database.php");
+include_once("../Database.php");
 
 // READ
 

@@ -3,7 +3,7 @@
 Fonctions sur les commentaires
 *****************************/
 
-require_once("./Database.php");
+include_once("../Database.php");
 
 // READ
 
@@ -12,6 +12,22 @@ function readAllComments()
   $mysqli = connexionBDD();
 
   $sql = "SELECT * FROM 'comment'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readSubjectsComments($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM 'comment' WHERE IdSubject = '".$id."'";
 
   $result = $mysqli->query($sql);
 

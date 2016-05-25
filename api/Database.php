@@ -1,5 +1,5 @@
 <?php
-include 'Config.php';
+require __DIR__.'/Config.php';
 
 /****************************
 Connexion à la base de donnée
@@ -17,4 +17,5 @@ function connexionBDD()
 
   return $mysqli;
 }
+
 ?>

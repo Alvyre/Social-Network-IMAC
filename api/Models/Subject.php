@@ -3,7 +3,7 @@
 Fonctions sur les sujets
 *****************************/
 
-require_once("./Database.php");
+include_once("../Database.php");
 
 // READ
 
@@ -23,11 +23,45 @@ function readAllSubjects()
   return $rows;
 }
 
+function readAllSubjectsCategory($idCategory)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM subject WHERE IdCat = '".$idCategory."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readIdSubjects($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM subject WHERE IdSubject = '".$id."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+
+
 function readMostRecent()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'subject' ORDER BY DateSubject LIMIT 5";
+  $sql = "SELECT * FROM subject ORDER BY DateSubject LIMIT 5";
 
   $result = $mysqli->query($sql);
 
