@@ -14,12 +14,15 @@ import SignUpView from './views/SignUpView.vue'
 // install router
 Vue.use(Router)
 
-
 Vue.use(Resource)
-Vue.http.options.root = "localhost"
+Vue.http.options.root = "http://localhost"
 
 // routing
-var router = new Router()
+var router = new Router({
+	hashbang: false,
+	history:true,
+	mode: "html5"
+})
 
 router.map({
 	'/home/':{
@@ -55,6 +58,4 @@ router.go()
 
 
 
-Vue.use(Resource)
-Vue.http.options.root = "localhost"
 
