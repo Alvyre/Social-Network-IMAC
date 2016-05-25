@@ -7,11 +7,123 @@ require_once("./Database.php");
 
 // READ
 
-function readAllPseudos()
+function readAllUser()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT PSeudoUser FROM 'user'";
+  $sql = "SELECT * FROM 'user'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readPseudoUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT PSeudoUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readStatusUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT StatusUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readPhotoUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT PhotoUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readEmailUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT EmailUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readSexUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT SexUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readBioUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT BioUser FROM 'user' WHERE idUser = $id";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readAdminUser($id)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT AdminUser FROM 'user' WHERE idUser = $id";
 
   $result = $mysqli->query($sql);
 
