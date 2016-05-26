@@ -29,10 +29,10 @@ final class UserAction
         if(!$data->isEmpty()){
             $pseudoAlreadyExist = true;
             $inscription = false;
-            echo "pseudo existant !";
+
         }
         else{
-            echo "Ok, n'existe pas !";       
+      
             User::firstOrCreate(array(
                 'pseudoUser' => $args['pseudoUser'], 
                 'statusUser' => $args['statusUser'], 
