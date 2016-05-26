@@ -12,7 +12,9 @@
 		    <li id="options">
 		        <a href="#">Catégories <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 		        <ul class="subnav">
-		            <li v-for="category in categories"><a href="#"> {{category.titleCat}} </a></li>
+		            <li v-for="category in categories">
+		            	<a href="#"> {{category.titleCat}} </a>
+		            </li>
 		        </ul>
 		    </li>
 		</ul>
@@ -20,14 +22,18 @@
 	</div>
 </template>
 <script>
-export default {
+
+import {apiRoot} from '../settings.js'
+
+export default {	
+
     data() {
       return {
         categories: []
       }
     },
     created(){
-  		this.$http.get('http://localhost/Social-Network-IMAC/api/category-getall/').then(
+  		this.$http.get( apiRoot() + 'category-getall/').then(
   			(response)=>{
   				this.categories = response.data
   				console.log(response)
