@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 node_modules/*
+=======
+*.log
+api/connexion.txt
+node_modules/*
+api/Config.php
+>>>>>>> origin/Ladyz
