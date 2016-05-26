@@ -25,12 +25,12 @@
 				<div class="clear"></div>
 				<div class="menu-cat">
 					<ul>
-						<li><a href="#">Enseignement</a></li>
-		            	<li><a href="#">Logement</a></li>
-		            	<li><a href="#">Vie étudiante</a></li>
-		            	<li><a href="#">Tutos</a></li>
-		            	<li><a href="#">Divers</a></li>
-		            	<li><a href="#">Actualités</a></li>
+						<li><a v-link="'category'">Enseignement</a></li>
+		            	<li><a v-link="'category'">Logement</a></li>
+		            	<li><a v-link="'category'">Vie étudiante</a></li>
+		            	<li><a v-link="'category'">Tutos</a></li>
+		            	<li><a v-link="'category'">Divers</a></li>
+		            	<li><a v-link="'category'">Actualités</a></li>
 					</ul>
 				</div>
 				<div class="talks-field row">
