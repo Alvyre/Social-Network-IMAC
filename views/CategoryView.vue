@@ -13,7 +13,7 @@
           <a @click="orderKey = 'upVote'">Plus populaire</a>
         </p>
         <section class="row all-subjects">
-        <template v-for="subject in subjects | orderBy orderKey -1">
+        <template v-for="subject in category.sub | orderBy orderKey -1">
             <div class="col-md-6 subject">
           		<div class="col-xs-3 vote">
                 <div class="up">
@@ -34,29 +34,28 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
-import {apiRoot} from '../settings.js'
+import {apiRoot} from '../config/localhost/settings.js'
 
 export default {
     data() {
       return {
         category: [],
-        subjects: [],
         orderKey: "dateSubject"
       }
     },
     route: {
-    data ({ to }) {
-    this.$http.get(apiRoot() + 'api/public/' + 'category-get/'+ to.params.id).then(
-        (response)=>{
-          this.category = response.data[0]
-          console.log(response)
-        },
-        (reject)=>{
-          console.log("Category not found")
-        }
-      )
+      data ({ to }) {
+        this.$http.get(apiRoot()  + 'category-sub/'+ to.params.id).then(
+          (response)=>{
+            this.category = response.data[0]
+            console.log(response)
+          },
+          (reject)=>{
+            console.log("Category not found")
+          }
+        )
+      }
     }
-  }
     ,
   	components: {
       MenuComponent
