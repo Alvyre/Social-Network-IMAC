@@ -34,9 +34,9 @@ final class SubjectAction
         $subject->user()->associate($args['idUser']);
         $subject->save();
 
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Nouveau sujet créé'
-        ]);
+
+        $ar = array("created");
+        echo json_encode($ar);
 
 
         return $response;

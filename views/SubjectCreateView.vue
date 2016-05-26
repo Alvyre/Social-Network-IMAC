@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
               <label for="category">Categorie</label>
-              <select name="category" class="form-control">
+              <select name="category" class="form-control" v-model="selected_cat">
                 <option v-for="category in categories" value="{{category.IdCat}}">{{category.titleCat}}</option>
               </select>
             </div>
@@ -29,6 +29,15 @@
                 <label for="content">Contenu</label>
                 <textarea class="form-control boxsizingBorder" rows="6" id="content" name ="content" v-model="content" placeholder="" v-model="content"></textarea>
             </div>
+            <div class="feedback form-group">
+              <div class="alert alert-danger " v-if="badFeedback">
+                <strong>{{badFeedback}}</strong>
+              </div>
+              <div class="alert alert-success" v-if="goodFeedback">
+                <strong>{{goodFeedback}}</strong>
+              </div>
+            </div>
+            
             <button type="submit" class="btn btn-primary center-block" v-if="title && content" @click.prevent="envoieSujet">Envoyer</button>
           </form>
         </div>
@@ -46,18 +55,42 @@ import {apiRoot} from '../config/localhost/settings.js'
       return {
         title: '',
         content: '',
-        categories: []
+        categories: [],
+        selected_cat: '',
+        badFeedback: '',
+        goodFeedback: ''
       }
     },
     methods :{
       envoieSujet: function(){
-        //date yyyy-mm-dd
-        var date = new Date();
-        date.now();
-        console.log(d);
-        this.$http.get( apiRoot() + 'subject-create/'+ this.title +'&' +this.content +'&' + date).then(
-          (response)=>{},
-          (reject)=>{}
+        function getCookie(cname) {
+          var name = cname + "=";
+          var ca = document.cookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length,c.length);
+              }
+          }
+          return "";
+        }
+        var idUser = getCookie('idUser')
+        var pseudo = getCookie('pseudo')
+
+
+        this.$http.get( apiRoot() + 'subject-create/'+ this.title +'&' +this.content +'&' +idUser +'&' + this.categories.indexOf(this.selected_cat)).then(
+          (response)=>{
+            if(response.data[0] == 'created')
+              this.goodFeedback = "Sujet créé avec succès !"
+            else
+              this.badFeedback = "Erreur lors de la création du sujet !"
+          },
+          (reject)=>{
+              this.badFeedback = "Erreur lors de la création du sujet !"
+          }
           )
       }
     },
