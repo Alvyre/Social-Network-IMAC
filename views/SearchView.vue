@@ -17,7 +17,7 @@
         <div v-if="resultsSearchUser.length > 0" class="col-md-3 col-md-offset-2 search-users">
           <h4>Utilisateurs</h4>
           <ul>
-            <li v-for="resultSearchUser in resultsSearchUser"><a v-link="'/category'">{{resultSearchUser.pseudoUser}}, <span>{{resultSearchUser.statusUser}}</span></a></li>
+            <li v-for="resultSearchUser in resultsSearchUser"><a v-link="'/user/'+resultSearchUser.idUser">{{resultSearchUser.pseudoUser}}, <span>{{resultSearchUser.statusUser}}</span></a></li>
           </ul>
         </div>
         <div v-if="resultsSearchCategory.length > 0" class="col-md-3 col-md-offset-2 search-category">
@@ -154,6 +154,15 @@ export default {
     text-align: center;
     padding-bottom: 1em;
     border-bottom: 2px solid #eeeeee;
+  }
+
+  .page .content .search-users ul li a{
+    font-weight: 700;
+  }
+
+  .page .content .search-users ul li a span{
+    font-weight: 300;
+    font-style: italic;
   }
 
 

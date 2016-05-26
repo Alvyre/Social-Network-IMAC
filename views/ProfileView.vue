@@ -44,8 +44,12 @@ export default {
       data ({ to }) {
         this.$http.get(apiRoot()  + 'user-get/'+ to.params.id).then(
           (response)=>{
-            this.user = response.data[0]
-            //console.log(response)
+            if(response.data.length == 0){
+              this.$route.router.go('/404')
+            }
+            else{
+              this.user = response.data[0]
+            }
           },
           (reject)=>{
             console.log("Category not found")

@@ -11,6 +11,7 @@ import CategoryView from './views/CategoryView.vue'
 import SubjectView from './views/SubjectView.vue'
 import SignUpView from './views/SignUpView.vue'
 import SearchView from './views/SearchView.vue'
+import NotFoundView from './views/NotFoundView.vue'
 import SubjectCreateView from './views/SubjectCreateView.vue'
 
 // install router
@@ -47,6 +48,9 @@ router.map({
 	},
 	'/subject-create/': {
 		component: SubjectCreateView
+	},
+	'/404/': {
+		component: NotFoundView
 	}
 })
 
