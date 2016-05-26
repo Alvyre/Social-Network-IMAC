@@ -23,7 +23,7 @@
           			   <div class="glyphicon glyphicon-arrow-down"></div> {{ subject.downVote }}
                 </div>
           		</div>
-          		<div class="col-xs-9 title"><p><a v-link="'subject'">{{ subject.titleSubject }}</a></p></div>
+          		<div class="col-xs-9 title"><p><a v-link="'/subject/'+subject.idSubject">{{ subject.titleSubject }}</a></p></div>
             </div>
         </template>
         </section>
@@ -48,7 +48,6 @@ export default {
         this.$http.get(apiRoot()  + 'category-sub/'+ to.params.id).then(
           (response)=>{
             this.category = response.data[0]
-            console.log(response)
           },
           (reject)=>{
             console.log("Category not found")

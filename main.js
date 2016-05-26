@@ -30,8 +30,7 @@ router.map({
 	'/home/':{
 		component: HomeView
 	},
-	//'/user/:id': {
-	'/user/': {
+	'/user/:id': {
 		component: ProfileView
 	},
 	'/signup/': {
@@ -43,7 +42,7 @@ router.map({
 	'/search/:text': {
 		component: SearchView
 	},
-	'/subject/': {
+	'/subject/:id': {
 		component: SubjectView
 	},
 	'/subject-create/': {

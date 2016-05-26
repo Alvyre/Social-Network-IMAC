@@ -26,7 +26,7 @@
 				<div class="menu-cat">
 					<ul>
 						<li v-for="category in categories">
-							<a v-link="'category/'+category.idCat"> {{category.titleCat}} </a>
+							<a v-link="'/category/'+category.idCat"> {{category.titleCat}} </a>
 						</li>
 					</ul>
 				</div>

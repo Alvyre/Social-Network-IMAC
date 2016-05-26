@@ -1,15 +1,15 @@
 <template>
   <menu-component></menu-component>
   <div class="container-fluid page">
-    <p class="category-name"><a v-link="'category'">Catégorie : {{ category.titleCat}}</a></p>
+    <p class="category-name"><a v-link="'category'">Catégorie : {{subject.cat.titleCat}}</a></p>
     <h1 class="title-subject">
       <i class="fa fa-quote-left" aria-hidden="true"></i>
         {{subject.titleSubject}}
       <i class="fa fa-quote-right" aria-hidden="true"></i>
     </h1>
     <div class="info">
-       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{subject.upVote}}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{subject.downVote}}</span></div>
-      <p>Lancé par {{subject.author}}, le {{subject.dateSubject}}</p>
+       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{  }}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{  }}</span></div>
+      <p>Lancé par <a v-link="'/user/'+subject.user.idUser">{{subject.user.pseudoUser}}</a>, le {{subject.dateSubject}}</p>
     </div>
     <div class="content-subject">
       <p> {{subject.contentSubject}} </p>
@@ -21,13 +21,16 @@
         <div class="line blue"></div>
         <div class="line red"></div>
       </div>
-      <template v-for="comment in comments | orderBy 'dateComment' -1">
+      <template v-for="comment in subject.comment | orderBy 'dateComment' -1">
         <div class="new-comment col-md-6 col-md-offset-3">
-          <div class="vote col-md-12">
-            <p><div class="glyphicon glyphicon-arrow-up"></div> {{comment.upVote}} <div class="glyphicon glyphicon-arrow-down"></div> {{comment.downVote}} </p>
-          </div>
           <div class="comment col-md-12">
-            <p><span class="name-user">{{ users[comment.idUser].pseudoUser }} : </span> <span class="content-comment">{{comment.contentComment}}</span> <span class="date-comment">(publié le {{comment.dateComment}})</span></p>
+            <p>
+              <span class="name-user" v-for="user in users">
+                <span v-if="user.idUser == comment.idUser"><a v-link="'/user/'+comment.idUser">{{user.pseudoUser}} :</a></span>
+              </span>
+              <span class="content-comment">{{comment.contentComment}}</span>
+              <span class="date-comment">(publié le {{comment.dateComment}})</span>
+            </p>
           </div>
         </div>
       </template>
@@ -38,141 +41,37 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../config/localhost/settings.js'
 
 export default {
-data () {
+    data() {
       return {
-        category: {
-          "idCat":1,
-          "titleCat":"Cours"
-        },
-        subject:
-        {
-          "idSubject":1,
-          "titleSubject":"Sujet 1",
-          "contentSubject":"contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet contenu du sujet ",
-          "dateSubject":"2016-05-20",
-          "upVote":45,
-          "downVote":7,
-          "author": "Alice",
-          "idUser":0,
-          "idCat":1
-        },
-        comments:
-        [
-          {
-              "idComment":1,
-              "dateComment":"2016-05-18",
-              "contentComment":"Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 Contenu du commentaire 1 ",
-              "idVote":0,
-              "idUser":0,
-              "idSubject":1
-          },
-          {
-              "idComment":2,
-              "dateComment":"2016-05-10",
-              "contentComment":"Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 Contenu du commentaire 2 ",
-              "idVote":0,
-              "idUser":1,
-              "idSubject":1
-          },
-          {
-              "idComment":3,
-              "dateComment":"2016-05-27",
-              "contentComment":"Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 Commentaire 3 ",
-              "idVote":0,
-              "idUser":0,
-              "idSubject":2
-          },
-          {
-              "idComment":4,
-              "dateComment":"2016-05-12",
-              "contentComment":"Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 Commentaire 4 ",
-              "idVote":0,
-              "idUser":0,
-              "idSubject":2
-          },
-          {
-              "idComment":5,
-              "dateComment":"2016-05-10",
-              "contentComment":"Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 Commentaire 5 ",
-              "idVote":0,
-              "idUser":0,
-              "idSubject":2
-          },
-          {
-              "idComment":6,
-              "dateComment":"2016-05-11",
-              "contentComment":"Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6 Commentaire 6",
-              "idVote":0,
-              "idUser":0,
-              "idSubject":2
-          },
-          {
-              "idComment":7,
-              "dateComment":"2016-05-11",
-              "contentComment":"Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 Commentaire 7 ",
-              "idVote":0,
-              "idUser":1,
-              "idSubject":4
-          },
-          {
-              "idComment":8,
-              "dateComment":"2016-05-03",
-              "contentComment":"Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 Commentaire 8 ",
-              "idVote":0,
-              "idUser":1,
-              "idSubject":5
-          },
-          {
-              "idComment":9,
-              "dateComment":"2016-05-10",
-              "contentComment":"Commentaire 9 Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9 Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9Commentaire 9",
-              "idVote":0,
-              "idUser":1,
-              "idSubject":6
-          },
-          {
-              "idComment":10,
-              "dateComment":"2016-05-27",
-              "contentComment":"Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 Commentaire 10 ",
-              "idVote":0,
-              "idUser":1,
-              "idSubject":1
-          }
-        ],
-        users:
-        [
-          {
-              "idUser":0,
-              "pseudoUser":"Arthur",
-              "statusUser":"Galaxy",
-              "photoUser":"www.photoUranus.fr",
-              "emailUser":"arthur@gmail.com",
-              "sexUser":"Autre",
-              "bioUser":null,
-              "adminUser":0,
-              "passUser":""
-          },
-          {
-              "idUser":1,
-              "pseudoUser":"Luca",
-              "statusUser":"statusUser",
-              "photoUser":"photoUser",
-              "emailUser":"emailUser",
-              "sexUser":"",
-              "bioUser":"bioUser",
-              "adminUser":0,
-              "passUser":"passUser"
-          }
-        ]
+        subject:[],
+        users:[]
       }
     },
-    created(){
-    this.$http.get('subject').then(
-      (response)=>{this.subject = response.subject},
-      (reject)=>{console.log("pas bien")}
-    )},
+    route: {
+      data ({ to }) {
+        this.$http.get(apiRoot()  + 'subject-get/'+ to.params.id).then(
+          (response)=>{
+            this.subject = response.data[0]
+            //console.log(response)
+          },
+          (reject)=>{
+            console.log("Category not found")
+          }
+        ),
+        this.$http.get(apiRoot()  + 'user-getall').then(
+          (response)=>{
+            this.users = response.data
+            console.log(response)
+          },
+          (reject)=>{
+            console.log("Users not found")
+          }
+        )
+      }
+    },
     components: {
       MenuComponent
     }
