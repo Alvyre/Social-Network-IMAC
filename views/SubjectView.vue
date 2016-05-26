@@ -167,12 +167,12 @@ data () {
           }
         ]
       }
-    },
+    }/*,
     created(){
     this.$http.get('subject').then(
       (response)=>{this.subject = response.subject},
       (reject)=>{console.log("pas bien")}
-    )},
+    )}*/,
     components: {
       MenuComponent
     }
