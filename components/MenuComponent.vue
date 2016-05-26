@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import {apiRoot} from '../settings.js'
+
 export default {
 data() {
       return {
@@ -28,7 +30,7 @@ data() {
       }
     },
     created(){
-  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/category-getall').then(
+  		this.$http.get(apiRoot() +'/category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   				console.log(response)
