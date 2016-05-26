@@ -41,11 +41,12 @@ final class VoteAction
         $this->logger->info("Home page action dispatched");
 
         $datas = Vote::all();
-        
+        /*
         $this->view->render($response, 'home.twig', [
             'datas' => $datas
-        ]);
-
+        ]);*/
+        //var_dump($datas);
+        echo json_encode($datas);
         return $response;
     }
      

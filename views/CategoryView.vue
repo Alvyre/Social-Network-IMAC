@@ -62,7 +62,7 @@ export default {
         this.$http.get(apiRoot()  + 'vote-getall').then(
           (response)=>{
             this.votes = response.data[0]
-            console.log(response);
+            console.log(this.votes);
           },
           (reject)=>{
             console.log("Votes not found")
@@ -73,11 +73,11 @@ export default {
     methods:{
       getUpVote: function getUpVote(idSubject) {
         var nbVotes = 0;
-/*        console.log(vote)
-        for(var i = 0; i<votes.length; i++){
-          console.log(votes[i])
-          if(idSubject === vote.idSubject){
-            if(vote.upVote) nbVotes++;
+        console.log(this.votes)
+        /*for(var i = 0; i<votes.length; i++){
+          console.log(this.votes[i])
+          if(idSubject === this.votes[i].idSubject){
+            if(this.votes[i].upVote) nbVotes++;
           }
         }*/
         return nbVotes;
