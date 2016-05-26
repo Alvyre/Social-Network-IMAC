@@ -30,7 +30,9 @@ if (!empty($_POST)) {
 
 $result = createUser($PseudoUser, $PassUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
 
-$inscription = true;
+if ($result) {
+  $inscription = true;
+}
 
 //Renvoie des données
 $array = [

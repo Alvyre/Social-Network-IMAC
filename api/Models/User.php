@@ -109,7 +109,7 @@ function createUser($PseudoUser, $PassUser ,$StatusUser, $PhotoUser, $EmailUser,
   $sql = "INSERT INTO user (PseudoUser, PassUser, StatusUser, PhotoUser, EmailUser, SexUser, BioUser) VALUES (?,?,?,?,?,?,?)";
 
   $stmt = $mysqli->prepare($sql);
-  $stmt->bind_param('sssssss', $PseudoUser, $PassUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
+  $stmt->bind_param('sssssss', $PseudoUser, password_hash($PassUser, PASSWORD_DEFAULT), $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
   $stmt->execute();
   if ($stmt->affected_rows == 1) {
       return true;
