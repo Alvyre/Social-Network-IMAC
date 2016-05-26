@@ -29,10 +29,10 @@ final class UserAction
         if(!$data->isEmpty()){
             $pseudoAlreadyExist = true;
             $inscription = false;
-            echo "pseudo existant !";
+
         }
         else{
-            echo "Ok, n'existe pas !";       
+      
             User::firstOrCreate(array(
                 'pseudoUser' => $args['pseudoUser'], 
                 'statusUser' => $args['statusUser'], 
@@ -58,7 +58,7 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::with('sub','comment')->get();
+        $datas = User::with('subject','comment')->get();
   
         echo $datas->toJson();
 
@@ -130,16 +130,5 @@ final class UserAction
 
         $ar = array($result[0],$result[1],$result[2]);
         echo json_encode($ar);
-<<<<<<< HEAD
-=======
-    
-       /* $this->view->render($response, 'home.twig', [
-
-            'datas' => $ar
-        ]); */
->>>>>>> b20f2d220c0670eec21a57520cdfeca50b1d1022
-
-        return $response;
     }
-
 }
