@@ -34,6 +34,7 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../settings.js'
 
 export default {
     data() {
@@ -43,35 +44,20 @@ export default {
         orderKey: "dateSubject"
       }
     },
+    route: {
     data ({ to }) {
-      //to.params.id = topic_id
-      this.$http.get('topic/'+ to.params.id +'/posts').then(
-        (response) => {
-          this.posts = response.data
-        }, (response) => {
-          console.log("post all fail " + response)
-        }
-      )
-      this.$http.get('topic/'+ to.params.id).then(
-        (response) => {
-          this.topic = response.data
-        }, (response) => {
-          console.log("post all fail " + response)
-        }
-      )
-    },
-    created(){
-  		this.$http.get(apiRoot() + 'api/public/' + 'category-get/'+ id).then(
-  			(response)=>{
+    this.$http.get(apiRoot() + 'api/public/' + 'category-get/'+ to.params.id).then(
+        (response)=>{
           this.category = response.data[0]
           console.log(response)
         },
-  			(reject)=>{
-          console.log("pas bien")
-          //this.subjects = []
+        (reject)=>{
+          console.log("Category not found")
         }
-  		)
-  	},
+      )
+    }
+  }
+    ,
   	components: {
       MenuComponent
   	}
