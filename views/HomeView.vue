@@ -38,7 +38,7 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<li v-for="subject in subjects"><a href=""> {{subjects.titleSubject}} </a></li>
+								<li v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<li  v-for="subject in subjects"><a href=""> {{subjects.titleSubject}} </a></li>
+								<li  v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -66,10 +66,10 @@ data() {
       }
     },
     created(){
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
+  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/').then(
   			(response)=>{
-  				this.subjects = response.subjects;
-  				console.log(response)},
+  				this.subjects = response.data;
+  			},
   			(reject)=>{
           console.log("pas bien")
           //this.subjects = []
