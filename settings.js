@@ -1,3 +1,6 @@
-export function rootProject(){
-    return "http://localhost:8888/Projetweb/Social-Network-IMAC/"
+export function apiRoot(){
+
+    var projectRoot = "http://localhost:8888/Projetweb/Social-Network-IMAC/";
+
+    return projectRoot + "api/public/";
 }
