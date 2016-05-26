@@ -1,4 +1,4 @@
 <?php 
 	require_once(__DIR__."/../../Models/Comment.php");
-	createComment();
+	createComment($_POST["date"], $_POST["content"], $_POST["id"]);
 ?>

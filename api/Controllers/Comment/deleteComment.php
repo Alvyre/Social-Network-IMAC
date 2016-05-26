@@ -1,4 +1,4 @@
 <?php 
 	require_once(__DIR__."/../../Models/Comment.php");
-	deleteComment();
+	deleteComment($_POST["id"]);
 ?>
