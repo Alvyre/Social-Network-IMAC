@@ -6,6 +6,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Model\SubjectModel as Subject;
+use App\Model\UserModel as User;
+use App\Model\CategoryModel as Category;
 
 final class SubjectAction
 {
@@ -24,14 +26,16 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
 
-        Subject::firstOrCreate(array(
-            'titleSubject' => $args['titleSubject'], 
-            'contentSubject' => $args['contentSubject'], 
-            'dateSubject' => $args['dateSubject'])
-        );
-  
+        $subject = new Subject();
+        $subject->titleSubject = $args['titleSubject'];
+        $subject->contentSubject = $args['contentSubject'];
+        $subject->dateSubject = date("Y-m-d");
+        $subject->cat()->associate($args['idCat']);
+        $subject->user()->associate($args['idUser']);
+        $subject->save();
+
         $this->view->render($response, 'home.twig', [
-            'datas' => 'La CorentAction du subject fonctionne!'
+            'datas' => 'Nouveau sujet créé'
         ]);
 
 

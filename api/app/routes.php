@@ -26,7 +26,7 @@ $app->get('/comment-getall', 'App\Action\CommentAction:readAll')
 ->setName("comment-getall");
 $app->get('/comment-get', 'App\Action\CommentAction:readOne')
 ->setName("comment-get");
-$app->get('/comment-create/{dateComment}&{contentComment}', 'App\Action\CommentAction:create')
+$app->get('/comment-create/{contentComment}&{idUser}&{idSubject}', 'App\Action\CommentAction:create')
 ->setName("comment-create");
 $app->get('/comment-update/{idComment}', 'App\Action\CommentAction:update')
 ->setName("comment-update");
@@ -34,7 +34,7 @@ $app->get('/comment-delete/{idComment}', 'App\Action\CommentAction:delete')
 ->setName("comment-delete");
 
 //subjects
-$app->get('/subject-create/{titleSubject}&{contentSubject}&{dateSubject}', 'App\Action\SubjectAction:create')
+$app->get('/subject-create/{titleSubject}&{contentSubject}&{idUser}&{idCat}', 'App\Action\SubjectAction:create')
 ->setName("subject");
 
 $app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
