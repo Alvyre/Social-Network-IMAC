@@ -36,7 +36,7 @@ router.map({
 	'/signup/': {
 		component: SignUpView
 	},
-	'/category/': {
+	'/category/:id': {
 		component: CategoryView
 	},
 	'/subject/': {

@@ -12,18 +12,34 @@
 		    <li id="options">
 		        <a href="#">Catégories <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 		        <ul class="subnav">
-		            <li><a href="#">Enseignement</a></li>
-		            <li><a href="#">Logement</a></li>
-		            <li><a href="#">Vie étudiante</a></li>
-		            <li><a href="#">Tutos</a></li>
-		            <li><a href="#">Divers</a></li>
-		            <li><a href="#">Actualités</a></li>
+		            <li v-for="category in categories"><a v-link="'category/'+category.idCat">{{category.titleCat}}</a></li>
 		        </ul>
 		    </li>
 		</ul>
-		<div class="clear"></div>	
+		<div class="clear"></div>
 	</div>
 </template>
+
+<script>
+export default {
+data() {
+      return {
+        categories: []
+      }
+    },
+    created(){
+  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/category-getall').then(
+  			(response)=>{
+  				this.categories = response.data;
+  				console.log(response)
+  			},
+  			(reject)=>{
+          console.log("Data not found")
+        }
+  		)
+  	}
+}
+</script>
 
 <style type="text/css">
 
@@ -41,7 +57,7 @@
 	    float: right;
 	    padding: 1em;
 	}
-	 
+
 	.menu .nav li {
 	    float: left;
 	    list-style-type: none;
@@ -60,7 +76,7 @@
 	.menu .nav li a:hover {
 	    background-color: #333333;
 	}
-	 
+
 	.menu #settings a {
 	    padding: 18px;
 	    height: 24px;
@@ -185,7 +201,7 @@
 		.menu #options a{
 		    padding: 0 25px;
 		}
-		
+
 		.menu #options a i{
     		float: right;
     		margin-top: 20px;

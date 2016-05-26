@@ -1,23 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 25 Mai 2016 à 10:33
--- Version du serveur :  10.1.13-MariaDB
--- Version de PHP :  5.6.21
+-- Client :  localhost:8889
+-- Généré le :  Jeu 26 Mai 2016 à 14:59
+-- Version du serveur :  5.5.42
+-- Version de PHP :  5.6.10
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `imac-network`
@@ -32,19 +23,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `category` (
   `idCat` int(11) NOT NULL,
   `titleCat` varchar(30) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONS POUR LA TABLE `category`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `category`
 --
 
 INSERT INTO `category` (`idCat`, `titleCat`) VALUES
-(1, 'Cours'),
-(3, 'CoursDeFolie');
+(1, 'Enseignement'),
+(2, 'Logement'),
+(4, 'Vie étudiante'),
+(5, 'Divers'),
+(6, 'Tutos'),
+(7, 'Actualités');
 
 -- --------------------------------------------------------
 
@@ -59,17 +50,7 @@ CREATE TABLE `comment` (
   `idVote` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `idSubject` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS POUR LA TABLE `comment`:
---   `idSubject`
---       `subject` -> `idSubject`
---   `idUser`
---       `user` -> `idUser`
---   `idVote`
---       `vote` -> `idVote`
---
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `comment`
@@ -100,15 +81,7 @@ CREATE TABLE `subject` (
   `dateSubject` date NOT NULL,
   `idUser` int(11) NOT NULL,
   `idCat` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS POUR LA TABLE `subject`:
---   `idCat`
---       `category` -> `idCat`
---   `idUser`
---       `user` -> `idUser`
---
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `subject`
@@ -138,11 +111,7 @@ CREATE TABLE `user` (
   `bioUser` text,
   `adminUser` tinyint(1) NOT NULL DEFAULT '0',
   `passUser` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS POUR LA TABLE `user`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `user`
@@ -165,14 +134,6 @@ CREATE TABLE `vote` (
   `idUser` int(11) NOT NULL,
   `idSubject` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONS POUR LA TABLE `vote`:
---   `idSubject`
---       `subject` -> `idSubject`
---   `idUser`
---       `user` -> `idUser`
---
 
 --
 -- Index pour les tables exportées
@@ -216,72 +177,24 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `category`
 --
 ALTER TABLE `category`
-  MODIFY `idCat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `idComment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idComment` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `idSubject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idSubject` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `vote`
 --
 ALTER TABLE `vote`
   MODIFY `idVote` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Métadonnées
---
-USE `phpmyadmin`;
-
---
--- Métadonnées pour category
---
-
---
--- Métadonnées pour comment
---
-
---
--- Métadonnées pour subject
---
-
---
--- Métadonnées pour user
---
-
---
--- Métadonnées pour vote
---
-
---
--- Métadonnées pour imac-network
---
-
---
--- Contenu de la table `pma__relation`
---
-
-INSERT INTO `pma__relation` (`master_db`, `master_table`, `master_field`, `foreign_db`, `foreign_table`, `foreign_field`) VALUES
-('imac-network', 'comment', 'idSubject', 'imac-network', 'subject', 'idSubject'),
-('imac-network', 'comment', 'idUser', 'imac-network', 'user', 'idUser'),
-('imac-network', 'comment', 'idVote', 'imac-network', 'vote', 'idVote'),
-('imac-network', 'subject', 'idCat', 'imac-network', 'category', 'idCat'),
-('imac-network', 'subject', 'idUser', 'imac-network', 'user', 'idUser'),
-('imac-network', 'vote', 'idSubject', 'imac-network', 'subject', 'idSubject'),
-('imac-network', 'vote', 'idUser', 'imac-network', 'user', 'idUser');
-SET FOREIGN_KEY_CHECKS=1;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

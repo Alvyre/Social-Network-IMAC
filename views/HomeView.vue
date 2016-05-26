@@ -25,12 +25,9 @@
 				<div class="clear"></div>
 				<div class="menu-cat">
 					<ul>
-						<li><a href="#">Enseignement</a></li>
-		            	<li><a href="#">Logement</a></li>
-		            	<li><a href="#">Vie étudiante</a></li>
-		            	<li><a href="#">Tutos</a></li>
-		            	<li><a href="#">Divers</a></li>
-		            	<li><a href="#">Actualités</a></li>
+						<li v-for="category in categories">
+							<a v-link="'category/'+category.idCat"> {{category.titleCat}} </a>
+						</li>
 					</ul>
 				</div>
 				<div class="talks-field row">
@@ -38,7 +35,9 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<li v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li v-for="recentSubject in recentSubjects">
+									<a href=""> {{recentSubject.titleSubject}} </a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -46,7 +45,9 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<li  v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li  v-for="mostPopularSubject in mostPopularSubjects">
+									<a href=""> {{mostPopularSubject.titleSubject}} </a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -58,20 +59,40 @@
 
 <script>
 
+import {apiRoot} from '../settings.js'
 
 export default {
 data() {
       return {
-        subjects: []
+        recentSubjects: [],
+        mostPopularSubjects: [],
+        categories: []
       }
     },
     created(){
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
+    	this.$http.get( apiRoot() ).then(
   			(response)=>{
-  				this.subjects = response.data;
-  				console.log(response.data)},
+  				this.recentSubjects = response.data
+  			},
   			(reject)=>{
-          		console.log("pas bien")
+          		console.log("Recent subjects not found")
+        	}
+  		),
+		this.$http.get( apiRoot() + 'getMostPopular').then(
+  			(response)=>{
+  				this.mostPopularSubjects = response.data;
+  				console.log(response.data);
+  			},
+  			(reject)=>{
+          		console.log("Popular subjects not found")
+        	}
+  		),
+		this.$http.get( apiRoot() + 'category-getall').then(
+  			(response)=>{
+  				this.categories = response.data;
+  			},
+  			(reject)=>{
+          		console.log("Categories not found")
         	}
   		)
   	}
