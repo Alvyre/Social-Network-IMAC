@@ -26,7 +26,7 @@ return [
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'network-imac',
+            'database' => 'imac-network',
             'username' => 'root',
             'password' => '',
             'charset'   => 'utf8',

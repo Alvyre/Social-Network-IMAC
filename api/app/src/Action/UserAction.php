@@ -106,7 +106,6 @@ final class UserAction
         
         }  
         
-
         if(password_verify($password,$goodPass)) {
            $result[2] = ' 1';
         }
@@ -117,11 +116,12 @@ final class UserAction
         }      
 
         $ar = array($result[0],$result[1],$result[2]);
-        $ar = json_encode($ar);
+        echo json_encode($ar);
+        echo var_dump($ar);
     
-        $this->view->render($response, 'home.twig', [
+       /* $this->view->render($response, 'home.twig', [
             'datas' => $ar
-        ]);
+        ]); */
 
         return $response;
     }
