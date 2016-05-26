@@ -1,22 +1,44 @@
 <template>
-    <h1>{{subject.titleSubject}}</h1>
-    <p>Auteur : {{subject.author}} - Date : {{subject.dateSubject}}</p>
-    <p> {{subject.contentSubject}} </p>
+  <menu-component></menu-component>
+  <div class="container-fluid page">
+    <p class="category-name"><a v-link="'category'">Catégorie : {{ category.titleCat}}</a></p>
+    <h1 class="title-subject">
+      <i class="fa fa-quote-left" aria-hidden="true"></i>
+        {{subject.titleSubject}}
+      <i class="fa fa-quote-right" aria-hidden="true"></i>
+    </h1>
+    <div class="info">
+       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{subject.upVote}}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{subject.downVote}}</span></div>
+      <p>Lancé par {{subject.author}}, le {{subject.dateSubject}}</p>
+    </div>
+    <div class="content-subject">
+      <p> {{subject.contentSubject}} </p>
+    </div>
 
-    <h1>Commentaires</h1>
-    <template v-for="comment in comments | orderBy 'dateComment' -1">
-      <div class="col-xs-2">
-        <a href=""><div class="glyphicon glyphicon-arrow-up"></div></a>
-        <a href=""><div class="glyphicon glyphicon-arrow-down"></div></a>
+    <div class="subject-comments row">
+      <div class="separator">
+        <div class="line green"></div>
+        <div class="line blue"></div>
+        <div class="line red"></div>
       </div>
-      <div class="comment col-xs-10">
-        <p> {{ users[comment.idUser].pseudoUser }} - {{comment.dateComment}}</p>
-        <p> {{comment.contentComment}} </p>
-      </div>
-    </template>
+      <template v-for="comment in comments | orderBy 'dateComment' -1">
+        <div class="new-comment col-md-6 col-md-offset-3">
+          <div class="vote col-md-12">
+            <p><div class="glyphicon glyphicon-arrow-up"></div> {{comment.upVote}} <div class="glyphicon glyphicon-arrow-down"></div> {{comment.downVote}} </p>
+          </div>
+          <div class="comment col-md-12">
+            <p><span class="name-user">{{ users[comment.idUser].pseudoUser }} : </span> <span class="content-comment">{{comment.contentComment}}</span> <span class="date-comment">(publié le {{comment.dateComment}})</span></p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script>
+
+import MenuComponent from '../components/MenuComponent.vue'
+
 export default {
 data () {
       return {
@@ -145,14 +167,130 @@ data () {
           }
         ]
       }
-    }/*,
+    },
     created(){
     this.$http.get('subject').then(
       (response)=>{this.subject = response.subject},
       (reject)=>{console.log("pas bien")}
-    )}*/
+    )},
+    components: {
+      MenuComponent
+    }
 }
 </script>
 
 <style type="text/css">
+
+  @import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
+
+  .page{
+    min-height: 100vh;
+  }
+
+  .page .content {
+    margin-bottom: 3em;
+  }
+
+  .page h1, .page p, .page h4{
+    text-align: center;
+    max-width: 600px;
+    margin: 2em auto;
+  }
+
+  .page h1.title-subject i{
+    display: block;
+  }
+
+  .page h1.title-subject i:first-child{
+    text-align: left;
+    margin-bottom: 1em;
+  }
+
+  .page h1.title-subject i:last-child{
+    text-align: right;
+    margin-top:1em;
+  }
+
+  .page p.category-name{
+    text-transform: uppercase;
+  }
+
+  .page .info{
+    font-weight: 600;
+  }
+
+  .page .info .subject-vote{
+    margin: 1em auto;
+  }
+
+  .page .info .subject-vote span{
+    padding-right: 1em;
+  }
+
+  .page .content-subject{
+    font-family: 'Cutive Mono';
+  }
+
+  .page .subject-comments{
+    margin: 6em auto;
+    padding: 1em;
+  }
+
+  .page .subject-comments .separator{
+    margin-bottom: 6em;
+  }
+
+  .page .subject-comments .separator .line{
+    height: 15px;
+    max-width: 80px;
+    border-bottom: 3px solid #ccc;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .page .subject-comments .separator .line.green{
+    border-bottom: 6px solid #7ec348;
+  }
+
+  .page .subject-comments .separator .line.blue{
+    border-bottom: 6px solid #1c99d6;
+  }
+
+  .page .subject-comments .separator .line.red{
+    border-bottom: 6px solid #cb1b29;
+  }
+
+  .page .subject-comments .new-comment{
+    margin-bottom: 6em;
+  }
+
+  .page .subject-comments .vote{
+    text-align: right;
+  }
+
+  .page .subject-comments .comment{
+    border-bottom: 2px solid #E3E3E3;
+  }
+
+  .page .subject-comments .comment p{
+    text-align: left;
+  }
+
+  .page .subject-comments .comment .name-user{
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #cb1b29;
+    padding-right: 1em;
+  }
+
+  .page .subject-comments .comment .content-comment{
+    font-family: 'Cutive Mono';
+    letter-spacing: 3px;
+  }
+
+  .page .subject-comments .comment .date-comment{
+    color: #1c99d6;
+    font-style: italic;;
+  }
+
 </style>
