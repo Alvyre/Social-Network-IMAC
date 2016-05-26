@@ -125,6 +125,16 @@ import MenuComponent from '../components/MenuComponent.vue'
         }
       },
     },
+    created(){
+      /*this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
+        (response)=>{
+          this.subjects = response.data
+        },
+        (reject)=>{
+              console.log("Subjects not found")
+          }
+      )*/
+    },
     components: {
       MenuComponent
     }
