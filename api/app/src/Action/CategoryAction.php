@@ -20,6 +20,23 @@ final class CategoryAction
         $this->table = $table;
     }
 
+    public function getSubjectsFromCat(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+        
+
+        $subCat = Category::where('idCat', $args['idCat'])
+            ->with('sub')
+            ->get();
+
+        echo $subCat->toJson();
+        
+        
+        return $response;
+    }
+
+
+
     public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");

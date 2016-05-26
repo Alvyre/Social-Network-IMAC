@@ -42,7 +42,7 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Subject::with('cat','user','comment')->get()->first();
+        $datas = Subject::with('cat','user','comment')->get();
   
         echo $datas;
 
@@ -85,8 +85,6 @@ final class SubjectAction
         $this->logger->info("Home page action dispatched");
 
         $datas = Subject::where('titleSubject',$args['titleSubject'])->delete();
-        
-
 
         return $response;
     }

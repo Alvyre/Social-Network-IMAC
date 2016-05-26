@@ -7,6 +7,10 @@
     "dev": "webpack-dev-server --inline --hot --watch",
     "build": "webpack -p"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Arctic76/Social-Network-IMAC/"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

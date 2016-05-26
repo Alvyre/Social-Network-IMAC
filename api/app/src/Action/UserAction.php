@@ -44,8 +44,8 @@ final class UserAction
     public function readAll(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
-        $datas = User::all();
+
+        $datas = User::with('sub','comment')->get();
   
         echo $datas->toJson();
 
