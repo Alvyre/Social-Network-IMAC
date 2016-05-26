@@ -7,8 +7,29 @@
         <div class="line blue"></div>
         <div class="line red"></div>
       </div>
-      <div class="content">
-      	<p></p>
+      <div class="content row">
+      	<div v-if="resultsSearchComment.length > 0" class="col-md-3 col-md-offset-2 search-comments">
+          <h4>Commentaires</h4>
+          <ul>
+            <li v-for="resultSearchComment in resultsSearchComment"><a v-link="'/category'">{{resultSearchComment.contentComment}}</a></li>
+          </ul>
+        </div>
+        <div v-if="resultsSearchUser.length > 0" class="col-md-3 col-md-offset-2 search-users">
+          <h4>Utilisateurs</h4>
+          <ul>
+            <li v-for="resultSearchUser in resultsSearchUser"><a v-link="'/category'">{{resultSearchUser.pseudoUser}}, <span>{{resultSearchUser.statusUser}}</span></a></li>
+          </ul>
+        </div>
+        <div v-if="resultsSearchCategory.length > 0" class="col-md-3 col-md-offset-2 search-category">
+          <h4>Catégorie</h4>
+          <ul>
+            <li v-for="resultSearchCategory in resultsSearchCategory"><a v-link="'/category'">{{resultSearchCategory.titleCat}}</a></li>
+          </ul>
+        </div>
+        <div v-if="!noResult" class="no-result">
+          <h4>Aucun résultat a été trouvé</h4>
+          <p>Chercher un nom d'utilisateur</p>
+        </div>
       </div>
     </div>
 </template>
@@ -21,23 +42,50 @@ import {apiRoot} from '../config/localhost/settings.js'
 export default {
     data() {
       return {
-        search: []
+        resultsSearchComment: [],
+        resultsSearchUser: [],
+        resultsSearchCategory: [],
+        noResult: false
       }
     },
     route: {
       data ({ to }) {
-        this.$http.get( apiRoot() + 'search/' + to.params.text + '&comment&user&category' ).then(
+        this.noResult = false;
+        this.$http.get( apiRoot() + 'search/' + to.params.text + '&comment&0&0' ).then(
           (response)=>{
-            this.search = response.data
-            console.log(response)
+            this.resultsSearchComment = response.data
+            if(response.data.length != 0){
+              this.noResult = true;
+            }
           },
           (reject)=>{
-            console.log('Recent subjects not found')
+            console.log('Search comments not found')
+          }
+        ),
+        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&user&0' ).then(
+          (response)=>{
+            this.resultsSearchUser = response.data
+            if(response.data.length != 0){
+              this.noResult = true;
+            }
+          },
+          (reject)=>{
+            console.log('Search users not found')
+          }
+        ),
+        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&0&category' ).then(
+          (response)=>{
+            this.resultsSearchCategory = response.data
+            if(response.data.length != 0){
+              this.noResult = true;
+            }
+          },
+          (reject)=>{
+            console.log('Search category not found')
           }
         )
       }
-    }
-    ,
+    },
   	components: {
       MenuComponent
   	}
@@ -81,67 +129,31 @@ export default {
     border-bottom: 6px solid #cb1b29;
   }
 
-  .page .content .tri{
-    text-align: center;
-  }
-
-  .page .content .tri a{
-    padding: 1em;
-    color: #333333;
-    text-transform: uppercase;
-  }
-
-  .page .content .all-subjects{
-    max-width: 800px;
-    margin: 3em auto;
-    width: 100%;
-    text-align: left;
-  }
-
-  .page .content .all-subjects .subject{
-    margin: 1em auto;
-    height: 5em;
-  }
-
-  .page .content .all-subjects .subject .title, .page .content .all-subjects .subject .vote{
+  .page .content .search-comments, .page .content .search-users, .page .content .search-category{
     background: #fff;
     padding-top: 1em;
     padding-bottom: 1em;
-    height: 5em;
   }
 
-  .page .content .all-subjects .subject .title{
-    height: 5em;
-    line-height: 3em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-  }
-
-  .page .content .all-subjects .subject .title p{
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .page .content .all-subjects .subject .title p a{
+  .page .content .search-comments h4:after, .page .content .search-users h4:after, .page .content .search-category h4:after{
+    height: 4px;
+    width: 50%;
+    background: #333333;
+    content: '';
     display: block;
-    text-align: left;
+    margin: 20px auto;
   }
 
-  .page .content .all-subjects .subject .vote{
-    font-weight: 800;
+  .page .content .search-comments ul, .page .content .search-users ul, .page .content .search-category ul{
+    padding-bottom: 2em;
+    list-style: none;
+    padding-left: 0;
   }
 
-  .page .content .all-subjects .subject .vote .up, .page .content .all-subjects .subject .vote .down{
-    display: block;
-  }
-
-  .page .content .all-subjects .subject .vote .up .glyphicon{
-    color: #7ec348;
-  }
-
-  .page .content .all-subjects .subject .vote .down .glyphicon{
-    color: #cb1b29;
+  .page .content .search-comments ul li, .page .content .search-users ul li, .page .content .search-category ul li{
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #eeeeee;
   }
 
 
