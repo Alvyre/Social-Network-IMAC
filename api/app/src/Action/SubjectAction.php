@@ -85,8 +85,6 @@ final class SubjectAction
         $this->logger->info("Home page action dispatched");
 
         $datas = Subject::where('titleSubject',$args['titleSubject'])->delete();
-        
-
 
         return $response;
     }

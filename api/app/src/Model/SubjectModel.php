@@ -27,9 +27,7 @@ class SubjectModel extends Model
     {
         return $this
         	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject')
-        	->selectRaw('idSubject, count(idSubject) as nbidSubject')
-        	->groupBy('idSubject')
-        	->orderBy('nbidSubject','desc');
+        	->selectRaw('idSubject, count(idSubject) as countSubject');
     }
 }
 

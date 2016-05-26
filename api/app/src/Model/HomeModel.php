@@ -10,7 +10,6 @@ class HomeModel extends Model
 
     public $timestamps = false;
 
-
 }
 
 ?>
