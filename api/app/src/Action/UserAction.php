@@ -24,19 +24,32 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        User::firstOrCreate(array(
-            'pseudoUser' => $args['pseudoUser'], 
-            'statusUser' => $args['statusUser'], 
-            'photoUser' => $args['photoUser'], 
-            'emailUser' => $args['emailUser'], 
-            'sexUser' => $args['sexUser'],
-            'bioUser' => $args['bioUser'], 
-            'passUser' => password_hash($args['passUser'],PASSWORD_BCRYPT))
-        );
+        $data = User::where('pseudoUser', 'like', $args['pseudoUser'])->get();
 
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'true'
-        ]);
+        if(!$data->isEmpty()){
+            $pseudoAlreadyExist = true;
+            $inscription = false;
+            echo "pseudo existant !";
+        }
+        else{
+            echo "Ok, n'existe pas !";       
+            User::firstOrCreate(array(
+                'pseudoUser' => $args['pseudoUser'], 
+                'statusUser' => $args['statusUser'], 
+                'photoUser' => $args['photoUser'], 
+                'emailUser' => $args['emailUser'], 
+                'sexUser' => $args['sexUser'],
+                'bioUser' => $args['bioUser'], 
+                'passUser' => password_hash($args['passUser'],PASSWORD_BCRYPT))
+            );
+            $pseudoAlreadyExist = false;
+            $inscription = true;
+        }
+
+        $array = [$inscription, $pseudoAlreadyExist];
+
+
+        echo json_encode($array);
 
         return $response;
     }
