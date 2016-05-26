@@ -39,15 +39,15 @@ final class SearchAction
         for ($i=0; $i < count($optionsTab); $i++) { 
             switch ($optionsTab[$i]) {
                 case 'category':
-                    $categoryResults = Category::where('titleCat',$tag)->get();
+                    $categoryResults = Category::where('titleCat', 'LIKE', '%'.$tag.'%')->get();
                 break;
 
                 case 'comment':
-                    $commentResults = Comment::where('contentComment',$tag)->get();
+                    $commentResults = Comment::where('contentComment', 'LIKE', '%'.$tag.'%')->get();
                 break;
                 
                 case 'user':
-                    $userResults = User::where('pseudoUser',$tag)->get();
+                    $userResults = User::where('pseudoUser', 'LIKE', '%'.$tag.'%')->get();
                 break;
                 
                 
