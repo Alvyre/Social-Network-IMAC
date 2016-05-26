@@ -22,6 +22,7 @@
       		document.cookie = "idUser=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
       		document.cookie = "pseudo=; expires=Thu, 01 Jan 1970 00:00:00 GMT"
       		this.connected = ''
+      		this.$route.router.go('/home')
       		location.reload()
       	}
     },
