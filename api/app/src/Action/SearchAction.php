@@ -23,25 +23,50 @@ final class SearchAction
         $this->table = $table;
     }
 
-   
+
 
     public function research(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
         $tag = $args['tag'];
-        $option1 = $args['option1'];
-        $option2 = $args['option2'];
-        $option3 = $args['option3'];
+        $optionsTab[0] = $args['option1'];
+        $optionsTab[1] = $args['option2'];
+        $optionsTab[2] = $args['option3'];
+        /* init */
+        $categoryResults = "";
+        $commentResults = "";
+        $userResults = "";
+        for ($i=0; $i < count($optionsTab); $i++) { 
+            switch ($optionsTab[$i]) {
+                case 'category':
+                    $categoryResults = Category::where('titleCat',$tag)->get();
+                break;
+
+                case 'comment':
+                    $commentResults = Comment::where('contentComment',$tag)->get();
+                break;
+                
+                case 'user':
+                    $userResults = User::where('pseudoUser',$tag)->get();
+                break;
+                
+                
+                default:
+                    # code...
+                break;
+            }
+        }
 
 
-   
-        $categoryResults = Category::where('titleCat',$args['titleCat'])->get();
-        $commentResults = Comment::where('titleCat',$args['titleCat'])->get();
-        $userResults = User::where('titleCat',$args['titleCat'])->get();
+        // $categoryResults = Category::where('titleCat',$args['titleCat'])->get();
+        // $commentResults = Comment::where('titleCat',$args['titleCat'])->get();
+        // $userResults = User::where('titleCat',$args['titleCat'])->get();
         
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Catégorie supprimé !'
-        ]);
+            'categoryResults' => $categoryResults,
+            'commentResults' => $commentResults,
+            'userResults' => $userResults
+            ]);
 
         return $response;
     }

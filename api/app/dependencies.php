@@ -76,3 +76,7 @@ $container[App\Action\SubjectAction::class] = function ($c) {
 $container[App\Action\VoteAction::class] = function ($c) {
     return new App\Action\VoteAction($c->get('view'), $c->get('logger'), $c->get('db'));
 };
+
+$container[App\Action\SearchAction::class] = function ($c) {
+    return new App\Action\SearchAction($c->get('view'), $c->get('logger'), $c->get('db'));
+};

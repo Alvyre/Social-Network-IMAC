@@ -1,18 +1,10 @@
 <?php
-
-
 	$researchData = $_POST["choice"];
-	$researchOptions="";
 	$researchTag=$_POST["researchText"];
-	 for($i=0;$i<count($researchData);$i++){
+	for($i=0; $i<3; $i++){
+	 	if($researchData[$i] == NULL)
+	 		$researchData[$i] = "0";
+	}
 
-	 	if($researchOptions != "")
-	 		$researchOptions= $researchOptions."&".$researchData[$i];
-		 else
-		 	$researchOptions= $researchData[$i];
-
-	 }
-
-	echo $researchOptions." ".$researchTag;
-	//header('Location: ../../../public/user-create/'.$PseudoUser.'&'.$statusUser.'&'.$photoUser.'&'.$emailUser.'&'.$sexUser.'&'.$bioUser.'&'.$PassUser);
+	header('Location: ../../../public/search/'.$researchTag.'&'.$researchData[0].'&'.$researchData[1].'&'.$researchData[2]);
 ?>

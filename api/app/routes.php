@@ -65,19 +65,23 @@ $app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
 
 //vote
 $app->get('/vote-create/{upVote}&{downVote}', 'App\Action\VoteAction:create')
-->setName("vote");
+->setName("vote-create");
 
 $app->get('/vote-getall', 'App\Action\VoteAction:readAll')
-->setName("vote");
+->setName("vote-getall");
 
 $app->get('/vote-get', 'App\Action\VoteAction:readOne')
-->setName("vote");
+->setName("vote-get");
 
 $app->get('/vote-update/{idVote}&{upVote}&{downVote}', 'App\Action\VoteAction:update')
-->setName("vote");
+->setName("vote-update");
 
 $app->get('/vote-delete/{upVote}', 'App\Action\VoteAction:delete')
-->setName("vote");
+->setName("vote-delete");
+
+//research
+$app->get('/search/{tag}&{option1}&{option2}&{option3}', 'App\Action\SearchAction:research')
+->setName("search");
 
 ?>
 
