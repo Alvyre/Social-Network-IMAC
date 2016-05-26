@@ -69,7 +69,7 @@ final class SearchAction
             ]);*/
 
 
-        $categoryResultsArray = array();
+       /* $categoryResultsArray = array();
         foreach($categoryResults as $v) {
             $categoryResultsArray[key($v)] = current($v);
         }
@@ -86,8 +86,8 @@ final class SearchAction
             $userResultsArray[key($v)] = current($v);
         }
          $userRes = json_encode($userResultsArray, 128);
-
-        echo json_encode(array_merge(json_decode($catRes,true),json_decode($commentRes,true),json_decode($userRes,true)));
+*/
+        echo json_encode(array_merge(json_decode($categoryResults,true),json_decode($commentResults,true),json_decode($userResults,true)));
 
         /*echo json_encode($categoryResults);
         echo json_encode($commentResults);
