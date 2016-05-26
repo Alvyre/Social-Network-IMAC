@@ -2,38 +2,10 @@
     <menu-component></menu-component>
     <div class="container-fluid page">
     	<div class="title-page">
-        <h1>{{category.titleCat}}</h1>
+        <h1>Rien n'a été trouvé à cet endroit</h1>
         <div class="line green"></div>
         <div class="line blue"></div>
         <div class="line red"></div>
-      </div>
-      <div class="create-subject row">
-        <button class="btn btn-primary col-md-2 col-md-offset-5 col-xs-4 col-xs-offset-4" v-link="'/subject-create'">Créer un sujet</button>
-      </div>
-      <div class="content">
-      	<p class="tri">
-          <a @click="orderKey = 'dateSubject'">Plus récent</a> -
-          <a @click="orderKey = 'upVote'">Plus populaire</a>
-        </p>
-        <section class="row all-subjects">
-        <template v-for="subject in category.sub | orderBy orderKey -1">
-            <div class="col-md-6 subject">
-          		<div class="col-xs-3 vote">
-                <div class="up">
-          			   <div class="glyphicon glyphicon-arrow-up"></div> {{getUpVote()}}
-                   <!-- <template v-for="vote in votes">
-                   </template> -->
-
-                   <!--<span v-for="vote in votes" > {{vote.idVote}}  <span v-if="vote.idSubject == subject.idSubject">{{ getUpVote(subject.idSubject, vote) }}</span> </span>-->
-                </div>
-                <div class="down">
-          			   <div class="glyphicon glyphicon-arrow-down"></div> {{ getDownVote(subject.idSubject) }}
-                </div>
-          		</div>
-          		<div class="col-xs-9 title"><p><a v-link="'/subject/'+subject.idSubject">{{ subject.titleSubject }}</a></p></div>
-            </div>
-        </template>
-        </section>
       </div>
     </div>
 </template>
@@ -56,12 +28,7 @@ export default {
       data ({ to }) {
         this.$http.get(apiRoot()  + 'category-sub/'+ to.params.id).then(
           (response)=>{
-            if(response.data.length == 0){
-              this.$route.router.go('/404')
-            }
-            else{
-              this.category = response.data[0]
-            }
+            this.category = response.data[0]
           },
           (reject)=>{
             console.log("Category not found")
@@ -70,7 +37,7 @@ export default {
         this.$http.get(apiRoot()  + 'vote-getall').then(
           (response)=>{
             this.votes = response.data[0]
-            console.log(this.votes);
+            console.log(response);
           },
           (reject)=>{
             console.log("Votes not found")
@@ -81,11 +48,11 @@ export default {
     methods:{
       getUpVote: function getUpVote(idSubject) {
         var nbVotes = 0;
-        console.log(this.votes)
-        /*for(var i = 0; i<votes.length; i++){
-          console.log(this.votes[i])
-          if(idSubject === this.votes[i].idSubject){
-            if(this.votes[i].upVote) nbVotes++;
+/*        console.log(vote)
+        for(var i = 0; i<votes.length; i++){
+          console.log(votes[i])
+          if(idSubject === vote.idSubject){
+            if(vote.upVote) nbVotes++;
           }
         }*/
         return nbVotes;

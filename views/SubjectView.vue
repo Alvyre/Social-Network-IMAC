@@ -54,8 +54,12 @@ export default {
       data ({ to }) {
         this.$http.get(apiRoot()  + 'subject-get/'+ to.params.id).then(
           (response)=>{
-            this.subject = response.data[0]
-            //console.log(response)
+            if(response.data.length == 0){
+              this.$route.router.go('/404')
+            }
+            else{
+              this.subject = response.data[0]
+            }
           },
           (reject)=>{
             console.log("Category not found")
@@ -64,7 +68,6 @@ export default {
         this.$http.get(apiRoot()  + 'user-getall').then(
           (response)=>{
             this.users = response.data
-            console.log(response)
           },
           (reject)=>{
             console.log("Users not found")
