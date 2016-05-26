@@ -130,16 +130,4 @@ final class UserAction
 
         $ar = array($result[0],$result[1],$result[2]);
         echo json_encode($ar);
-<<<<<<< HEAD
-=======
-    
-       /* $this->view->render($response, 'home.twig', [
-
-            'datas' => $ar
-        ]); */
->>>>>>> b20f2d220c0670eec21a57520cdfeca50b1d1022
-
-        return $response;
-    }
-
 }
