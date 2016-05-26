@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+//use Illuminate\Database\Capsule\Manager as DB;
 use \Illuminate\Database\Eloquent\Model;
 
 class SubjectModel extends Model
@@ -12,6 +13,11 @@ class SubjectModel extends Model
     public $timestamps = false;
 
     protected $fillable = array('titleSubject', 'contentSubject', 'dateSubject');
+
+    /*public function dball()
+    {
+        return $this;
+    }*/
 
     public function cat()
     {
@@ -26,8 +32,9 @@ class SubjectModel extends Model
     public function comment()
     {
         return $this
-        	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject');
-        	//->selectRaw('idSubject, count(idSubject) as countSubject');
+        	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject')
+            ->select('idSubject')
+            ->count();
     }
 }
 
