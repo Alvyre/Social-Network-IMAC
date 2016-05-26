@@ -38,78 +38,18 @@ import MenuComponent from '../components/MenuComponent.vue'
 export default {
     data() {
       return {
-        category: {
-          "idCat": 1,
-          "titleCat": "Cours"
-        },
-        subjects: [
-          {
-              "idSubject":1,
-              "titleSubject":"Sujet 1",
-              "contentSubject":"contenu du sujet",
-              "dateSubject":"2016-05-20",
-              "upVote":45,
-              "downVote":7,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":2,
-              "titleSubject":"Sujet 2",
-              "contentSubject":"contenu du sujet 2",
-              "dateSubject":"2016-05-27",
-              "upVote":50,
-              "downVote":25,
-              "idUser":5,
-              "idCat":1
-          },
-          {
-              "idSubject":3,
-              "titleSubject":"Sujet 3",
-              "contentSubject":"Contenu du sujet 3",
-              "dateSubject":"2016-05-20",
-              "upVote":40,
-              "downVote":20,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":4,
-              "titleSubject":"Sujet 4",
-              "contentSubject":"Contenu du sujet 4",
-              "dateSubject":"2016-05-05",
-              "upVote":4,
-              "downVote":30,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":5,
-              "titleSubject":"Sujet 5",
-              "contentSubject":"Contenu du sujet 5",
-              "dateSubject":"2016-05-28",
-              "upVote":38,
-              "downVote":35,
-              "idUser":5,
-              "idCat":1
-          },
-          {
-              "idSubject":6,
-              "titleSubject":"Sujet 6",
-              "contentSubject":"Contenu du sujet 6",
-              "dateSubject":"2016-05-30",
-              "upVote":27,
-              "downVote":2,
-              "idUser":3,
-              "idCat":3
-          }
-        ],
+        category: [],
+        subjects: [],
         orderKey: "dateSubject"
       }
     },
     created(){
-  		this.$http.get('category').then(
-  			(response)=>{this.subjects = response.subjects},
+      var id = this.$route.params.id;
+  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/category-get/'+ id).then(
+  			(response)=>{
+          this.category = response.data[0]
+          console.log(response)
+        },
   			(reject)=>{
           console.log("pas bien")
           //this.subjects = []
@@ -190,7 +130,7 @@ export default {
 
   .page .content .all-subjects .subject .title{
     height: 5em;
-    line-height: 3em; 
+    line-height: 3em;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: left;
@@ -199,12 +139,12 @@ export default {
   .page .content .all-subjects .subject .title p{
     margin: 0 auto;
     text-align: left;
-  } 
+  }
 
   .page .content .all-subjects .subject .title p a{
     display: block;
     text-align: left;
-  } 
+  }
 
   .page .content .all-subjects .subject .vote{
     font-weight: 800;
