@@ -1,86 +1,114 @@
 {
-    "" : {
-        "request" : "controller/viewHome.php"
+    "/" : {
+        "request" : "Controllers/Home/getRecentSujects.php"
     },
 
-    "404/" : {
-        "request" : "controller/view404.php"
+    "/getMostPopular" : {
+        "request" : "Controllers/Home/getPopularSujects.php"
     },
 
-    "user/signup/" : {
-        "request" : "userController@signup"
+    "/category-getall" : {
+        "request" : "Controllers/Category/getAllCategoies.php"
     },
 
-    "user/login/" : {
-        "request" : "userController@login"
+    "/category-get/{idCat}" : {
+        "request" : "Controllers/Category/getCategoryById.php"
     },
 
-    "user/show/{id}" : {
-       "request" : "userController@show"
+    "/category-create/{titleCat}" : {
+        "request" : "Controllers/Category/createCategory.php"
     },
 
-    "user/logout" : {
-        "request" : "userController@logout"
+    "/category-update/{idCat}&{titleCat}" : {
+       "request" : "Controllers/Category/updateCategory.php"
     },
 
-    "user/addConversation/{id}" : {
-        "request" : "userController@addConversationToUser"
+    "/category-delete/{titleCat}" : {
+        "request" : "Controllers/Category/deleteCategory.php"
     },
 
-    "user/addFavorite/{id}" : {
-        "request" : "userController@addFavoriteToUser"
+    "/category-sub/{idCat}" : {
+        "request" : "Controllers/Category/getSubjectsCategory.php"
     },
 
-    "user/isConnected" : {
-        "request" : "userController@isConnected"
+    "/comment-getall" : {
+        "request" : "Controllers/Comment/getAllComments.php"
     },
 
-    "conversation/create/" : {
-        "request" : "conversationController@create"
+    "/comment-get" : {
+        "request" : "Controllers/Comment/getCommentsById.php"
     },
 
-    "conversation/show/{id}" : {
-        "request" : "conversationController@show"
+    "/comment-create/{dateComment}&{contentComment}" : {
+        "request" : "Controllers/Comment/createComment.php"
     },
 
-    "conversation/{id}/addMessage" : {
-        "request" : "conversationController@addMessage"
+    "/comment-update/{idComment}" : {
+        "request" : "Controllers/Comment/updateComment.php"
     },
 
-    "conversation/search/{search}" : {
-        "request" : "conversationController@search"
+    "/comment-delete/{idComment}" : {
+        "request" : "Controllers/Comment/deleteComment.php"
     },
 
-    "conversation/getBestOfLikes/{id}" :  {
-        "request" : "conversationController@getBestOfLikes"
+    "/subject-create/{titleSubject}&{contentSubject}&{dateSubject}" : {
+        "request" : "Controllers/Subject/createSubject.php"
     },
 
-    "conversation/getBestOfMalaises/{id}" : {
-        "request" : "conversationController@getBestOfMalaises"
+    "/subject-getall" :  {
+        "request" : "Controllers/Subject/getAllSubjects.php"
     },
 
-    "publication/show/{idPublication}" : {
-        "request" : "publicationController@show",
-        "rmq" : "Route temporaire"
+    "/subject-get" : {
+        "request" : "Controllers/Subject/getSubjectById.php"
     },
 
-    "publication/add/{idConversation}" : {
-            "request" : "publicationController@create"
+    "/subject-update/{idSubject}&{titleSubject}&{contentSubject}" : {
+        "request" : "Controllers/Subject/updateSubject.php",
     },
 
-    "publication/{id}/like" : {
-        "request" : "publicationController@like"
+    "/subject-delete/{titleSubject}" : {
+            "request" : "Controllers/Subject/deleteSubject.php"
     },
 
-    "publication/{id}/unlike" : {
-        "request" : "publicationController@unlike"
+    "/user-getall" : {
+        "request" : "Controllers/User/getAllUsers.php"
     },
 
-    "publication/{id}/malaise" : {
-        "request" : "publicationController@malaise"
+    "/user-get/{idUser}" : {
+        "request" : "Controllers/User/getUserById.php"
     },
 
-    "publication/{id}/unmalaise" : {
-        "request" : "publicationController@unmalaise"
+    "/user-delete/{pseudoUser}" : {
+        "request" : "Controllers/User/deleteUser.php"
+    },
+
+    "/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}" : {
+        "request" : "Controllers/User/createUser.php"
+    },
+
+    "/user-update/{idUser}&{pseudoUser}" : {
+        "request" : "Controllers/User/updateUser.php"
+    },
+
+    "/vote-create/{upVote}&{downVote}" : {
+        "request" : "Controllers/Vote/createVote.php"
+    },
+
+    "/vote-getall" : {
+        "request" : "Controllers/Vote/getAllVotes.php"
+    },
+
+    "/vote-get" : {
+        "request" : "Controllers/Vote/getVoteById.php"
+    },
+
+    "/vote-update/{idVote}&{upVote}&{downVote}" : {
+        "request" : "Controllers/Vote/updateVote.php"
+    },
+
+    "/vote-delete/{upVote}" : {
+        "request" : "Controllers/Vote/deleteVote.php"
     }
+
 }
