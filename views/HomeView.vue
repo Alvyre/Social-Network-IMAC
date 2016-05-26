@@ -26,7 +26,7 @@
 				<div class="menu-cat">
 					<ul>
 						<li v-for="category in categories">
-							<a href=""> {{category.titleCat}} </a>
+							<a v-link="'category/'+category.idCat"> {{category.titleCat}} </a>
 						</li>
 					</ul>
 				</div>
@@ -77,7 +77,7 @@ data() {
           		console.log("Recent subjects not found")
         	}
   		),
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/getMostPopular').then(
+  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/getMostPopular').then(
   			(response)=>{
   				this.mostPopularSubjects = response.data;
   				console.log(response.data);
@@ -86,7 +86,7 @@ data() {
           		console.log("Popular subjects not found")
         	}
   		),
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/category-getall').then(
+  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   			},
