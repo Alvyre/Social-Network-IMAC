@@ -62,11 +62,36 @@ final class SearchAction
         // $commentResults = Comment::where('titleCat',$args['titleCat'])->get();
         // $userResults = User::where('titleCat',$args['titleCat'])->get();
         
-        $this->view->render($response, 'home.twig', [
+        /*$this->view->render($response, 'home.twig', [
             'categoryResults' => $categoryResults,
             'commentResults' => $commentResults,
             'userResults' => $userResults
-            ]);
+            ]);*/
+
+
+        /*$categoryResultsArray = array();
+        foreach($categoryResults as $v) {
+            $categoryResultsArray[key($v)] = current($v);
+        }
+        echo json_encode($categoryResultsArray, 128);
+
+        $commentResultsArray = array();
+        foreach($categoryResults as $v) {
+            $commentResultsArray[key($v)] = current($v);
+        }
+        echo json_encode($commentResultsArray, 128);*/
+
+        $userResultsArray = array();
+        foreach($categoryResults as $v) {
+            $userResultsArray[key($v)] = current($v);
+        }
+        echo json_encode($commentResultsArray, 128);
+
+        /*echo json_encode($categoryResults);
+        echo json_encode($commentResults);
+        echo json_encode($userResults);*/
+
+        //echo json_encode($result);
 
         return $response;
     }
