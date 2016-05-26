@@ -39,7 +39,7 @@ router.map({
 	'/category/:id': {
 		component: CategoryView
 	},
-	'/subject/': {
+	'/subject/:id': {
 		component: SubjectView
 	},
 	'/subject-create/': {

@@ -32,14 +32,14 @@ final class UserAction
             echo "pseudo existant !";
         }
         else{
-            echo "Ok, n'existe pas !";       
+            echo "Ok, n'existe pas !";
             User::firstOrCreate(array(
-                'pseudoUser' => $args['pseudoUser'], 
-                'statusUser' => $args['statusUser'], 
-                'photoUser' => $args['photoUser'], 
-                'emailUser' => $args['emailUser'], 
+                'pseudoUser' => $args['pseudoUser'],
+                'statusUser' => $args['statusUser'],
+                'photoUser' => $args['photoUser'],
+                'emailUser' => $args['emailUser'],
                 'sexUser' => $args['sexUser'],
-                'bioUser' => $args['bioUser'], 
+                'bioUser' => $args['bioUser'],
                 'passUser' => password_hash($args['passUser'],PASSWORD_BCRYPT))
             );
             $pseudoAlreadyExist = false;
@@ -59,7 +59,7 @@ final class UserAction
         $this->logger->info("Home page action dispatched");
 
         $datas = User::with('sub','comment')->get();
-  
+
         echo $datas->toJson();
 
         return $response;
@@ -68,11 +68,11 @@ final class UserAction
     public function readOne(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
+
         $datas = User::where('idUser', $args['idUser'])->get();
-  
+
         echo $datas->toJson();
-        
+
         return $response;
     }
 
@@ -95,7 +95,7 @@ final class UserAction
         $this->logger->info("Home page action dispatched");
 
         User::where('pseudoUser',$args['pseudoUser'])->delete();
-        
+
         $this->view->render($response, 'home.twig', [
             'datas' => 'Utilisateur supprimé !'
         ]);
@@ -116,9 +116,9 @@ final class UserAction
             $goodPass= $val->passUser;
             $result[0] = $val->idUser;
             $result[1] = $val->pseudoUser;
-        
-        }  
-        
+
+        }
+
         if(password_verify($password,$goodPass)) {
            $result[2] = ' 1';
         }
@@ -126,18 +126,16 @@ final class UserAction
             $result[0] = '0';
             $result[1] = '0';
             $result[2] = ' 0';
-        }      
+        }
 
         $ar = array($result[0],$result[1],$result[2]);
         echo json_encode($ar);
-<<<<<<< HEAD
-=======
-    
+
+
        /* $this->view->render($response, 'home.twig', [
 
             'datas' => $ar
         ]); */
->>>>>>> b20f2d220c0670eec21a57520cdfeca50b1d1022
 
         return $response;
     }

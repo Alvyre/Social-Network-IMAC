@@ -35,7 +35,6 @@ data() {
   		this.$http.get(apiRoot() + 'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
-  				console.log(response)
   			},
   			(reject)=>{
           console.log("Data not found")
