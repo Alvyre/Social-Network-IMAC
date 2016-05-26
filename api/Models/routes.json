@@ -1,0 +1,86 @@
+{
+    "" : {
+        "request" : "controller/viewHome.php"
+    },
+
+    "404/" : {
+        "request" : "controller/view404.php"
+    },
+
+    "user/signup/" : {
+        "request" : "userController@signup"
+    },
+
+    "user/login/" : {
+        "request" : "userController@login"
+    },
+
+    "user/show/{id}" : {
+       "request" : "userController@show"
+    },
+
+    "user/logout" : {
+        "request" : "userController@logout"
+    },
+
+    "user/addConversation/{id}" : {
+        "request" : "userController@addConversationToUser"
+    },
+
+    "user/addFavorite/{id}" : {
+        "request" : "userController@addFavoriteToUser"
+    },
+
+    "user/isConnected" : {
+        "request" : "userController@isConnected"
+    },
+
+    "conversation/create/" : {
+        "request" : "conversationController@create"
+    },
+
+    "conversation/show/{id}" : {
+        "request" : "conversationController@show"
+    },
+
+    "conversation/{id}/addMessage" : {
+        "request" : "conversationController@addMessage"
+    },
+
+    "conversation/search/{search}" : {
+        "request" : "conversationController@search"
+    },
+
+    "conversation/getBestOfLikes/{id}" :  {
+        "request" : "conversationController@getBestOfLikes"
+    },
+
+    "conversation/getBestOfMalaises/{id}" : {
+        "request" : "conversationController@getBestOfMalaises"
+    },
+
+    "publication/show/{idPublication}" : {
+        "request" : "publicationController@show",
+        "rmq" : "Route temporaire"
+    },
+
+    "publication/add/{idConversation}" : {
+            "request" : "publicationController@create"
+    },
+
+    "publication/{id}/like" : {
+        "request" : "publicationController@like"
+    },
+
+    "publication/{id}/unlike" : {
+        "request" : "publicationController@unlike"
+    },
+
+    "publication/{id}/malaise" : {
+        "request" : "publicationController@malaise"
+    },
+
+    "publication/{id}/unmalaise" : {
+        "request" : "publicationController@unmalaise"
+    }
+}

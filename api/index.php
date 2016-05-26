@@ -1,6 +1,9 @@
 <?php 
 
+include(__DIR__.'/'.$route);
+
 require './vendor/autoload.php';
+require_once('Models/routing.php');
 
 // Prepare app
 $app = new \Slim\Slim(array(
