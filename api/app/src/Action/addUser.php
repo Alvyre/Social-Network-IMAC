@@ -8,4 +8,6 @@
 	$bioUser = $_POST['bioUser'];
 
 	header('Location: ../../../public/user-create/'.$PseudoUser.'&'.$statusUser.'&'.$photoUser.'&'.$emailUser.'&'.$sexUser.'&'.$bioUser.'&'.$PassUser);
+
+
 ?>
