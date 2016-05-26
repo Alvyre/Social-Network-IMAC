@@ -93,41 +93,30 @@
       }
     },
     methods :{
-      connexion: function(){
-        alert("Connexion feedback")
+      setCookie: function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
       },
       inscription: function(){
         alert("Inscription feedback")
-      }
+      },
+      connexion: function(){
+        alert("Connexion feedback")
+        // send datas
+
+        //receive data
+        var isConnected = true;
+        if(isConnected){
+          this.setCookie("idUser",42, 10)
+        }
+      },
     },
     components: {
     }
   }
 </script>
-
-
-<!-- GET DATA JSON
-,
-  data() {
-    return {
-      tasks: []
-    }
-  },
-  created: function(){
-      this.fetchJSON();
-  },
-  methods: {
-    fetchJSON: function(){
-      this.$http.get('api/tasks').then(
-        (response) => {
-          this.tasks = response.data
-        },
-        (response) => {
-          console.log("mes couilles")
-        }
-      )
-    }
--->
 
 <style type="text/css">
   #inscription{
