@@ -26,7 +26,7 @@
           <div class="comment col-md-12">
             <p>
               <span class="name-user" v-for="user in users">
-                <a href="" v-if="user.idUser == comment.idUser">{{user.pseudoUser}}</a> :
+                <a href="" v-if="user.idUser == comment.idUser">{{user.pseudoUser}} :</a>
               </span>
               <span class="content-comment">{{comment.contentComment}}</span>
               <span class="date-comment">(publié le {{comment.dateComment}})</span>
