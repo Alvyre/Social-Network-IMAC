@@ -52,7 +52,7 @@
             </div>
             <div class="form-group col-md-12">
               <label for="sex"> Sexe :</label>
-              <select name="sex" id="sex" class="form-control">
+              <select name="sex" id="sex" class="form-control" v-model="sex">
                 <option value="Homme">Homme</option>
                 <option value="Femme" selected>Femme</option>
               </select>
@@ -60,11 +60,17 @@
             <div class="form-group col-md-12 ">
 
               <label for="bio">Biographie:</label>
-              <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="message" placeholder="Ce que vous faites et aimez dans la vie..."></textarea>
+              <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="bio" placeholder="Ce que vous faites et aimez dans la vie..."></textarea>
             </div>
 
+            <div class="alert alert-success" v-if="inscriptionConfirm">
+              <strong>{{inscriptionConfirm}}</strong>
+            </div>
+            <div class="alert alert-danger" v-if="inscriptionConfirmNot">
+              <strong>{{inscriptionConfirmNot}}</strong>
+            </div>
             <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
-
+            
           </form>
         </div>
         <div class="connexion" id="connexion" v-if="connect == true && sign == false">
@@ -92,6 +98,7 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../settings.js'
 
   export default {
     data(){
@@ -100,8 +107,12 @@ import MenuComponent from '../components/MenuComponent.vue'
         password: '',
         status: '',
         mail: '',
+        bio: '',
+        sex: '',
         connect: false,
-        sign: false
+        sign: false,
+        inscriptionConfirm : '',
+        inscriptionConfirmNot: ''
       }
     },
     methods :{
@@ -112,11 +123,42 @@ import MenuComponent from '../components/MenuComponent.vue'
         document.cookie = cname + "=" + cvalue + "; " + expires;
       },
       inscription: function(){
-        alert("Inscription feedback")
+        this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
+                                                    + this.status + '&'
+                                                    + 'photo'          + '&'
+                                                    + this.mail   + '&'
+                                                    + this.sex    + '&'
+                                                    + this.bio    + '&'
+                                                    + this.password).then(
+        (response)=>{
+          if(response.data == 'true' || response.data == true)
+            this.inscriptionConfirm = "Inscrit !"
+        },
+        (reject)=>{
+              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          }
+        )
       },
       connexion: function(){
         alert("Connexion feedback")
         // send datas
+
+        this.$http.get( apiRoot() + '/user-login/'+ this.pseudo + '&' + this.password).then(
+        (response)=>{
+          if(response.data == 'true' || response.data == true)
+            this.inscriptionConfirm = "Inscrit !"
+        },
+        (reject)=>{
+              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          }
+        )
+
+
+
+
+
+
+
 
         //receive data
         var isConnected = true;
