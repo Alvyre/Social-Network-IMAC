@@ -34,7 +34,7 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
-import {apiRoot} from '../settings.js'
+import {apiRoot} from '../config/localhost/settings.js'
 
 export default {
     data() {

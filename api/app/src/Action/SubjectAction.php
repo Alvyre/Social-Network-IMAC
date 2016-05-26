@@ -53,13 +53,11 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Subject::first();
+        $datas = Subject::with('cat','user','comment')
+                ->where('idSubject','like',$args['idSubject'])
+                ->get();
   
         echo $datas->toJson();
-        
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Sujet supprimé!'
-         ]);
 
         return $response;
     }

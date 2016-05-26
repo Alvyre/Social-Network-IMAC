@@ -40,7 +40,7 @@ $app->get('/subject-create/{titleSubject}&{contentSubject}&{dateSubject}', 'App\
 $app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
 ->setName("subject");
 
-$app->get('/subject-get', 'App\Action\SubjectAction:readOne')
+$app->get('/subject-get/{idSubject}', 'App\Action\SubjectAction:readOne')
 ->setName("subject");
 
 $app->get('/subject-update/{idSubject}&{titleSubject}&{contentSubject}','App\Action\SubjectAction:update')
