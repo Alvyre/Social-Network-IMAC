@@ -66,6 +66,8 @@ $app->get('/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
 
 
 //vote
+
+//ici faut mettre 1&0 pour un upvote, 0&1 pour un downvote
 $app->get('/vote-create/{upVote}&{downVote}', 'App\Action\VoteAction:create')
 ->setName("vote-create");
 
