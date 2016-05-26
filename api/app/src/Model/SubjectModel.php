@@ -20,12 +20,16 @@ class SubjectModel extends Model
 
     public function user()
     {
-        return $this->belongsToMany('App\Model\UserModel','idUser');
+        return $this->belongsTo('App\Model\UserModel','idUser','idUser');
     }
 
     public function comment()
     {
-        return $this->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject')->selectRaw('idSubject, count(idSubject) as nbidSubject')->groupBy('idSubject as tempTable')->orderBy('nbidSubject','desc');
+        return $this
+        	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject')
+        	->selectRaw('idSubject, count(idSubject) as nbidSubject')
+        	->groupBy('idSubject')
+        	->orderBy('nbidSubject','desc');
     }
 }
 

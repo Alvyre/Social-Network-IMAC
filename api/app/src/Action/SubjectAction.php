@@ -42,7 +42,7 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Subject::with('cat')->get();
+        $datas = Subject::with('cat','user','comment')->get()->first();
   
         echo $datas;
 

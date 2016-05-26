@@ -41,9 +41,7 @@ final class HomeAction
 
 //"SELECT * FROM subject, (SELECT IdSubject, COUNT(IdSubject) as nbCom from comment group by IdSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5"
         
-        $nbComments = Subject::with(array('comment' => function($query) {
-            $query->select('idSubject');
-        }))->get();
+        $nbComments = Subject::with('comment')->get();
 
 
         echo $nbComments;
