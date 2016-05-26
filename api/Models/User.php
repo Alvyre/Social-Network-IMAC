@@ -2,7 +2,7 @@
 /****************************
 Fonctions sur les utilisateurs
 *****************************/
-require_once("../Database.php");
+include_once(__DIR__."/../Database.php");
 
 // READ
 

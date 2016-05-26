@@ -3,15 +3,14 @@
 Fonctions sur les votes
 *****************************/
 
-include_once("../Database.php");
-
+include_once(__DIR__."/../Database.php");
 // READ
 
 function readAllVotes()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'vote'";
+  $sql = "SELECT * FROM vote";
 
   $result = $mysqli->query($sql);
 

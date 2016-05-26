@@ -3,7 +3,7 @@
 Fonctions sur les commentaires
 *****************************/
 
-include_once("../Database.php");
+include_once(__DIR__."/../Database.php");
 
 // READ
 
@@ -11,7 +11,7 @@ function readAllComments()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'comment'";
+  $sql = "SELECT * FROM comment";
 
   $result = $mysqli->query($sql);
 

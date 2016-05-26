@@ -1,5 +1,5 @@
 <?php 
-	$sujets = readAllSubjects(); 
-	json_encode($sujets);
-	echo $sujets;
+	require_once(__DIR__."/../../Models/Subject.php");
+	$subjects = readAllSubjects();
+	echo json_encode($subjects);
 ?>

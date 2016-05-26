@@ -3,7 +3,7 @@
 Fonctions sur les sujets
 *****************************/
 
-include_once("../Database.php");
+include_once(__DIR__."/../Database.php");
 
 // READ
 
@@ -11,7 +11,7 @@ function readAllSubjects()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'subject'";
+  $sql = "SELECT * FROM subject";
 
   $result = $mysqli->query($sql);
 
