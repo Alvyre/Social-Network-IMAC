@@ -1,7 +1,7 @@
 <template>
   <menu-component></menu-component>
   <div class="container-fluid page">
-    <p class="category-name"><a v-link="'category'">Catégorie : {{subject.cat.titleCat}}</a></p>
+    <p class="category-name"><a v-link="'/category/'+subject.cat.idCat">Catégorie : {{subject.cat.titleCat}}</a></p>
     <h1 class="title-subject">
       <i class="fa fa-quote-left" aria-hidden="true"></i>
         {{subject.titleSubject}}

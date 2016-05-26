@@ -28,38 +28,34 @@
 	</div>
 </template>
 
+
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../config/localhost/settings.js'
 
 export default {
-	data() {
+    data() {
       return {
-		user : {
-		        "idUser":0,
-		        "pseudoUser":"Alichou",
-		        "statusUser":"IMAC2017",
-		        "photoUser":"avatar.jpg",
-		        "emailUser":"alichou@gmail.com",
-		        "sexUser":"F",
-		        "bioUser": "Coucou les licornes c'est chouette ! Presque autant que les poneys en fait. Mais pas tout à fait ! Parce que les poneys c'est réel du coup c'est forcément mieux",
-		        "adminUser":0,
-		        "passUser":""
-		}
+        user:[]
       }
-    },/*,
-    created(){
-  		this.$http.get('category').then(
-  			(response)=>{this.subjects = response.subjects},
-  			(reject)=>{
-          console.log("pas bien")
-          //this.subjects = []
-        }
-  		)
-  	},*/
-  	components: {
-  		MenuComponent
-  	}
+    },
+    route: {
+      data ({ to }) {
+        this.$http.get(apiRoot()  + 'user-get/'+ to.params.id).then(
+          (response)=>{
+            this.user = response.data[0]
+            //console.log(response)
+          },
+          (reject)=>{
+            console.log("Category not found")
+          }
+        )
+      }
+    },
+    components: {
+      MenuComponent
+    }
 }
 </script>
 
@@ -128,7 +124,7 @@ export default {
 	}
 
 	@media screen and (max-width: 767px) {
-		
+
 		.page .profile .bio {
 		    text-align: center;
 		    border-left: 0;

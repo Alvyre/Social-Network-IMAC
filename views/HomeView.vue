@@ -36,7 +36,7 @@
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
 								<li v-for="recentSubject in recentSubjects">
-									<a href=""> {{recentSubject.titleSubject}} </a>
+									<a v-link="'/subject/'+recentSubject.idSubject"> {{recentSubject.titleSubject}} </a>
 								</li>
 							</ul>
 						</div>
@@ -46,7 +46,7 @@
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
 								<li  v-for="mostPopularSubject in mostPopularSubjects">
-									<a href=""> {{mostPopularSubject.titleSubject}} </a>
+									<a v-link="'/subject/'+ mostPopularSubject.idSubject"> {{mostPopularSubject.titleSubject}} </a>
 								</li>
 							</ul>
 						</div>
