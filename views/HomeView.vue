@@ -59,6 +59,7 @@
 
 <script>
 
+import {rootProject} from '../settings.js'
 
 export default {
 data() {
@@ -69,7 +70,7 @@ data() {
       }
     },
     created(){
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
+  		this.$http.get( rootProject() + 'api/public/').then(
   			(response)=>{
   				this.recentSubjects = response.data
   			},
@@ -77,7 +78,7 @@ data() {
           		console.log("Recent subjects not found")
         	}
   		),
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/getMostPopular').then(
+  		this.$http.get(rootProject() + 'api/public/getMostPopular').then(
   			(response)=>{
   				this.mostPopularSubjects = response.data;
   				console.log(response.data);
@@ -86,7 +87,7 @@ data() {
           		console.log("Popular subjects not found")
         	}
   		),
-  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/category-getall').then(
+  		this.$http.get(rootProject() + 'api/public/category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   			},
