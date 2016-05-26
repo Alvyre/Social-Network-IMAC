@@ -17,6 +17,9 @@ $app->get('/category-update/{idCat}&{titleCat}', 'App\Action\CategoryAction:upda
 	->setName("category-update");
 $app->get('/category-delete/{titleCat}', 'App\Action\CategoryAction:delete')
 	->setName("category-delete");
+$app->get('/category-sub/{idCat}', 'App\Action\CategoryAction:getSubjectsFromCat')
+	->setName("category-sub");
+
 
 //comments
 $app->get('/comment-getall', 'App\Action\CommentAction:readAll')
