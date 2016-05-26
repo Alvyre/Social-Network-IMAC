@@ -101,26 +101,26 @@ final class UserAction
         
         foreach ($data as $val) {
             $goodPass= $val->passUser;
-            $result = $val->idUser;
-            $result = $result." ".$val->pseudoUser;
+            $result[0] = $val->idUser;
+            $result[1] = $val->pseudoUser;
         
-        }
+        }  
         
-        $data->toJson();
-        foreach ($data as $val) {
-            unset($data[1]);
-        }
-        echo $data;
 
         if(password_verify($password,$goodPass)) {
-           $result = $result.' 1';
+           $result[2] = ' 1';
         }
-        else echo 'pas ouais';       
+        else {
+            $result[0] = '0';
+            $result[1] = '0';
+            $result[2] = ' 0';
+        }      
 
-            echo $result;
-
+        $ar = array($result[0],$result[1],$result[2]);
+        $ar = json_encode($ar);
+    
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur modifié !'
+            'datas' => $ar
         ]);
 
         return $response;
