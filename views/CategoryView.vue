@@ -34,6 +34,7 @@
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../settings.js'
 
 export default {
     data() {
@@ -43,19 +44,20 @@ export default {
         orderKey: "dateSubject"
       }
     },
-    created(){
-      var id = this.$route.params.id;
-  		this.$http.get('http://localhost/Social-Network-IMAC/api/public/category-get/'+ id).then(
-  			(response)=>{
+    route: {
+    data ({ to }) {
+    this.$http.get(apiRoot() + 'api/public/' + 'category-get/'+ to.params.id).then(
+        (response)=>{
           this.category = response.data[0]
           console.log(response)
         },
-  			(reject)=>{
-          console.log("pas bien")
-          //this.subjects = []
+        (reject)=>{
+          console.log("Category not found")
         }
-  		)
-  	},
+      )
+    }
+  }
+    ,
   	components: {
       MenuComponent
   	}

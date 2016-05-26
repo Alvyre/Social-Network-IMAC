@@ -70,12 +70,13 @@ data() {
       }
     },
     created(){
+
     	this.$http.get( apiRoot() ).then(
   			(response)=>{
   				this.recentSubjects = response.data
   			},
   			(reject)=>{
-          		console.log("Recent subjects not found")
+          		console.log('Recent subjects not found')
         	}
   		),
 		this.$http.get( apiRoot() + 'getMostPopular').then(
@@ -84,7 +85,7 @@ data() {
   				console.log(response.data);
   			},
   			(reject)=>{
-          		console.log("Popular subjects not found")
+          		console.log('Popular subjects not found')
         	}
   		),
 		this.$http.get( apiRoot() + 'category-getall').then(
