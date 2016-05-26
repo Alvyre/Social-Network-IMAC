@@ -3,7 +3,7 @@
 		<div class="go-home"><a v-link="'/home'"><img src="../assets/logo.svg" width="50" height="50" />IMAC Talks</a></div>
 		<div class="connect">
 			<a v-if="!connected" v-link="'/signup'">S'inscrire / Connexion</a>
-			<a v-if="connected"  @click.prevent="logout">Bonjour {{pseudo}} / Se déconnecter</a>
+			<a v-if="connected"  @click.prevent="logout" href="">Bonjour {{pseudo}} / <span class="logout">Se déconnecter</span></a>
 		</div>
 		<div class="clear">
 	</header>
@@ -81,5 +81,9 @@
 
 	header .clear{
 		clear: both;
+	}
+
+	header .connect .logout{
+		color: #cb1b29;
 	}
 </style>
