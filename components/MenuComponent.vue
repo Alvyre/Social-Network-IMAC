@@ -21,6 +21,7 @@
 </template>
 
 <script>
+
 import {apiRoot} from '../settings.js'
 
 export default {
@@ -31,7 +32,7 @@ data() {
       }
     },
     created(){
-  		this.$http.get(apiRoot() + 'api/public/' + 'category-getall').then(
+  		this.$http.get(apiRoot() + 'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   				console.log(response)
