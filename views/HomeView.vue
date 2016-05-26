@@ -8,7 +8,7 @@
 					<span>with you.</span>
 				</div>
 				<div class="description">Le réseau social de l'IMAC permet l'échange entre professeurs, étudiants et professionnels.</div>
-				<i class="home-arrow fa fa-long-arrow-down" aria-hidden="true"></i>
+				<i class="home-arrow fa fa-heart-o" aria-hidden="true"></i>
 			</div>
 			<div class="container">
 				<div class="search">
@@ -299,6 +299,7 @@ data() {
 	    display: inline-block;
 	    padding: 1em 0;
 	    width: 33%;
+	    font-weight: 600;
 	}
 
 	.home .talks-field{
