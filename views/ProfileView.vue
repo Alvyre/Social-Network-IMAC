@@ -109,11 +109,14 @@ export default {
 
 	.page .profile .bio {
 	    font-size: 1.5em;
-	    text-align: left;
 	    border-left: 6px solid #333333;
 	    padding: 0px 75px 300px 75px;
 	    margin-bottom: 50px;
 	    float: right;
+	}
+
+	.page .profile .bio p{
+		text-align: left;
 	}
 
 	.page .profile .bio .br-bottom{
@@ -131,6 +134,10 @@ export default {
 		    border-left: 0;
 		    padding: 10px;
 		    float: right;
+		}
+
+		.page .profile .bio p{
+			text-align: center;
 		}
 
 		.page .profile .bio .br-bottom{
