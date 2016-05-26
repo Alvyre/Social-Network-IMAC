@@ -175,6 +175,7 @@ import {apiRoot} from '../config/localhost/settings.js'
               this.setCookie("idUser",response.data[0], 10)
               this.setCookie("pseudo",response.data[1], 10)
               this.connectionConfirm = "Connexion réussie !"
+              location.reload();
             }
           },
           (reject)=>{
