@@ -98,7 +98,7 @@ final class UserAction
         $password = $args['password'];
 
         $data = User::where('pseudoUser', 'like', $login)->select('idUser','pseudoUser','passUser')->get();
-        
+        $goodPass = '';
         foreach ($data as $val) {
             $goodPass= $val->passUser;
             $result[0] = $val->idUser;
@@ -116,9 +116,9 @@ final class UserAction
             $result[2] = ' 0';
         }      
 
-        $ar = array($result[0],$result[1],$result[2]);
-        $ar = json_encode($ar);
-    
+        $ar = array('id'=> $result[0], 'pseudo'=> $result[1], 'isCo'=>$result[2]);
+        //$ar = json_encode($ar);
+        $ar->withJson($ar);
         $this->view->render($response, 'home.twig', [
             'datas' => $ar
         ]);
