@@ -11,11 +11,11 @@
         function __construct(){
             //TODO : Remplacer avec un __DIR__
             $_this = $this;
-            $this->root = __DIR__.'\..\\';
+            $this->root = __DIR__.'\\';
             $this->request = $_SERVER['REQUEST_URI'];
             $this->route = $this->root;
             $this->parameter = array();
-            $this->routes = json_decode(file_get_contents($this->root."/model/routes.json"),true);
+            $this->routes = json_decode(file_get_contents($this->root."routes.json"),true);
             if($this->routes == null){
                 echo "Error on JSON file";
                 exit;

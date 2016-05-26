@@ -3,111 +3,111 @@
         "request" : "Controllers/Home/getRecentSujects.php"
     },
 
-    "/getMostPopular" : {
+    "getMostPopular/" : {
         "request" : "Controllers/Home/getPopularSujects.php"
     },
 
-    "/category-getall" : {
-        "request" : "Controllers/Category/getAllCategoies.php"
+    "category-getall/" : {
+        "request" : "Controllers/Category/getAllCategories.php"
     },
 
-    "/category-get/{idCat}" : {
-        "request" : "Controllers/Category/getCategoryById.php"
+    "category-get/{idCat}/" : {
+        "request" : "Controllers/Category/getCategoryById.php?id={idCat}"
     },
 
-    "/category-create/{titleCat}" : {
+    "category-create/{titleCat}/" : {
         "request" : "Controllers/Category/createCategory.php"
     },
 
-    "/category-update/{idCat}&{titleCat}" : {
+    "category-update/{idCat}&{titleCat}/" : {
        "request" : "Controllers/Category/updateCategory.php"
     },
 
-    "/category-delete/{titleCat}" : {
+    "category-delete/{titleCat}/" : {
         "request" : "Controllers/Category/deleteCategory.php"
     },
 
-    "/category-sub/{idCat}" : {
+    "category-sub/{idCat}/" : {
         "request" : "Controllers/Category/getSubjectsCategory.php"
     },
 
-    "/comment-getall" : {
+    "comment-getall/" : {
         "request" : "Controllers/Comment/getAllComments.php"
     },
 
-    "/comment-get" : {
+    "comment-get/" : {
         "request" : "Controllers/Comment/getCommentsById.php"
     },
 
-    "/comment-create/{dateComment}&{contentComment}" : {
+    "comment-create/{dateComment}&{contentComment}/" : {
         "request" : "Controllers/Comment/createComment.php"
     },
 
-    "/comment-update/{idComment}" : {
+    "comment-update/{idComment}/" : {
         "request" : "Controllers/Comment/updateComment.php"
     },
 
-    "/comment-delete/{idComment}" : {
+    "comment-delete/{idComment}/" : {
         "request" : "Controllers/Comment/deleteComment.php"
     },
 
-    "/subject-create/{titleSubject}&{contentSubject}&{dateSubject}" : {
+    "subject-create/{titleSubject}&{contentSubject}&{dateSubject}/" : {
         "request" : "Controllers/Subject/createSubject.php"
     },
 
-    "/subject-getall" :  {
+    "subject-getall/" :  {
         "request" : "Controllers/Subject/getAllSubjects.php"
     },
 
-    "/subject-get" : {
+    "subject-get/" : {
         "request" : "Controllers/Subject/getSubjectById.php"
     },
 
-    "/subject-update/{idSubject}&{titleSubject}&{contentSubject}" : {
-        "request" : "Controllers/Subject/updateSubject.php",
+    "subject-update/{idSubject}&{titleSubject}&{contentSubject}/" : {
+        "request" : "Controllers/Subject/updateSubject.php"
     },
 
-    "/subject-delete/{titleSubject}" : {
-            "request" : "Controllers/Subject/deleteSubject.php"
+    "subject-delete/{titleSubject}/" : {
+        "request" : "Controllers/Subject/deleteSubject.php"
     },
 
-    "/user-getall" : {
+    "user-getall/" : {
         "request" : "Controllers/User/getAllUsers.php"
     },
 
-    "/user-get/{idUser}" : {
+    "user-get/{idUser}/" : {
         "request" : "Controllers/User/getUserById.php"
     },
 
-    "/user-delete/{pseudoUser}" : {
+    "user-delete/{pseudoUser}/" : {
         "request" : "Controllers/User/deleteUser.php"
     },
 
-    "/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}" : {
+    "user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}/" : {
         "request" : "Controllers/User/createUser.php"
     },
 
-    "/user-update/{idUser}&{pseudoUser}" : {
+    "user-update/{idUser}&{pseudoUser}/" : {
         "request" : "Controllers/User/updateUser.php"
     },
 
-    "/vote-create/{upVote}&{downVote}" : {
+    "vote-create/{upVote}&{downVote}/" : {
         "request" : "Controllers/Vote/createVote.php"
     },
 
-    "/vote-getall" : {
+    "vote-getall/" : {
         "request" : "Controllers/Vote/getAllVotes.php"
     },
 
-    "/vote-get" : {
+    "vote-get/" : {
         "request" : "Controllers/Vote/getVoteById.php"
     },
 
-    "/vote-update/{idVote}&{upVote}&{downVote}" : {
+    "vote-update/{idVote}&{upVote}&{downVote}/" : {
         "request" : "Controllers/Vote/updateVote.php"
     },
 
-    "/vote-delete/{upVote}" : {
+    "vote-delete/{upVote}/" : {
         "request" : "Controllers/Vote/deleteVote.php"
     }
 

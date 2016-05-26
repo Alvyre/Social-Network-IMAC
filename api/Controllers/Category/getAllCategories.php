@@ -1,5 +1,5 @@
 <?php 
+	require_once("Models/Category.php");
 	$categories = readAllCategories();
-	json_encode($categories);
-	echo $categories;
+	echo json_encode($categories);
 ?>
