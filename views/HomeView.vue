@@ -70,24 +70,25 @@ data() {
       }
     },
     created(){
-    	this.$http.get( apiRoot() ).then(
+
+    	this.$http.get( apiRoot() + 'api/public/' ).then(
   			(response)=>{
   				this.recentSubjects = response.data
   			},
   			(reject)=>{
-          		console.log("Recent subjects not found")
+          		console.log('Recent subjects not found')
         	}
   		),
-		this.$http.get( apiRoot() + 'getMostPopular').then(
+		this.$http.get( apiRoot() + 'api/public/' + 'getMostPopular').then(
   			(response)=>{
   				this.mostPopularSubjects = response.data;
   				console.log(response.data);
   			},
   			(reject)=>{
-          		console.log("Popular subjects not found")
+          		console.log('Popular subjects not found')
         	}
   		),
-		this.$http.get( apiRoot() + 'category-getall').then(
+		this.$http.get( apiRoot() + 'api/public/' + 'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   			},
