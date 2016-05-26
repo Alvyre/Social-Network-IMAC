@@ -23,7 +23,6 @@ Requêtes liées à SUBJECT :
 	SELECT TitleSubject FROM 'subject'
 	SELECT ContentSubject FROM 'subject'
 	SELECT DateSubject FROM 'subject'
-	SELECT IdVote FROM 'subject'
 	SELECT IdCat FROM 'subject'
 
 	INSERT INTO 'subject' VALUES ('valeur 1', 'valeur 2', ...)
