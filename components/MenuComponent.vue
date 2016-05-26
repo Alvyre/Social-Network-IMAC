@@ -3,8 +3,8 @@
 		<ul class="nav">
 		    <li id="search">
 		        <form action="" method="get">
-		            <input type="text" name="search_text" id="search_text" placeholder="Search"/>
-		            <button type="submit" id="search_button" name="search_button" class="btn btn-success">
+		            <input v-model="searchText" type="text" name="search_text" id="search_text" placeholder="Search"/>
+		            <button @click.prevent="sendResearch" type="submit" id="search_button" name="search_button" class="btn btn-success">
                 		<i class="fa fa-search"></i>
             		</button>
 		        </form>
@@ -28,8 +28,14 @@ export default {
 
 data() {
       return {
-        categories: []
+        categories: [],
+        searchText: ''
       }
+    },
+    methods:{
+    	sendResearch:function(){
+    		this.$route.router.go('/search/' + this.searchText)
+    	}
     },
     created(){
   		this.$http.get(apiRoot() + 'category-getall').then(

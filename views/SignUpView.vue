@@ -35,14 +35,14 @@
             </div>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!status'>
-              <strong>Ce champs est nécessaire</strong>
+                <strong>Ce champs est nécessaire</strong>
               </div>
               <label for="status">Status :</label>
               <input type="text" name="status" class="form-control" id="status" placeholder="IMAC201X, Prof, ..." required v-model="status">
             </div>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!mail'>
-              <strong>Ce champs est nécessaire</strong>
+                <strong>Ce champs est nécessaire</strong>
               </div>
               <div class="alert alert-warning" v-if="mail && !mail.includes('@')">
                 <strong>Votre @mail n'est pas valide</strong>
@@ -75,30 +75,41 @@
         </div>
         <div class="connexion" id="connexion" v-if="connect == true && sign == false">
           <form action="" method="POST" class="" role="form">
-              <div class="form-group text-center">
-                <legend>Connexion</legend>
-              </div>
-              <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
-                <label for="pseudo">Pseudo :</label>
-                <input type="text" name="pseudo" class="form-control">
-              </div>
-              <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
-                <label for="password">Password :</label>
-                <input type="password" name="password" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-primary center-block" @click.prevent="connexion">Connexion</button>
-              </div>
-          </form>
-        </div>
+            <div class="form-group text-center">
+              <legend>Connexion</legend>
+            </div>
+            <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
+              <label for="pseudo">Pseudo :</label>
+              <input type="text" name="pseudo" class="form-control" required v-model="co_pseudo">
+            </div>
+            <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
+              <label for="password">Password :</label>
+              <input type="password" name="password" class="form-control" required v-model="co_pwd">
+            </div>
+            <button type="submit" class="btn btn-primary center-block" @click.prevent="connexion">Connexion</button>
+            <div class="alert alert-success text-center" v-if="connectionConfirm">
+              <strong>{{connectionConfirm}}</strong>
+            </div>
+            <div class="alert alert-danger text-center" v-if="connectionConfirmNot">
+              <strong>{{connectionConfirmNot}}</strong>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 
+<<<<<<< HEAD
+  import MenuComponent from '../components/MenuComponent.vue'
+  import {apiRoot} from '../settings.js'
+=======
 import MenuComponent from '../components/MenuComponent.vue'
 import {apiRoot} from '../config/localhost/settings.js'
+>>>>>>> 57203281549676e7bfe098c2086c0a39e85e3507
 
   export default {
     data(){
@@ -111,11 +122,12 @@ import {apiRoot} from '../config/localhost/settings.js'
         sex: '',
         connect: false,
         sign: false,
+        co_pseudo: '',
+        co_pwd: '',
         inscriptionConfirm : '',
         inscriptionConfirmNot: '',
         connectionConfirm: '',
         connectionConfirmNot: '',
-        userDatas: [],
         POST_data: []
       }
     },
@@ -127,6 +139,8 @@ import {apiRoot} from '../config/localhost/settings.js'
         document.cookie = cname + "=" + cvalue + "; " + expires;
       },
       inscription: function(){
+        this.inscriptionConfirm = ''
+        this.inscriptionConfirmNot= ''
         this.POST_data = {
           pseudo: this.pseudo,
           status: this.status,
@@ -136,61 +150,44 @@ import {apiRoot} from '../config/localhost/settings.js'
           password: this.password
         }
         this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
-                                                    + this.status + '&'
-                                                    + 'photo'          + '&'
-                                                    + this.mail   + '&'
-                                                    + this.sex    + '&'
-                                                    + this.bio    + '&'
-                                                    + this.password).then(
-        (response)=>{
-          if(response.data == 'true' || response.data == true)
-            this.inscriptionConfirm = "Inscrit !"
-          else
-            this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
-        },
-        (reject)=>{
+          + this.status + '&'
+          + 'photo'     + '&'
+          + this.mail   + '&'
+          + this.sex    + '&'
+          + this.bio    + '&'
+          + this.password).then(
+          (response)=>{
+            if(response.data[1] ==1)
+              this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
+            else if(response.data[0] == 1)
+              this.inscriptionConfirm = "Inscrit !"
+            else
               this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          },
+          (reject)=>{
+            this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
           }
-        )
-      },
-      connexion: function(){
-        // send datas
-        if(this.pseudo == '') this.pseudo = ' '
-        if(this.password == '') this.password = ' '
-
-        this.$http.get( apiRoot() + 'user-login/'+ this.pseudo + '&' + this.password).then(
-        (response)=>{
-          this.userDatas = response.data
-          console.log(response)
+          )
         },
-        (reject)=>{
+        connexion: function(){
+        if(this.co_pseudo == '')
+          this.co_pseudo == ' '
+        if(this.co_pwd == '')
+          this.co_pwd == ' '
+
+        this.$http.get( apiRoot() + 'user-login/'+ this.co_pseudo + '&' + this.co_pwd).then(
+          (response)=>{
+            if(response.data[2] == 1){
+              this.setCookie("idUser",response.data[0], 10)
+              this.setCookie("pseudo",response.data[1], 10)
+              this.connectionConfirm = "Connexion réussie !"
+            }
+          },
+          (reject)=>{
             this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
           }
-        )
-
-
-
-
-
-
-
-
-        //receive data
-        /*var isConnected = true;
-        if(isConnected){
-          this.setCookie("idUser",42, 10)
-        }*/
-      },
-    },
-    created(){
-      /*this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
-        (response)=>{
-          this.subjects = response.data
-        },
-        (reject)=>{
-              console.log("Subjects not found")
-          }
-      )*/
+          )
+      }
     },
     components: {
       MenuComponent
@@ -199,7 +196,7 @@ import {apiRoot} from '../config/localhost/settings.js'
 </script>
 
 <style type="text/css">
-  
+
   .page{
     min-height: 100vh;
   }
@@ -233,7 +230,7 @@ import {apiRoot} from '../config/localhost/settings.js'
   
   .boxsizingBorder {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 </style>

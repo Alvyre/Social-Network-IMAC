@@ -14,14 +14,11 @@ class SubjectModel extends Model
 
     protected $fillable = array('titleSubject', 'contentSubject', 'dateSubject');
 
-    /*public function dball()
-    {
-        return $this;
-    }*/
 
     public function cat()
     {
         return $this->belongsTo('App\Model\CategoryModel','idCat','idCat');
+
     }
 
     public function user()

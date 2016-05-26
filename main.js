@@ -10,6 +10,7 @@ import ProfileView from './views/ProfileView.vue'
 import CategoryView from './views/CategoryView.vue'
 import SubjectView from './views/SubjectView.vue'
 import SignUpView from './views/SignUpView.vue'
+import SearchView from './views/SearchView.vue'
 import SubjectCreateView from './views/SubjectCreateView.vue'
 
 // install router
@@ -38,6 +39,9 @@ router.map({
 	},
 	'/category/:id': {
 		component: CategoryView
+	},
+	'/search/:text': {
+		component: SearchView
 	},
 	'/subject/:id': {
 		component: SubjectView
