@@ -99,6 +99,7 @@ data() {
 	}
 	.menu #search_text{
 	    width: 297px;
+	    border-radius: 0;
 	    padding: 15px 0 15px 26px;
 	    font-size: 16px;
 	    border: 0 none;
