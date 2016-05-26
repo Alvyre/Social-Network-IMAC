@@ -112,7 +112,11 @@ import {apiRoot} from '../config/localhost/settings.js'
         connect: false,
         sign: false,
         inscriptionConfirm : '',
-        inscriptionConfirmNot: ''
+        inscriptionConfirmNot: '',
+        connectionConfirm: '',
+        connectionConfirmNot: '',
+        userDatas: [],
+        POST_data: []
       }
     },
     methods :{
@@ -123,6 +127,14 @@ import {apiRoot} from '../config/localhost/settings.js'
         document.cookie = cname + "=" + cvalue + "; " + expires;
       },
       inscription: function(){
+        this.POST_data = {
+          pseudo: this.pseudo,
+          status: this.status,
+          mail:   this.mail,
+          sex:    this.sex,
+          bio:    this.bio,
+          password: this.password
+        }
         this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
                                                     + this.status + '&'
                                                     + 'photo'          + '&'
@@ -133,6 +145,8 @@ import {apiRoot} from '../config/localhost/settings.js'
         (response)=>{
           if(response.data == 'true' || response.data == true)
             this.inscriptionConfirm = "Inscrit !"
+          else
+            this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
         },
         (reject)=>{
               this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
@@ -140,16 +154,17 @@ import {apiRoot} from '../config/localhost/settings.js'
         )
       },
       connexion: function(){
-        alert("Connexion feedback")
         // send datas
+        if(this.pseudo == '') this.pseudo = ' '
+        if(this.password == '') this.password = ' '
 
-        this.$http.get( apiRoot() + '/user-login/'+ this.pseudo + '&' + this.password).then(
+        this.$http.get( apiRoot() + 'user-login/'+ this.pseudo + '&' + this.password).then(
         (response)=>{
-          if(response.data == 'true' || response.data == true)
-            this.inscriptionConfirm = "Inscrit !"
+          this.userDatas = response.data
+          console.log(response)
         },
         (reject)=>{
-              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+            this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
           }
         )
 
@@ -161,10 +176,10 @@ import {apiRoot} from '../config/localhost/settings.js'
 
 
         //receive data
-        var isConnected = true;
+        /*var isConnected = true;
         if(isConnected){
           this.setCookie("idUser",42, 10)
-        }
+        }*/
       },
     },
     created(){
