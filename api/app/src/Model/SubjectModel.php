@@ -33,11 +33,8 @@ class SubjectModel extends Model
     {
         return $this
         	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject')
-            ->raw(
-                'SELECT * FROM subject, (SELECT idSubject, COUNT(idSubject) as nbCom from comment group by idSubject) AS tempTable 
-                WHERE subject.idSubject = tempTable.idSubject
-                ORDER BY tempTable.nbCom DESC'
-            );
+            ->select('idSubject')
+            ->count();
     }
 }
 
