@@ -31,7 +31,7 @@ final class UserAction
             'emailUser' => $args['emailUser'], 
             'sexUser' => $args['sexUser'],
             'bioUser' => $args['bioUser'], 
-            'passUser' => $args['passUser'])
+            'passUser' => password_hash($args['passUser'],PASSWORD_BCRYPT))
         );
 
         $this->view->render($response, 'home.twig', [
@@ -89,4 +89,41 @@ final class UserAction
 
         return $response;
     }
+
+     public function login(Request $request, Response $response, $args)
+    {
+        $this->logger->info("Home page action dispatched");
+
+        $login = $args['pseudoUser'];
+        $password = $args['password'];
+
+        $data = User::where('pseudoUser', 'like', $login)->select('idUser','pseudoUser','passUser')->get();
+        
+        foreach ($data as $val) {
+            $goodPass= $val->passUser;
+            $result = $val->idUser;
+            $result = $result." ".$val->pseudoUser;
+        
+        }
+        
+        $data->toJson();
+        foreach ($data as $val) {
+            unset($data[1]);
+        }
+        echo $data;
+
+        if(password_verify($password,$goodPass)) {
+           $result = $result.' 1';
+        }
+        else echo 'pas ouais';       
+
+            echo $result;
+
+        $this->view->render($response, 'home.twig', [
+            'datas' => 'Utilisateur modifié !'
+        ]);
+
+        return $response;
+    }
+
 }
