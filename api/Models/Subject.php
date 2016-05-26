@@ -55,8 +55,6 @@ function readIdSubjects($id)
   return $rows;
 }
 
-
-
 function readMostRecent()
 {
   $mysqli = connexionBDD();
