@@ -35,7 +35,7 @@ final class UserAction
         );
 
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur ajouté !'
+            'datas' => 'true'
         ]);
 
         return $response;

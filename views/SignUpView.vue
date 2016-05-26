@@ -63,8 +63,14 @@
               <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="bio" placeholder="Ce que vous faites et aimez dans la vie..."></textarea>
             </div>
 
+            <div class="alert alert-success" v-if="inscriptionConfirm">
+              <strong>{{inscriptionConfirm}}</strong>
+            </div>
+            <div class="alert alert-danger" v-if="inscriptionConfirmNot">
+              <strong>{{inscriptionConfirmNot}}</strong>
+            </div>
             <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
-
+            
           </form>
         </div>
         <div class="connexion" id="connexion" v-if="connect == true && sign == false">
@@ -104,7 +110,9 @@ import {apiRoot} from '../settings.js'
         bio: '',
         sex: '',
         connect: false,
-        sign: false
+        sign: false,
+        inscriptionConfirm : '',
+        inscriptionConfirmNot: ''
       }
     },
     methods :{
@@ -123,17 +131,34 @@ import {apiRoot} from '../settings.js'
                                                     + this.bio    + '&'
                                                     + this.password).then(
         (response)=>{
-        
-          console.log(response.data);
+          if(response.data == 'true' || response.data == true)
+            this.inscriptionConfirm = "Inscrit !"
         },
         (reject)=>{
-              console.log("Inscription échouée!")
+              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
           }
         )
       },
       connexion: function(){
         alert("Connexion feedback")
         // send datas
+
+        this.$http.get( apiRoot() + '/user-login/'+ this.pseudo + '&' + this.password).then(
+        (response)=>{
+          if(response.data == 'true' || response.data == true)
+            this.inscriptionConfirm = "Inscrit !"
+        },
+        (reject)=>{
+              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          }
+        )
+
+
+
+
+
+
+
 
         //receive data
         var isConnected = true;

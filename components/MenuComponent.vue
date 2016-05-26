@@ -30,7 +30,7 @@ data() {
       }
     },
     created(){
-  		this.$http.get(apiRoot() +'/category-getall').then(
+  		this.$http.get(apiRoot() +'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   				console.log(response)
