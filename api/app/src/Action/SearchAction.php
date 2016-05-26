@@ -69,29 +69,29 @@ final class SearchAction
             ]);*/
 
 
-        /*$categoryResultsArray = array();
+        $categoryResultsArray = array();
         foreach($categoryResults as $v) {
             $categoryResultsArray[key($v)] = current($v);
         }
-        echo json_encode($categoryResultsArray, 128);
+        $catRes = json_encode($categoryResultsArray, 128);
 
         $commentResultsArray = array();
         foreach($categoryResults as $v) {
             $commentResultsArray[key($v)] = current($v);
         }
-        echo json_encode($commentResultsArray, 128);*/
+        $commentRes= json_encode($commentResultsArray, 128);
 
         $userResultsArray = array();
         foreach($categoryResults as $v) {
             $userResultsArray[key($v)] = current($v);
         }
-        echo json_encode($commentResultsArray, 128);
+         $userRes = json_encode($userResultsArray, 128);
+
+        echo json_encode(array_merge(json_decode($catRes,true),json_decode($commentRes,true),json_decode($userRes,true)));
 
         /*echo json_encode($categoryResults);
         echo json_encode($commentResults);
         echo json_encode($userResults);*/
-
-        //echo json_encode($result);
 
         return $response;
     }
