@@ -5,7 +5,7 @@
 	include_once("../Models/User.php");
 	include_once("../Models/Vote.php");
 
-function donneesBDD($url) {
+	$url = "http://localhost/Social-Network-IMAC/User/User-get/4";
 	$path = parse_url($url, PHP_URL_PATH);
 	$segments = explode('/', rtrim($path, '/'));
 
@@ -13,21 +13,17 @@ function donneesBDD($url) {
 		case "Category":
 			switch ($segments[4]) {
 				case "Category-getAll":
-					$categories = readAllCategories();
-					json_encode($categories);
-					header("content-type: application/json");
-					return $categories;
+					$retour = readAllCategories();
+					json_encode($retour);
 				break;
 				
 				case "Category-get":
 					if(is_numeric($segments[5])) {
-						$category = readIdCategories($segments[5]);
+						$retour = readIdCategories($segments[5]);
 					}else {
-						$category = readTitleCategories($segments[5]);
+						$retour = readTitleCategories($segments[5]);
 					}
-					json_encode($category);
-					header("content-type: application/json");
-					return $category;
+					json_encode($retour);
 
 				break;
 
@@ -37,19 +33,12 @@ function donneesBDD($url) {
 							$category = readTitleCategories($segments[4]);
 							$sujets = readAllSubjectsCategory($category[0]["IdCat"]); 
 							//$votes
-							json_encode($sujets);
-							header("content-type: application/json");
-							foreach ($sujets as $key => $value) {
-								echo $value['TitleSubject'];
-							}
-							return $sujets;
+							json_encode($retour);
 						break;
 						case "Subject-get" : 
 							$sujet = readIdSubjects($segments[6]);
 							$commentaires = readSubjectsComments($segments[6]);
 							json_encode($sujet);
-							header("content-type: application/json");
-							return $sujet;
 						break;
 						case "Subject-create" :
 							//createSubject();
@@ -70,13 +59,11 @@ function donneesBDD($url) {
 				
 				case "User-get":
 					if(is_numeric($segments[5])) {
-						$user = readIdUser($segments[5]);
+						$retour = readIdUser($segments[5]);
 					} else {
-						$user = readPseudoUser($segments[5]);
+						$retour = readPseudoUser($segments[5]);
 					}
-					json_encode($user);
-					header("content-type: application/json");
-					return $user;
+					json_encode($retour);
 				break;
 
 				/*case "User-update":
@@ -89,7 +76,4 @@ function donneesBDD($url) {
 			}
 		break;
 	}
-}
-
-donneesBDD("http://localhost/Social-Network-IMAC/Category/Enseignement/Subject-getAll");
 ?>
