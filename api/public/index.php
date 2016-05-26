@@ -1,6 +1,7 @@
 <?php
 	header('Access-Control-Allow-Origin: *');
 	header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUSH, DELETE');
+	header('Access-Control-Allow-Headers: origin, x-requested-with, content-type');
 	
 // To help the built-in PHP dev server, check if the request was actually for
 // something which should probably be served as a static file

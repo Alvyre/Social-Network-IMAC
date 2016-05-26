@@ -115,7 +115,7 @@ import {apiRoot} from '../settings.js'
         inscriptionConfirmNot: '',
         connectionConfirm: '',
         connectionConfirmNot: '',
-        user: [],
+        userDatas: [],
         POST_data: []
       }
     },
@@ -135,13 +135,13 @@ import {apiRoot} from '../settings.js'
           bio:    this.bio,
           password: this.password
         }
-        this.$http.post( apiRoot() + 'user-create/'  + this.pseudo + '&'
+        this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
                                                     + this.status + '&'
                                                     + 'photo'          + '&'
                                                     + this.mail   + '&'
                                                     + this.sex    + '&'
                                                     + this.bio    + '&'
-                                                    + this.password, this.POST_data).then(
+                                                    + this.password).then(
         (response)=>{
           if(response.data == 'true' || response.data == true)
             this.inscriptionConfirm = "Inscrit !"
@@ -160,7 +160,7 @@ import {apiRoot} from '../settings.js'
 
         this.$http.get( apiRoot() + 'user-login/'+ this.pseudo + '&' + this.password).then(
         (response)=>{
-          this.user = response.data
+          this.userDatas = response.data
           console.log(response)
         },
         (reject)=>{
