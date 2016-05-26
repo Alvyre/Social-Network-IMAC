@@ -103,13 +103,8 @@
 
 <script>
 
-<<<<<<< HEAD
-  import MenuComponent from '../components/MenuComponent.vue'
-  import {apiRoot} from '../settings.js'
-=======
 import MenuComponent from '../components/MenuComponent.vue'
 import {apiRoot} from '../config/localhost/settings.js'
->>>>>>> 57203281549676e7bfe098c2086c0a39e85e3507
 
   export default {
     data(){
