@@ -61,6 +61,8 @@ $app->get('/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUs
 	->setName("user");
 $app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
 	->setName("user");
+$app->get('/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
+	->setName("user-login");
 
 
 //vote

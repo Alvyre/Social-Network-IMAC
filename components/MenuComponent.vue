@@ -21,7 +21,8 @@
 </template>
 
 <script>
-	import {apiRoot} from '../settings.js'
+import {apiRoot} from '../settings.js'
+
 export default {
 
 data() {
