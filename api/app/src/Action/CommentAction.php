@@ -25,13 +25,15 @@ public function create(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
-        Comment::firstOrCreate(array(
-            'dateComment' => $args['dateComment'], 
-            'contentComment' => $args['contentComment'], 
-        ));
+        $comment = new Comment();
+        $comment->contentComment = $args['contentComment'];
+        $comment->dateComment = date("Y-m-d");
+        $comment->subject()->associate($args['idSubject']);
+        $comment->user()->associate($args['idUser']);
+        $comment->save();
 
         $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur ajouté !'
+            'datas' => 'Commentaire ajouté !'
         ]);
 
         return $response;

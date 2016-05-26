@@ -14,8 +14,8 @@
 				<div class="search">
 					<div class="terminal-form">
 						<form action="" method="get">
-			            	<input type="text" name="search_text" id="search_text" placeholder="Rechercher..."/>
-			            	<button type="submit" id="search_button" name="search_button" class="btn btn-success">
+			            	<input v-model="searchText" type="text" name="search_text" id="search_text" placeholder="Rechercher..."/>
+			            	<button @click.prevent="sendResearch" type="submit" id="search_button" name="search_button" class="btn btn-success">
 	                			<i class="fa fa-search"></i>
 	            			</button>
 			        	</form>
@@ -66,8 +66,14 @@ data() {
       return {
         recentSubjects: [],
         mostPopularSubjects: [],
-        categories: []
+        categories: [],
+        searchText: ''
       }
+    },
+    methods:{
+    	sendResearch:function(){
+    		this.$route.router.go('/search/' + this.searchText)
+    	}
     },
     created(){
 

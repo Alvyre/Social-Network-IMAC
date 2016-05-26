@@ -58,7 +58,7 @@ final class UserAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = User::with('sub','comment')->get();
+        $datas = User::with('subject','comment')->get();
   
         echo $datas->toJson();
 
@@ -130,4 +130,5 @@ final class UserAction
 
         $ar = array($result[0],$result[1],$result[2]);
         echo json_encode($ar);
+    }
 }

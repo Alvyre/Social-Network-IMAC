@@ -13,16 +13,14 @@ class UserModel extends Model
 
 	protected $fillable = array('pseudoUser', 'statusUser', 'photoUser','emailUser', 'sexUser', 'bioUser', 'passUser');
 
-
-	public function sub()
-    {
-        return $this->HasMany('App\Model\SubjectgModel','idUser','idUser');
-    }
-
-
     public function comment()
     {
         return $this->HasMany('App\Model\CommentModel', 'idUser', 'idUser');
+    }
+
+    public function subject()
+    {
+        return $this->hasMany('App\Model\CommentModel','idSubject','idSubject');
     }
 
 }
