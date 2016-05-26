@@ -116,10 +116,10 @@
   	    float: right;
   	}
   
- +	.page .profile .bio p{
- +		text-align: left;
- +	}
- +
+    .page .profile .bio p{
+      text-align: left;
+    }
+    
   	.page .profile .bio .br-bottom{
   		width: 6px;
   		background: #333333;
@@ -137,10 +137,10 @@
   		    float: right;
   		}
   
- +		.page .profile .bio p{
- +			text-align: center;
- +		}
- +
+      .page .profile .bio p{
+        text-align: center;
+      }
+
   		.page .profile .bio .br-bottom{
   			margin: 70px auto 0 auto;
   			display: block;
