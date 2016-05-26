@@ -38,7 +38,7 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<li v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li v-for="subject in subjects"><a href=""> {{subjects.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<li  v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li  v-for="subject in subjects"><a href=""> {{subjects.titleSubject}} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -62,71 +62,20 @@
 export default {
 data() {
       return {
-        subjects: [
-          {
-              "idSubject":1,
-              "titleSubject":"Sujet 1",
-              "contentSubject":"contenu du sujet",
-              "dateSubject":"2016-05-20",
-              "upVote":45,
-              "downVote":7,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":2,
-              "titleSubject":"Sujet 2",
-              "contentSubject":"contenu du sujet 2",
-              "dateSubject":"2016-05-27",
-              "upVote":50,
-              "downVote":25,
-              "idUser":5,
-              "idCat":1
-          },
-          {
-              "idSubject":3,
-              "titleSubject":"Sujet 3",
-              "contentSubject":"Contenu du sujet 3",
-              "dateSubject":"2016-05-20",
-              "upVote":40,
-              "downVote":20,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":4,
-              "titleSubject":"Sujet 4",
-              "contentSubject":"Contenu du sujet 4",
-              "dateSubject":"2016-05-05",
-              "upVote":4,
-              "downVote":30,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":5,
-              "titleSubject":"Sujet 5",
-              "contentSubject":"Contenu du sujet 5",
-              "dateSubject":"2016-05-28",
-              "upVote":38,
-              "downVote":35,
-              "idUser":5,
-              "idCat":1
-          }
-        ]
+        subjects: []
       }
-    }/*,
+    },
     created(){
-  		this.$http.get('category').then(
-  			(response)=>{this.subjects = response.subjects},
+  		this.$http.get('http://localhost:8888/Projetweb/Social-Network-IMAC/api/public/').then(
+  			(response)=>{
+  				this.subjects = response.subjects;
+  				console.log(response)},
   			(reject)=>{
           console.log("pas bien")
           //this.subjects = []
         }
   		)
-  	},
-  	components: {
-  	}*/
+  	}
 }
 </script>
 
