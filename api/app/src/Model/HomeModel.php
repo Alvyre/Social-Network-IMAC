@@ -10,13 +10,6 @@ class HomeModel extends Model
 
     public $timestamps = false;
 
- public function sub()
-    {
-        return $this
-        	->belongsTo('App\Model\SubjectModel', 'idCat', 'idCat')
-    }
-
-
 }
 
 ?>

@@ -25,7 +25,9 @@ final class CategoryAction
         $this->logger->info("Home page action dispatched");
         
 
-        $subCat = Category::where('idCat', $args['idCat'])->with('sub')->get();
+        $subCat = Category::where('idCat', $args['idCat'])
+            ->with('sub')
+            ->get();
 
         echo $subCat->toJson();
         

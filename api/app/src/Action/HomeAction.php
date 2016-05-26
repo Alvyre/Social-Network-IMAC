@@ -36,15 +36,14 @@ final class HomeAction
     public function getMostPopular(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
-        //$comments = Subject::with('comment')->get();
-
 //"SELECT * FROM subject, (SELECT IdSubject, COUNT(IdSubject) as nbCom from comment group by IdSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5"
         
-        $nbComments = Subject::with('comment')->get();
+        $subjectComments = Subject::with('comment')
+            ->take(5)
+            ->get()
+            ->first();
 
-
-        echo $nbComments;
+        echo var_dump($subjectComments);
         
         return $response;
     }
