@@ -30,8 +30,7 @@ router.map({
 	'/home/':{
 		component: HomeView
 	},
-	//'/user/:id': {
-	'/user/': {
+	'/user/:id': {
 		component: ProfileView
 	},
 	'/signup/': {

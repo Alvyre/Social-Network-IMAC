@@ -9,7 +9,7 @@
     </h1>
     <div class="info">
        <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{  }}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{  }}</span></div>
-      <p>Lancé par {{subject.user.pseudoUser}}, le {{subject.dateSubject}}</p>
+      <p>Lancé par <a v-link="'/user/'+subject.user.idUser">{{subject.user.pseudoUser}}</a>, le {{subject.dateSubject}}</p>
     </div>
     <div class="content-subject">
       <p> {{subject.contentSubject}} </p>
@@ -26,7 +26,7 @@
           <div class="comment col-md-12">
             <p>
               <span class="name-user" v-for="user in users">
-                <a href="" v-if="user.idUser == comment.idUser">{{user.pseudoUser}} :</a>
+                <span v-if="user.idUser == comment.idUser"><a v-link="'/user/'+comment.idUser">{{user.pseudoUser}} :</a></span>
               </span>
               <span class="content-comment">{{comment.contentComment}}</span>
               <span class="date-comment">(publié le {{comment.dateComment}})</span>
