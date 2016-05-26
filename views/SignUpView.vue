@@ -18,7 +18,23 @@
         <div class="inscription" id="inscription" v-show="!connect && sign">
           <form action="" method="POST" role="form">
             <legend>Inscription</legend>
+            <div class="form-group col-md-6">
+              <label for="image_file">Sélectionner un fichier image</label>
+              <input type="file" name="image_file" id="image_file"  class="form-control" onchange="fileSelected();">
+              <div id="progress_info">
+                <div id="progress"></div>
+                <div id="progress_percent">&nbsp;</div>
+                <div class="clear_both"></div>
+                <div>
+                    <div id="speed">&nbsp;</div>
+                    <div id="remaining">&nbsp;</div>
+                    <div id="b_transfered">&nbsp;</div>
+                    <div class="clear_both"></div>
+                </div>
+                <div id="upload_response"></div>
+              </div>
 
+            </div>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!pseudo'>
                 <strong>Ce champs est nécessaire</strong>
@@ -103,13 +119,8 @@
 
 <script>
 
-<<<<<<< HEAD
-  import MenuComponent from '../components/MenuComponent.vue'
-  import {apiRoot} from '../settings.js'
-=======
 import MenuComponent from '../components/MenuComponent.vue'
 import {apiRoot} from '../config/localhost/settings.js'
->>>>>>> 57203281549676e7bfe098c2086c0a39e85e3507
 
   export default {
     data(){

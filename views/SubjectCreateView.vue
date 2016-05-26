@@ -19,7 +19,7 @@
             <div class="form-group">
               <label for="category">Categorie</label>
               <select name="category" class="form-control">
-                <option v-for="category in categories" value="{{category.IdCat}}">{{category.TitleCat}}</option>
+                <option v-for="category in categories" value="{{category.IdCat}}">{{category.titleCat}}</option>
               </select>
             </div>
             <div class="form-group">
@@ -38,50 +38,46 @@
 
 <script>
 
-  import MenuComponent from '../components/MenuComponent.vue'
+import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../config/localhost/settings.js'
 
   export default {
     data(){
       return {
-        categories : [{"IdCat":"1","TitleCat":"Enseignement"},{"IdCat":"2","TitleCat":"Logement"},{"IdCat":"3","TitleCat":"Vie \u00e9tudiante"},{"IdCat":"4","TitleCat":"Tutos"},{"IdCat":"5","TitleCat":"Divers"}],
         title: '',
-        content: ''
+        content: '',
+        categories: []
       }
     },
     methods :{
       envoieSujet: function(){
-        alert("coucou")
+        //date yyyy-mm-dd
+        var date = new Date();
+        date.now();
+        console.log(d);
+        this.$http.get( apiRoot() + 'subject-create/'+ this.title +'&' +this.content +'&' + date).then(
+          (response)=>{},
+          (reject)=>{}
+          )
       }
     },
     components: {
       MenuComponent
+    },
+    created(){
+      this.$http.get(apiRoot() + 'category-getall').then(
+        (response)=>{
+          this.categories = response.data;
+          console.log(response)
+        },
+        (reject)=>{
+          console.log("Data not found")
+        }
+      )
     }
   }
 </script>
 
-
-<!-- GET DATA JSON
-,
-  data() {
-    return {
-      tasks: []
-    }
-  },
-  created: function(){
-      this.fetchJSON();
-  },
-  methods: {
-    fetchJSON: function(){
-      this.$http.get('api/tasks').then(
-        (response) => {
-          this.tasks = response.data
-        },
-        (response) => {
-          console.log("mes couilles")
-        }
-      )
-    }
--->
 
 <style type="text/css">
   .page{
