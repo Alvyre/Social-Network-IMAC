@@ -143,34 +143,14 @@
           bio:    this.bio,
           password: this.password
         }
-        try {
-          this.$http.post( apiRoot() + 'user-create/', this.POST_data).then(
-            (response)=>{
-              if(response.data[1] ==1)
-                this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
-              else if(response.data[0] == 1)
-                this.inscriptionConfirm = "Inscrit !"
-              else
-                console.log('error')
-                //this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
-            },
-            (reject)=>{
-              console.log('error POST NOT ACCEPTED')
-              // this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
-            }
-            )
-        }
-        catch(err) {
-          console.log(err)
-        }
-        finally{
-          this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
+
+          this.$http.post( apiRoot() + 'user-create/'  + this.pseudo + '&'
             + this.status + '&'
             + 'photo'     + '&'
             + this.mail   + '&'
             + this.sex    + '&'
             + this.bio    + '&'
-            + this.password).then(
+            + this.password, this.POST_data).then(
             (response)=>{
               if(response.data[1] ==1)
                 this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
@@ -183,7 +163,7 @@
               this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
             }
             )
-          }
+          
 
         },
         connexion: function(){
