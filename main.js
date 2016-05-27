@@ -10,6 +10,8 @@ import ProfileView from './views/ProfileView.vue'
 import CategoryView from './views/CategoryView.vue'
 import SubjectView from './views/SubjectView.vue'
 import SignUpView from './views/SignUpView.vue'
+import SearchView from './views/SearchView.vue'
+import NotFoundView from './views/NotFoundView.vue'
 import SubjectCreateView from './views/SubjectCreateView.vue'
 
 // install router
@@ -29,21 +31,26 @@ router.map({
 	'/home/':{
 		component: HomeView
 	},
-	//'/user/:id': {
-	'/user/': {
+	'/user/:id': {
 		component: ProfileView
 	},
 	'/signup/': {
 		component: SignUpView
 	},
-	'/category/': {
+	'/category/:id': {
 		component: CategoryView
 	},
-	'/subject/': {
+	'/search/:text': {
+		component: SearchView
+	},
+	'/subject/:id': {
 		component: SubjectView
 	},
 	'/subject-create/': {
 		component: SubjectCreateView
+	},
+	'/404/': {
+		component: NotFoundView
 	}
 })
 

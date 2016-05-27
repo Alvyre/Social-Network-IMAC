@@ -18,7 +18,6 @@
         <div class="inscription" id="inscription" v-show="!connect && sign">
           <form action="" method="POST" role="form">
             <legend>Inscription</legend>
-
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!pseudo'>
                 <strong>Ce champs est nécessaire</strong>
@@ -35,14 +34,14 @@
             </div>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!status'>
-              <strong>Ce champs est nécessaire</strong>
+                <strong>Ce champs est nécessaire</strong>
               </div>
               <label for="status">Status :</label>
               <input type="text" name="status" class="form-control" id="status" placeholder="IMAC201X, Prof, ..." required v-model="status">
             </div>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!mail'>
-              <strong>Ce champs est nécessaire</strong>
+                <strong>Ce champs est nécessaire</strong>
               </div>
               <div class="alert alert-warning" v-if="mail && !mail.includes('@')">
                 <strong>Votre @mail n'est pas valide</strong>
@@ -52,7 +51,7 @@
             </div>
             <div class="form-group col-md-12">
               <label for="sex"> Sexe :</label>
-              <select name="sex" id="sex" class="form-control">
+              <select name="sex" id="sex" class="form-control" v-model="sex">
                 <option value="Homme">Homme</option>
                 <option value="Femme" selected>Femme</option>
               </select>
@@ -60,38 +59,51 @@
             <div class="form-group col-md-12 ">
 
               <label for="bio">Biographie:</label>
-              <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="message" placeholder="Ce que vous faites et aimez dans la vie..."></textarea>
+              <textarea class="form-control boxsizingBorder" rows="6" id="bio" name ="bio" v-model="bio" placeholder="Ce que vous faites et aimez dans la vie..."></textarea>
             </div>
 
+            <div class="alert alert-success" v-if="inscriptionConfirm">
+              <strong>{{inscriptionConfirm}}</strong>
+            </div>
+            <div class="alert alert-danger" v-if="inscriptionConfirmNot">
+              <strong>{{inscriptionConfirmNot}}</strong>
+            </div>
             <button v-show="(pseudo && password && status && mail)" type="submit" class="btn btn-primary center-block" @click.prevent="inscription">Inscription</button>
-
+            
           </form>
         </div>
         <div class="connexion" id="connexion" v-if="connect == true && sign == false">
           <form action="" method="POST" class="" role="form">
-              <div class="form-group text-center">
-                <legend>Connexion</legend>
-              </div>
-              <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
-                <label for="pseudo">Pseudo :</label>
-                <input type="text" name="pseudo" class="form-control">
-              </div>
-              <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
-                <label for="password">Password :</label>
-                <input type="password" name="password" class="form-control">
-              </div>
-              <button type="submit" class="btn btn-primary center-block" @click.prevent="connexion">Connexion</button>
-              </div>
-          </form>
-        </div>
+            <div class="form-group text-center">
+              <legend>Connexion</legend>
+            </div>
+            <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
+              <label for="pseudo">Pseudo :</label>
+              <input type="text" name="pseudo" class="form-control" required v-model="co_pseudo">
+            </div>
+            <div class="form-group col-md-5 col-md-offset-1 col-xs-6">
+              <label for="password">Password :</label>
+              <input type="password" name="password" class="form-control" required v-model="co_pwd">
+            </div>
+            <button type="submit" class="btn btn-primary center-block" @click.prevent="connexion">Connexion</button>
+            <div class="alert alert-success text-center" v-if="connectionConfirm">
+              <strong>{{connectionConfirm}}</strong>
+            </div>
+            <div class="alert alert-danger text-center" v-if="connectionConfirmNot">
+              <strong>{{connectionConfirmNot}}</strong>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 
 import MenuComponent from '../components/MenuComponent.vue'
+import {apiRoot} from '../config/localhost/settings.js'
 
   export default {
     data(){
@@ -100,8 +112,17 @@ import MenuComponent from '../components/MenuComponent.vue'
         password: '',
         status: '',
         mail: '',
+        bio: '',
+        sex: '',
         connect: false,
-        sign: false
+        sign: false,
+        co_pseudo: '',
+        co_pwd: '',
+        inscriptionConfirm : '',
+        inscriptionConfirmNot: '',
+        connectionConfirm: '',
+        connectionConfirmNot: '',
+        POST_data: []
       }
     },
     methods :{
@@ -112,18 +133,57 @@ import MenuComponent from '../components/MenuComponent.vue'
         document.cookie = cname + "=" + cvalue + "; " + expires;
       },
       inscription: function(){
-        alert("Inscription feedback")
-      },
-      connexion: function(){
-        alert("Connexion feedback")
-        // send datas
-
-        //receive data
-        var isConnected = true;
-        if(isConnected){
-          this.setCookie("idUser",42, 10)
+        this.inscriptionConfirm = ''
+        this.inscriptionConfirmNot= ''
+        this.POST_data = {
+          pseudo: this.pseudo,
+          status: this.status,
+          mail:   this.mail,
+          sex:    this.sex,
+          bio:    this.bio,
+          password: this.password
         }
-      },
+        this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
+          + this.status + '&'
+          + 'photo'     + '&'
+          + this.mail   + '&'
+          + this.sex    + '&'
+          + this.bio    + '&'
+          + this.password).then(
+          (response)=>{
+            if(response.data[1] ==1)
+              this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
+            else if(response.data[0] == 1)
+              this.inscriptionConfirm = "Inscrit !"
+            else
+              this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          },
+          (reject)=>{
+            this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+          }
+          )
+        },
+        connexion: function(){
+        if(this.co_pseudo == '')
+          this.co_pseudo == ' '
+        if(this.co_pwd == '')
+          this.co_pwd == ' '
+
+        this.$http.get( apiRoot() + 'user-login/'+ this.co_pseudo + '&' + this.co_pwd).then(
+          (response)=>{
+            if(response.data[2] == 1){
+              this.setCookie("idUser",response.data[0], 10)
+              this.setCookie("pseudo",response.data[1], 10)
+              this.connectionConfirm = "Connexion réussie !"
+              this.$route.router.go('/home')
+              location.reload()
+            }
+          },
+          (reject)=>{
+            this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
+          }
+          )
+      }
     },
     components: {
       MenuComponent
@@ -132,7 +192,7 @@ import MenuComponent from '../components/MenuComponent.vue'
 </script>
 
 <style type="text/css">
-  
+
   .page{
     min-height: 100vh;
   }
@@ -166,7 +226,7 @@ import MenuComponent from '../components/MenuComponent.vue'
   
   .boxsizingBorder {
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 </style>

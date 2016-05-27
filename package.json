@@ -1,11 +1,15 @@
 {
-  "name": "imac-forum",
+  "name": "imac-talks",
   "version": "1.0.0",
-  "description": "forum imac",
+  "description": "IMAC talks with you",
   "main": "main.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --watch",
     "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Arctic76/Social-Network-IMAC/"
   },
   "author": "",
   "license": "MIT",

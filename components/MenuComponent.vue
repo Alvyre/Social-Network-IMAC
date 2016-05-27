@@ -3,8 +3,8 @@
 		<ul class="nav">
 		    <li id="search">
 		        <form action="" method="get">
-		            <input type="text" name="search_text" id="search_text" placeholder="Search"/>
-		            <button type="submit" id="search_button" name="search_button" class="btn btn-success">
+		            <input v-model="searchText" type="text" name="search_text" id="search_text" placeholder="Search"/>
+		            <button @click.prevent="sendResearch" type="submit" id="search_button" name="search_button" class="btn btn-success">
                 		<i class="fa fa-search"></i>
             		</button>
 		        </form>
@@ -12,32 +12,40 @@
 		    <li id="options">
 		        <a href="#">Catégories <i class="fa fa-caret-down" aria-hidden="true"></i></a>
 		        <ul class="subnav">
-		            <li v-for="category in categories"><a href="#"> {{category.titleCat}} </a></li>
+		            <li v-for="category in categories"><a v-link="'/category/'+category.idCat">{{category.titleCat}}</a></li>
 		        </ul>
 		    </li>
 		</ul>
 		<div class="clear"></div>
 	</div>
 </template>
+
 <script>
+
+import {apiRoot} from '../config/localhost/settings.js'
+
 export default {
-    data() {
+
+data() {
       return {
-        categories: []
+        categories: [],
+        searchText: ''
       }
     },
+    methods:{
+    	sendResearch:function(){
+    		this.$route.router.go('/search/' + this.searchText)
+    	}
+    },
     created(){
-  		this.$http.get('http://localhost/Social-Network-IMAC/api/category-getall/').then(
+  		this.$http.get(apiRoot() + 'category-getall').then(
   			(response)=>{
-  				this.categories = response.data
-  				console.log(response)
+  				this.categories = response.data;
   			},
   			(reject)=>{
-	          console.log("pas bien")
-	        }
+          console.log("Data not found")
+        }
   		)
-  	},
-  	components: {
   	}
 }
 </script>
@@ -91,6 +99,7 @@ export default {
 	}
 	.menu #search_text{
 	    width: 297px;
+	    border-radius: 0;
 	    padding: 15px 0 15px 26px;
 	    font-size: 16px;
 	    border: 0 none;

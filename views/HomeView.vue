@@ -14,8 +14,8 @@
 				<div class="search">
 					<div class="terminal-form">
 						<form action="" method="get">
-			            	<input type="text" name="search_text" id="search_text" placeholder="Rechercher..."/>
-			            	<button type="submit" id="search_button" name="search_button" class="btn btn-success">
+			            	<input v-model="searchText" type="text" name="search_text" id="search_text" placeholder="Rechercher..."/>
+			            	<button @click.prevent="sendResearch" type="submit" id="search_button" name="search_button" class="btn btn-success">
 	                			<i class="fa fa-search"></i>
 	            			</button>
 			        	</form>
@@ -25,12 +25,9 @@
 				<div class="clear"></div>
 				<div class="menu-cat">
 					<ul>
-						<li><a href="#">Enseignement</a></li>
-		            	<li><a href="#">Logement</a></li>
-		            	<li><a href="#">Vie étudiante</a></li>
-		            	<li><a href="#">Tutos</a></li>
-		            	<li><a href="#">Divers</a></li>
-		            	<li><a href="#">Actualités</a></li>
+						<li v-for="category in categories">
+							<a v-link="'/category/'+category.idCat"> {{category.titleCat}} </a>
+						</li>
 					</ul>
 				</div>
 				<div class="talks-field row">
@@ -38,7 +35,9 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<li v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li v-for="recentSubject in recentSubjects">
+									<a v-link="'/subject/'+recentSubject.idSubject"> {{recentSubject.titleSubject}} </a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -46,7 +45,9 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<li  v-for="subject in subjects"><a href=""> {{subject.titleSubject}} </a></li>
+								<li  v-for="mostPopularSubject in mostPopularSubjects">
+									<a v-link="'/subject/'+ mostPopularSubject.idSubject"> {{mostPopularSubject.titleSubject}} </a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -58,75 +59,50 @@
 
 <script>
 
+import {apiRoot} from '../config/localhost/settings.js'
 
 export default {
 data() {
       return {
-        subjects: [
-          {
-              "idSubject":1,
-              "titleSubject":"Sujet 1",
-              "contentSubject":"contenu du sujet",
-              "dateSubject":"2016-05-20",
-              "upVote":45,
-              "downVote":7,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":2,
-              "titleSubject":"Sujet 2",
-              "contentSubject":"contenu du sujet 2",
-              "dateSubject":"2016-05-27",
-              "upVote":50,
-              "downVote":25,
-              "idUser":5,
-              "idCat":1
-          },
-          {
-              "idSubject":3,
-              "titleSubject":"Sujet 3",
-              "contentSubject":"Contenu du sujet 3",
-              "dateSubject":"2016-05-20",
-              "upVote":40,
-              "downVote":20,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":4,
-              "titleSubject":"Sujet 4",
-              "contentSubject":"Contenu du sujet 4",
-              "dateSubject":"2016-05-05",
-              "upVote":4,
-              "downVote":30,
-              "idUser":3,
-              "idCat":1
-          },
-          {
-              "idSubject":5,
-              "titleSubject":"Sujet 5",
-              "contentSubject":"Contenu du sujet 5",
-              "dateSubject":"2016-05-28",
-              "upVote":38,
-              "downVote":35,
-              "idUser":5,
-              "idCat":1
-          }
-        ]
+        recentSubjects: [],
+        mostPopularSubjects: [],
+        categories: [],
+        searchText: ''
       }
-    }/*,
+    },
+    methods:{
+    	sendResearch:function(){
+    		this.$route.router.go('/search/' + this.searchText)
+    	}
+    },
     created(){
-  		this.$http.get('category').then(
-  			(response)=>{this.subjects = response.subjects},
+
+    	this.$http.get( apiRoot() ).then(
+  			(response)=>{
+  				this.recentSubjects = response.data
+  			},
   			(reject)=>{
-          console.log("pas bien")
-          //this.subjects = []
-        }
+          		console.log('Recent subjects not found')
+        	}
+  		),
+		this.$http.get( apiRoot() + 'getMostPopular').then(
+  			(response)=>{
+  				this.mostPopularSubjects = response.data;
+  				console.log(response.data);
+  			},
+  			(reject)=>{
+          		console.log('Popular subjects not found')
+        	}
+  		),
+		this.$http.get( apiRoot() + 'category-getall').then(
+  			(response)=>{
+  				this.categories = response.data;
+  			},
+  			(reject)=>{
+          		console.log("Categories not found")
+        	}
   		)
-  	},
-  	components: {
-  	}*/
+  	}
 }
 </script>
 
