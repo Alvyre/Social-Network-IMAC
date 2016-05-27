@@ -17,7 +17,7 @@
 
         <div class="inscription" id="inscription" v-show="!connect && sign">
           <form action="" method="POST" role="form">
-            <legend>Inscription</legend>
+            <legend></legend>
             <div class="form-group col-md-6">
               <div class="alert alert-danger" v-if='!pseudo'>
                 <strong>Ce champs est nécessaire</strong>
@@ -102,8 +102,8 @@
 
 <script>
 
-import MenuComponent from '../components/MenuComponent.vue'
-import {apiRoot} from '../config/localhost/settings.js'
+  import MenuComponent from '../components/MenuComponent.vue'
+  import {apiRoot} from '../config/localhost/settings.js'
 
   export default {
     data(){
@@ -143,90 +143,113 @@ import {apiRoot} from '../config/localhost/settings.js'
           bio:    this.bio,
           password: this.password
         }
-        this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
-          + this.status + '&'
-          + 'photo'     + '&'
-          + this.mail   + '&'
-          + this.sex    + '&'
-          + this.bio    + '&'
-          + this.password).then(
-          (response)=>{
-            if(response.data[1] ==1)
-              this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
-            else if(response.data[0] == 1)
-              this.inscriptionConfirm = "Inscrit !"
-            else
+        try {
+          this.$http.post( apiRoot() + 'user-create/', this.POST_data).then(
+            (response)=>{
+              if(response.data[1] ==1)
+                this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
+              else if(response.data[0] == 1)
+                this.inscriptionConfirm = "Inscrit !"
+              else
+                console.log('error')
+                //this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+            },
+            (reject)=>{
+              console.log('error POST NOT ACCEPTED')
+              // this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+            }
+            )
+        }
+        catch(err) {
+          console.log(err)
+        }
+        finally{
+          this.$http.get( apiRoot() + 'user-create/'  + this.pseudo + '&'
+            + this.status + '&'
+            + 'photo'     + '&'
+            + this.mail   + '&'
+            + this.sex    + '&'
+            + this.bio    + '&'
+            + this.password).then(
+            (response)=>{
+              if(response.data[1] ==1)
+                this.inscriptionConfirmNot = "Erreur le pseudo est déjà pris, veuillez changer"
+              else if(response.data[0] == 1)
+                this.inscriptionConfirm = "Inscrit !"
+              else
+                this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+            },
+            (reject)=>{
               this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
-          },
-          (reject)=>{
-            this.inscriptionConfirmNot = "Erreur lors de l'inscription, veuillez reessayer"
+            }
+            )
           }
-          )
+
         },
         connexion: function(){
-        if(this.co_pseudo == '')
-          this.co_pseudo == ' '
-        if(this.co_pwd == '')
-          this.co_pwd == ' '
+          if(this.co_pseudo == '')
+            this.co_pseudo == ' '
+          if(this.co_pwd == '')
+            this.co_pwd == ' '
 
-        this.$http.get( apiRoot() + 'user-login/'+ this.co_pseudo + '&' + this.co_pwd).then(
-          (response)=>{
-            if(response.data[2] == 1){
-              this.setCookie("idUser",response.data[0], 10)
-              this.setCookie("pseudo",response.data[1], 10)
-              this.connectionConfirm = "Connexion réussie !"
-              this.$route.router.go('/home')
-              location.reload()
+          this.$http.get( apiRoot() + 'user-login/'+ this.co_pseudo + '&' + this.co_pwd).then(
+            (response)=>{
+              if(response.data[2] == 1){
+                this.setCookie("idUser",response.data[0], 10)
+                this.setCookie("pseudo",response.data[1], 10)
+                this.connectionConfirm = "Connexion réussie !"
+                this.$route.router.go('/home')
+                location.reload()
+              }
+            },
+            (reject)=>{
+              this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
             }
-          },
-          (reject)=>{
-            this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
-          }
-          )
+            )
+        }
+      },
+      components: {
+        MenuComponent
       }
-    },
-    components: {
-      MenuComponent
     }
-  }
-</script>
+  </script>
 
-<style type="text/css">
+  <style type="text/css">
 
-  .page{
-    min-height: 100vh;
-  }
+    .page{
+      min-height: 100vh;
+    }
 
-  .page .content {
-    margin-bottom: 3em;
-  }
+    .page .content {
+      margin-bottom: 3em;
+    }
 
 
-  .page h1, .page p, .page h4{
-    text-align: center;
-    max-width: 600px;
-    margin: 2em auto;
-  }
+    .page h1, .page p, .page h4{
+      text-align: center;
+      max-width: 600px;
+      margin: 2em auto;
+    }
 
-  .page #btn-choice{
-    margin: 1em 0 4em 0;
-  }
+    .page #btn-choice{
+      margin: 1em 0 4em 0;
+    }
 
-  .page #btn-choice button, .page #connexion button, .page #inscription button{
-    background: #333333;
-    outline: none;
-    border: 0;
-    padding: 1em;
-    margin-bottom: 1em;
-  }
+    .page #btn-choice button, .page #connexion button, .page #inscription button{
+      background: #333333;
+      outline: none;
+      border: 0;
+      padding: 1em;
+      margin-bottom: 1em;
+    }
 
-  .page #inscription{
-    margin: 6em auto;
-  }
-  
-  .boxsizingBorder {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-</style>
+    .page #inscription{
+      margin: 6em auto;
+    }
+
+    .boxsizingBorder {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+  </style>
