@@ -55,6 +55,22 @@ function readIdSubjects($id)
   return $rows;
 }
 
+function readIdUserSubjects($idUser)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM subject WHERE idUser = '".$idUser."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 function readMostRecent()
 {
   $mysqli = connexionBDD();
@@ -76,6 +92,22 @@ function readMostCommented()
   $mysqli = connexionBDD();
 
   $sql = "SELECT * FROM subject, (SELECT idSubject, COUNT(idSubject) as nbCom from comment group by idSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+function readSearchSubjects($recherche)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM subject WHERE contentSubject LIKE '%$recherche%' OR titleSubject LIKE '%$recherche%'";
 
   $result = $mysqli->query($sql);
 
