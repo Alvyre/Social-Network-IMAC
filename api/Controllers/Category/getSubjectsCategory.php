@@ -2,10 +2,10 @@
 	require_once(__DIR__."/../../Models/Category.php");
 	require_once(__DIR__."/../../Models/Subject.php");
 	$category = readIdCategories($_POST["id"]);
-	$sujets = readAllSubjectsCategory($category[0]["IdCat"]); 
+	$sujets = readAllSubjectsCategory($category[0]["idCat"]); 
 	$retour = [ 
-	"idCat" => $category[0]["IdCat"], 
-	"titleCat" => $category[0]["TitleCat"],
+	"idCat" => $category[0]["idCat"], 
+	"titleCat" => $category[0]["titleCat"],
 	"sub" => $sujets
 	];
 	echo "[".json_encode($retour)."]";

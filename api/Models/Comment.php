@@ -27,7 +27,7 @@ function readSubjectsComments($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'comment' WHERE IdSubject = '".$id."'";
+  $sql = "SELECT * FROM 'comment' WHERE idSubject = '".$id."'";
 
   $result = $mysqli->query($sql);
 
@@ -54,7 +54,7 @@ function createComment($DateComment, $ContentComment, $IdUser) {
 function deleteComment($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM comment WHERE ".$id." = IdComment";
+  $sql = "DELETE FROM comment WHERE ".$id." = idComment";
 
   $result = $mysqli->query($sql);
 }

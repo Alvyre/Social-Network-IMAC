@@ -37,7 +37,7 @@ function createVote($UpVote, $DownVote, $IdUser, $IdComment) {
 function deleteVote($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM vote WHERE ".$id." = IdVote";
+  $sql = "DELETE FROM vote WHERE ".$id." = idVote";
 
   $result = $mysqli->query($sql);
 }

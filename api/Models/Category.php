@@ -28,7 +28,7 @@ function readTitleCategories($title)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM category WHERE TitleCat = '".$title."'";
+  $sql = "SELECT * FROM category WHERE titleCat = '".$title."'";
 
   $result = $mysqli->query($sql);
 
@@ -43,7 +43,7 @@ function readIdCategories($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM category WHERE IdCat = '".$id."'";
+  $sql = "SELECT * FROM category WHERE idCat = '".$id."'";
 
   $result = $mysqli->query($sql);
 
@@ -60,7 +60,7 @@ function readIdCategories($id)
 function deleteCategory($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM category WHERE ".$id." = IdCat";
+  $sql = "DELETE FROM category WHERE ".$id." = idCat";
 
   $result = $mysqli->query($sql);
 }
