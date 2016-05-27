@@ -21,12 +21,16 @@ export default {
         category: [],
         votes: [],
         nbUpVotes: 0,
-        orderKey: "dateSubject"
+        orderKey: "dateSubject",
+        data_POST: []
       }
     },
     route: {
       data ({ to }) {
-        this.$http.get(apiRoot()  + 'category-sub/'+ to.params.id).then(
+        this.data_POST = {
+          idCat : to.params.id
+        }
+        this.$http.post(apiRoot()  + 'category-sub/'+ to.params.id, this.data_POST).then(
           (response)=>{
             this.category = response.data[0]
           },
@@ -34,7 +38,7 @@ export default {
             console.log("Category not found")
           }
         ),
-        this.$http.get(apiRoot()  + 'vote-getall').then(
+        this.$http.post(apiRoot()  + 'vote-getall').then(
           (response)=>{
             this.votes = response.data[0]
             console.log(response);

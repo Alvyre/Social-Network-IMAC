@@ -37,12 +37,16 @@ import {apiRoot} from '../config/localhost/settings.js'
 export default {
     data() {
       return {
-        user:[]
+        user:[],
+        data_POST : []
       }
     },
     route: {
       data ({ to }) {
-        this.$http.get(apiRoot()  + 'user-get/'+ to.params.id).then(
+      	this.data_POST = {
+      		idCat: to.params.id
+      	}
+        this.$http.post(apiRoot()  + 'user-get/'+ to.params.id, this.data_POST).then(
           (response)=>{
             if(response.data.length == 0){
               this.$route.router.go('/404')

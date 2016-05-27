@@ -49,28 +49,33 @@ export default {
         category: [],
         votes: [],
         nbUpVotes: 0,
-        orderKey: "dateSubject"
+        orderKey: "dateSubject",
+        data_POST: []
       }
     },
     route: {
       data ({ to }) {
-        this.$http.get(apiRoot()  + 'category-sub/'+ to.params.id).then(
+        this.data_POST = [{
+          idCat: to.params.id
+        }]
+        this.$http.post(apiRoot()  + 'category-sub/'+ to.params.id, this.data_POST ).then(
           (response)=>{
             if(response.data.length == 0){
               this.$route.router.go('/404')
             }
             else{
               this.category = response.data[0]
+              console.log(response)
             }
           },
           (reject)=>{
             console.log("Category not found")
           }
         ),
-        this.$http.get(apiRoot()  + 'vote-getall/').then(
+        this.$http.post(apiRoot()  + 'vote-getall').then(
           (response)=>{
             this.votes = response.data[0]
-            console.log(this.votes);
+            //console.log(this.votes);
           },
           (reject)=>{
             console.log("Votes not found")
@@ -81,7 +86,7 @@ export default {
     methods:{
       getUpVote: function getUpVote(idSubject) {
         var nbVotes = 0;
-        console.log(this.votes)
+        //console.log(this.votes)
         /*for(var i = 0; i<votes.length; i++){
           console.log(this.votes[i])
           if(idSubject === this.votes[i].idSubject){

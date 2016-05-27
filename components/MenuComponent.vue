@@ -35,11 +35,11 @@ data() {
     methods:{
     	sendResearch:function(){
     		this.$route.router.go('/search/' + this.searchText)
+    		this.searchText = '';
     	}
     },
     created(){
-
-  		this.$http.get(apiRoot() + 'category-getall/').then(
+  		this.$http.post(apiRoot() + 'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   			},

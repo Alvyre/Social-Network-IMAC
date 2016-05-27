@@ -125,17 +125,17 @@ CREATE TABLE IF NOT EXISTS `subject` (
 -- Contenu de la table `subject`
 --
 
-INSERT INTO `subject` (`IdSubject`, `TitleSubject`, `ContentSubject`, `DateSubject`, `IdVote`, `IdUser`, `IdCat`) VALUES
-(1, 'Logement à Champs', 'Bonjour, je cherche une coloc à Champs sur Marne', '2016-05-24', 1, 1, 2),
-(2, 'Coloc à Noisy-le-Grand', 'Bonjour,\r\nJ''ai mon appartement à Noisy-Le-Grand et je cherche un colocataire pour l''année 2017. Quelqu''un est intéressé ?', '2016-05-24', 1, 2, 2),
-(3, 'Partiel de maths', 'Salut,\r\nEst-ce que le partiel de maths du S2 est difficile ? J''ai du mal à comprendre les matrices, je peux quand même y arriver ?\r\nMerci d''avance !', '2016-05-24', 1, 2, 1),
-(4, 'Histoire de l''art : cours', 'Coucou ! \r\nVous avez un site sympa pour réviser les cours d''histoire de l''art ?', '2016-05-24', 1, 1, 1),
-(5, 'Projet de C - IMAC', 'Quelqu''un peut m''aider à débuguer mon projet de C ? J''ai vraiment des difficultés.', '2016-05-24', 1, 3, 1),
-(6, 'Semaine de projet web', 'Salut !\r\n\r\nUn groupe a compris comment fonctionne le framework Slim ? Mon équipe a vraiment besoin d''aide rapidement !', '2016-05-24', 1, 3, 1),
-(7, 'Manger à Copernic', 'Salut, je suis un futur étudiant d''IMAC et j''aimerais savoir ce qu''il y a sur le campus pour manger le midi (cantine, micro-ondes, etc..).', '2016-05-24', 1, 4, 3),
-(8, 'Tutos PHP', 'Regardez ce tuto PHP / MySQL, il est super bien fait ! \r\nhttps://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql', '2016-05-24', 1, 2, 4),
-(9, 'Ressources en ligne', 'Site web cool pour trouver des ressources gratuites en ligne :\r\n\r\nhttp://www.blogdumoderateur.com/liste-ressources-gratuites-blue-vertigo/', '2016-05-24', 1, 2, 4),
-(10, 'JeudIMAC', 'C''est quand le prochain jeudIMAC ?', '2016-05-24', 1, 1, 5);
+INSERT INTO `subject` (`idSubject`, `titleSubject`, `contentSubject`, `dateSubject`, `idUser`, `idCat`) VALUES
+(11, 'Logement à Champs', 'Bonjour, je cherche une coloc à Champs sur Marne', '2016-05-24', 1, 2),
+(12, 'Coloc à Noisy-le-Grand', 'Bonjour,\r\nJ''ai mon appartement à Noisy-Le-Grand et je cherche un colocataire pour l''année 2017. Quelqu''un est intéressé ?', '2016-05-24', 2, 2),
+(13, 'Partiel de maths', 'Salut,\r\nEst-ce que le partiel de maths du S2 est difficile ? J''ai du mal à comprendre les matrices, je peux quand même y arriver ?\r\nMerci d''avance !', '2016-05-24', 2, 1),
+(14, 'Histoire de l''art : cours', 'Coucou ! \r\nVous avez un site sympa pour réviser les cours d''histoire de l''art ?', '2016-05-24', 1, 1),
+(15, 'Projet de C - IMAC', 'Quelqu''un peut m''aider à débuguer mon projet de C ? J''ai vraiment des difficultés.', '2016-05-24', 3, 1),
+(16, 'Semaine de projet web', 'Salut !\r\n\r\nUn groupe a compris comment fonctionne le framework Slim ? Mon équipe a vraiment besoin d''aide rapidement !', '2016-05-24', 3, 1),
+(7, 'Manger à Copernic', 'Salut, je suis un futur étudiant d''IMAC et j''aimerais savoir ce qu''il y a sur le campus pour manger le midi (cantine, micro-ondes, etc..).', '2016-05-24', 4, 3),
+(8, 'Tutos PHP', 'Regardez ce tuto PHP / MySQL, il est super bien fait ! \r\nhttps://openclassrooms.com/courses/concevez-votre-site-web-avec-php-et-mysql', '2016-05-24', 2, 4),
+(9, 'Ressources en ligne', 'Site web cool pour trouver des ressources gratuites en ligne :\r\n\r\nhttp://www.blogdumoderateur.com/liste-ressources-gratuites-blue-vertigo/', '2016-05-24', 2, 4),
+(10, 'JeudIMAC', 'C''est quand le prochain jeudIMAC ?', '2016-05-24', 1, 5);
 
 -- --------------------------------------------------------
 
