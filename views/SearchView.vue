@@ -2,7 +2,8 @@
     <menu-component></menu-component>
     <div class="container-fluid page">
     	<div class="title-page">
-        <h1>Recherche</h1>
+        <h1>Recherche de</h1>
+        <h3 class="actualsearch">{{actualSearch}}</h3>
         <div class="line green"></div>
         <div class="line blue"></div>
         <div class="line red"></div>
@@ -11,7 +12,7 @@
       	<div v-if="resultsSearchComment.length > 0" class="col-md-3 col-md-offset-2 search-comments">
           <h4>Commentaires</h4>
           <ul>
-            <li v-for="resultSearchComment in resultsSearchComment"><a v-link="'/category'">{{resultSearchComment.contentComment}}</a></li>
+            <li v-for="resultSearchComment in resultsSearchComment"><a v-link="'/subject/' + resultSearchComment.idSubject">{{resultSearchComment.contentComment}}</a></li>
           </ul>
         </div>
         <div v-if="resultsSearchUser.length > 0" class="col-md-3 col-md-offset-2 search-users">
@@ -20,10 +21,10 @@
             <li v-for="resultSearchUser in resultsSearchUser"><a v-link="'/user/'+resultSearchUser.idUser">{{resultSearchUser.pseudoUser}}, <span>{{resultSearchUser.statusUser}}</span></a></li>
           </ul>
         </div>
-        <div v-if="resultsSearchCategory.length > 0" class="col-md-3 col-md-offset-2 search-category">
+        <div v-if="resultsSearchSubject.length > 0" class="col-md-3 col-md-offset-2 search-category">
           <h4>Sujets</h4>
           <ul>
-            <li v-for="resultSearchSubject in resultsSearchSubject"><a v-link="'/category'">{{resultSearchCategory.titleCat}}</a></li>
+            <li v-for="resultSearchSubject in resultsSearchSubject"><a v-link="'/subject/'+resultSearchSubject.idSubject">{{resultSearchSubject.titleSubject}}</a></li>
           </ul>
         </div>
         <div v-if="!noResult" class="no-result">
@@ -46,11 +47,13 @@ export default {
         resultsSearchUser: [],
         resultsSearchSubject: [],
         noResult: false,
+        actualSearch: '',
         data_POST: []
       }
     },
     route: {
       data ({ to }) {
+        this.actualSearch = to.params.text;
         this.data_POST = {
           text: to.params.text
         }
@@ -86,12 +89,13 @@ export default {
         this.$http.post( apiRoot() + 'search/' + to.params.text + '&0&0&subject', this.data_POST ).then(
           (response)=>{
             this.resultsSearchSubject = response.data
+            console.log(response.data)
             if(response.data.length != 0){
               this.noResult = true;
             }
           },
           (reject)=>{
-            console.log('Search category not found')
+            console.log('Search subject not found')
           }
         )
       }
@@ -117,6 +121,27 @@ export default {
     font-size: 5em;
     margin-top:0;
     margin-bottom: 0.5em;
+  }
+
+  .page .title-page h3{
+    text-align: center;
+    padding: 1em 0 0 0;
+    margin-top:0;
+    margin-bottom: 3em;
+  }
+
+  .page .title-page h3:before{
+    content: '"';
+    padding-right: 1em;
+  }
+
+  .page .title-page h3:after{
+    content: '"';
+    padding-left: 1em;
+  }
+
+  .page .title-page .actualsearch{
+
   }
 
   .page .title-page .line{
@@ -163,6 +188,7 @@ export default {
   .page .content .search-comments ul li, .page .content .search-users ul li, .page .content .search-category ul li{
     text-align: center;
     padding-bottom: 1em;
+    margin-bottom: 2em;
     border-bottom: 2px solid #eeeeee;
   }
 

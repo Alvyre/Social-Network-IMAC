@@ -20,14 +20,10 @@
             <div class="col-md-6 subject">
           		<div class="col-xs-3 vote">
                 <div class="up">
-          			   <div class="glyphicon glyphicon-arrow-up"></div> {{getUpVote()}}
-                   <!-- <template v-for="vote in votes">
-                   </template> -->
-
-                   <!--<span v-for="vote in votes" > {{vote.idVote}}  <span v-if="vote.idSubject == subject.idSubject">{{ getUpVote(subject.idSubject, vote) }}</span> </span>-->
+          			   <div class="glyphicon glyphicon-arrow-up"></div> {{ subject.voteUp }}
                 </div>
                 <div class="down">
-          			   <div class="glyphicon glyphicon-arrow-down"></div> {{ getDownVote(subject.idSubject) }}
+          			   <div class="glyphicon glyphicon-arrow-down"></div> {{ subject.voteDown }}
                 </div>
           		</div>
           		<div class="col-xs-9 title"><p><a v-link="'/subject/'+subject.idSubject">{{ subject.titleSubject }}</a></p></div>
@@ -47,8 +43,6 @@ export default {
     data() {
       return {
         category: [],
-        votes: [],
-        nbUpVotes: 0,
         orderKey: "dateSubject",
         data_POST: []
       }
@@ -63,46 +57,14 @@ export default {
             if(response.data.length == 0){
               this.$route.router.go('/404')
             }
-            else{
-              this.category = response.data[0]
+             else{
+              this.category = response.data[0];
             }
           },
           (reject)=>{
             console.log("Category not found")
           }
-        ),
-        this.$http.post(apiRoot()  + 'vote-getall').then(
-          (response)=>{
-            this.votes = response.data[0]
-            console.log(this.votes);
-          },
-          (reject)=>{
-            console.log("Votes not found")
-          }
         )
-      }
-    },
-    methods:{
-      getUpVote: function getUpVote(idSubject) {
-        var nbVotes = 0;
-        console.log(this.votes)
-        /*for(var i = 0; i<votes.length; i++){
-          console.log(this.votes[i])
-          if(idSubject === this.votes[i].idSubject){
-            if(this.votes[i].upVote) nbVotes++;
-          }
-        }*/
-        return nbVotes;
-      },
-      getDownVote: function getUpVote(idSubject) {
-        var nbVotes = 0;
-        /*console.log("downvotes idsubject - " + idSubject)
-        votes.foreach(vote) {
-          if(idSubject === vote.idSubject){
-            if(vote.upVote) nbVotes++;
-          }
-        }*/
-        return nbVotes;
       }
     },
   	components: {

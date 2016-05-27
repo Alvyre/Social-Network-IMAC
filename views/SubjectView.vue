@@ -11,6 +11,7 @@
        <div class="subject-vote col-md-12 text-center">
        <a href="" @click.prevent="goodVote++"><div class="glyphicon glyphicon-arrow-up"></div> </a> <span>{{ goodVote }}</span>
        <a href="" @click.prevent="badVote++"><div class="glyphicon glyphicon-arrow-down"></div> </a> <span>{{ badVote }}</span></div>
+
       <p>Lancé par <a v-link="'/user/'+subject.user.idUser">{{subject.user.pseudoUser}}</a>, le {{subject.dateSubject}}</p>
     </div>
     <div class="content-subject">
@@ -181,6 +182,7 @@ export default {
         }
         this.$http.post(apiRoot()  + 'subject-get/'+ to.params.id, this.data_POST).then(
           (response)=>{
+            console.log(response)
             if(response.data.length == 0){
               this.$route.router.go('/404')
             }

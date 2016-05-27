@@ -35,6 +35,7 @@ data() {
     methods:{
     	sendResearch:function(){
     		this.$route.router.go('/search/' + this.searchText)
+    		this.searchText = '';
     	}
     },
     created(){
