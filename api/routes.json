@@ -1,10 +1,10 @@
 {
     "/" : {
-        "request" : "Controllers/Home/getRecentSujects.php"
+        "request" : "Controllers/Home/getRecentSubjects.php"
     },
 
     "getMostPopular/" : {
-        "request" : "Controllers/Home/getPopularSujects.php"
+        "request" : "Controllers/Home/getPopularSubjects.php"
     },
 
     "category-getall/" : {
@@ -109,6 +109,9 @@
 
     "vote-delete/" : {
         "request" : "Controllers/Vote/deleteVote.php"
+    }, 
+    "search/" : {
+        "request" : "Controllers/search.php"
     }
 
 }

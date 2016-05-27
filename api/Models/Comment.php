@@ -23,11 +23,44 @@ function readAllComments()
   return $rows;
 }
 
+function readIdUserComments($idUser)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM comment WHERE idUser = '".$idUser."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 function readSubjectsComments($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM 'comment' WHERE idSubject = '".$id."'";
+  $sql = "SELECT * FROM comment WHERE idSubject = '".$id."'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
+
+function readSearchComments($recherche)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM comment WHERE contentComment LIKE '%$recherche%'";
 
   $result = $mysqli->query($sql);
 

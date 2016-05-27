@@ -67,6 +67,22 @@ function readIdUser($id)
   return $rows;
 }
 
+function readSearchUsers($recherche)
+{
+  $mysqli = connexionBDD();
+
+  $sql = "SELECT * FROM user WHERE bioUser LIKE '%$recherche%' OR pseudoUser LIKE '%$recherche%' OR statusUser LIKE '%$recherche%'";
+
+  $result = $mysqli->query($sql);
+
+  $rows = array();
+  while($r = mysqli_fetch_assoc($result)) {
+    $rows[] = $r;
+  }
+
+  return $rows;
+}
+
 // UPDATE
 
 function updateUserStatus($id, $StatusUser) {
