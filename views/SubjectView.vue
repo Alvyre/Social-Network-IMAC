@@ -8,7 +8,9 @@
       <i class="fa fa-quote-right" aria-hidden="true"></i>
     </h1>
     <div class="info">
-       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{  }}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{  }}</span></div>
+       <div class="subject-vote col-md-12 text-center">
+       <a href="" @click.prevent="goodVote++"><div class="glyphicon glyphicon-arrow-up"></div> </a> <span>{{ goodVote }}</span>
+       <a href="" @click.prevent="badVote++"><div class="glyphicon glyphicon-arrow-down"></div> </a> <span>{{ badVote }}</span></div>
       <p>Lancé par <a v-link="'/user/'+subject.user.idUser">{{subject.user.pseudoUser}}</a>, le {{subject.dateSubject}}</p>
     </div>
     <div class="content-subject">
@@ -87,7 +89,9 @@ export default {
         addCommentConfirmText: '',
         addCommentConfirmNot : false,
         addCommentConfirmNotText: '',
-        data_POST: []
+        data_POST: [],
+        goodVote: 0,
+        badVote: 0
       }
     },
     methods:{
@@ -115,7 +119,7 @@ export default {
             }
           )
         }
-      },
+      }, // END ADD COMMENT
       getComment: function(){
         this.data_POST = {
           idSubject: this.idSubject
@@ -134,8 +138,42 @@ export default {
             console.log("Category not found")
           }
         )
+      }, // END GET COMMENT
+      addGoodVote: function(){
+        this.data_POST = {
+          idVote: this.idVote,
+          upVote: 1,
+          downVote: 0
+        }
+        this.$http.post(apiRoot() + 'subject-vote-update/'+this.idVote+'&'+1+'&'+0, this.data_POST).then(
+          (response)=>{
+            console.log(response)
+            console.log('vote + ajouté')
+
+          },
+          (reject)=>{
+            console.log('requête vote refusée : ' +reject)
+          }
+        )
+      },
+      addBadVote: function(){
+        this.data_POST = {
+          idVote: this.idVote,
+          upVote: 1,
+          downVote: 0
+        }
+        this.$http.post(apiRoot() + 'subject-vote-update/'+this.idVote+'&'+0+'&'+1, this.data_POST).then(
+          (response)=>{
+            console.log(response)
+            console.log('vote - ajouté')
+
+          },
+          (reject)=>{
+            console.log('requete vote refusée : ' +reject)
+          }
+        )
       }
-    },
+    }, // END ADD VOTE
     route: {
       data ({ to }) {
         this.data_POST = {
@@ -164,7 +202,7 @@ export default {
           }
         )
       }
-    },
+    }, // END ROUTE
     created(){
 
       function getCookie(cname) {
