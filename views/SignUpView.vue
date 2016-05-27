@@ -178,14 +178,14 @@
                 this.setCookie("idUser",response.data[0], 10)
                 this.setCookie("pseudo",response.data[1], 10)
                 this.connectionConfirm = "Connexion réussie !"
-                this.$route.router.go('/home')
                 location.reload()
+                this.$route.router.go('/home')
               }
             },
             (reject)=>{
               this.connectionConfirmNot = "Erreur lors de la connexion, veuillez reessayer"
             }
-            )
+          )
         }
       },
       components: {

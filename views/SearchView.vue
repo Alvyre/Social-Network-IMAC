@@ -21,9 +21,9 @@
           </ul>
         </div>
         <div v-if="resultsSearchCategory.length > 0" class="col-md-3 col-md-offset-2 search-category">
-          <h4>Catégorie</h4>
+          <h4>Sujets</h4>
           <ul>
-            <li v-for="resultSearchCategory in resultsSearchCategory"><a v-link="'/category'">{{resultSearchCategory.titleCat}}</a></li>
+            <li v-for="resultSearchSubject in resultsSearchSubject"><a v-link="'/category'">{{resultSearchCategory.titleCat}}</a></li>
           </ul>
         </div>
         <div v-if="!noResult" class="no-result">
@@ -44,7 +44,7 @@ export default {
       return {
         resultsSearchComment: [],
         resultsSearchUser: [],
-        resultsSearchCategory: [],
+        resultsSearchSubject: [],
         noResult: false
       }
     },
@@ -73,9 +73,9 @@ export default {
             console.log('Search users not found')
           }
         ),
-        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&0&category' ).then(
+        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&0&subject' ).then(
           (response)=>{
-            this.resultsSearchCategory = response.data
+            this.resultsSearchSubject = response.data
             if(response.data.length != 0){
               this.noResult = true;
             }
