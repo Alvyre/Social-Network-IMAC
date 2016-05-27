@@ -86,7 +86,8 @@ export default {
         addCommentConfirm: false,
         addCommentConfirmText: '',
         addCommentConfirmNot : false,
-        addCommentConfirmNotText: ''
+        addCommentConfirmNotText: '',
+        data_POST: []
       }
     },
     methods:{
@@ -96,7 +97,12 @@ export default {
         }
         else{
           this.addNewCommentNull = false
-          this.$http.get(apiRoot()  + '/comment-create/' + this.addNewComment +'&' + this.idUser + '&' + this.idSubject).then(
+          this.data_POST = {
+            comment: this.addNewComment,
+            idUser: this.idUser,
+            idSubject: this.idSubject
+          }
+          this.$http.post(apiRoot()  + '/comment-create/' + this.addNewComment +'&' + this.idUser + '&' + this.idSubject, this.data_POST).then(
             (response)=>{
               this.addCommentConfirm = true
               this.addCommentConfirmText = response
@@ -111,7 +117,10 @@ export default {
         }
       },
       getComment: function(){
-        this.$http.get(apiRoot()  + 'subject-get/'+ this.idSubject).then(
+        this.data_POST = {
+          idSubject: this.idSubject
+        }
+        this.$http.post(apiRoot()  + 'subject-get/'+ this.idSubject, this.data_POST).then(
           (response)=>{
             if(response.data.length == 0){
               this.$route.router.go('/404')
@@ -129,7 +138,10 @@ export default {
     },
     route: {
       data ({ to }) {
-        this.$http.get(apiRoot()  + 'subject-get/'+ to.params.id).then(
+        this.data_POST = {
+          idSubject: to.params.id
+        }
+        this.$http.post(apiRoot()  + 'subject-get/'+ to.params.id, this.data_POST).then(
           (response)=>{
             if(response.data.length == 0){
               this.$route.router.go('/404')
@@ -143,7 +155,7 @@ export default {
             console.log("Category not found")
           }
         ),
-        this.$http.get(apiRoot()  + 'user-getall').then(
+        this.$http.post(apiRoot()  + 'user-getall').then(
           (response)=>{
             this.users = response.data
           },

@@ -58,7 +58,8 @@ import {apiRoot} from '../config/localhost/settings.js'
         categories: [],
         selected_cat: '',
         badFeedback: '',
-        goodFeedback: ''
+        goodFeedback: '',
+        data_POST: []
       }
     },
     methods :{
@@ -80,8 +81,13 @@ import {apiRoot} from '../config/localhost/settings.js'
         var idUser = getCookie('idUser')
         var pseudo = getCookie('pseudo')
 
-
-        this.$http.get( apiRoot() + 'subject-create/'+ this.title +'&' +this.content +'&' +idUser +'&' + this.categories.indexOf(this.selected_cat)).then(
+        this.data_POST = {
+          title: this.title,
+          content: this.content,
+          idUser: idUser,
+          idCat: this.categories.indexOf(this.selected_cat)
+        }
+        this.$http.post( apiRoot() + 'subject-create/'+ this.title +'&' +this.content +'&' +idUser +'&' + this.categories.indexOf(this.selected_cat), this.data_POST).then(
           (response)=>{
             if(response.data[0] == 'created')
               this.goodFeedback = "Sujet créé avec succès !"
@@ -98,7 +104,7 @@ import {apiRoot} from '../config/localhost/settings.js'
       MenuComponent
     },
     created(){
-      this.$http.get(apiRoot() + 'category-getall').then(
+      this.$http.post(apiRoot() + 'category-getall').then(
         (response)=>{
           this.categories = response.data;
           console.log(response)
