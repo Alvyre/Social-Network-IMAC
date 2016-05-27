@@ -57,7 +57,7 @@ final class SubjectAction
     {
         $this->logger->info("Home page action dispatched");
         
-        $datas = Subject::with('cat','user','comment')
+        $datas = Subject::with('cat','user','comment','vote')
                 ->where('idSubject','like',$args['idSubject'])
                 ->get();
   

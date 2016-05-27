@@ -29,7 +29,7 @@ class SubjectModel extends Model
     public function comment()
     {
         return $this
-        	->HasMany('App\Model\CommentModel', 'idSubject', 'idSubject');
+        	->hasMany('App\Model\CommentModel', 'idSubject', 'idSubject');
             // ->selectRaw('idSubject, count(idSubject) as countSubject')
             // ->groupBy('idSubject')
             //->orderBy('dateSubject');
@@ -38,10 +38,7 @@ class SubjectModel extends Model
      public function vote()
     {
         return $this
-            ->HasMany('App\Model\VoteModel', 'idVote', 'idVote');
-            // ->selectRaw('idSubject, count(idSubject) as countSubject')
-            // ->groupBy('idSubject')
-            //->orderBy('dateSubject');
+            ->belongsTo('App\Model\VoteModel', 'idVote','idVote');
     }
 }
 
