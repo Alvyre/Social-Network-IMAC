@@ -65,7 +65,7 @@ export default {
             console.log("Category not found")
           }
         ),
-        this.$http.get(apiRoot()  + 'user-getall').then(
+        this.$http.get(apiRoot()  + 'user-getall/').then(
           (response)=>{
             this.users = response.data
           },

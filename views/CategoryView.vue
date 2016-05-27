@@ -67,7 +67,7 @@ export default {
             console.log("Category not found")
           }
         ),
-        this.$http.get(apiRoot()  + 'vote-getall').then(
+        this.$http.get(apiRoot()  + 'vote-getall/').then(
           (response)=>{
             this.votes = response.data[0]
             console.log(this.votes);

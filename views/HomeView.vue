@@ -25,9 +25,9 @@
 				<div class="clear"></div>
 				<div class="menu-cat">
 					<ul>
-						<!-- <li v-for="category in categories">
+						<li v-for="category in categories">
 							<a v-link="'/category/'+category.idCat"> {{category.titleCat}} </a>
-						</li> -->
+						</li>
 					</ul>
 				</div>
 				<div class="talks-field row">
@@ -35,9 +35,9 @@
 						<div class="more-recent-talks">
 							<p class="title text-uppercase">Sujets<br>recents</p>
 							<ul class="subjects">
-								<!-- <li v-for="recentSubject in recentSubjects">
+								<li v-for="recentSubject in recentSubjects">
 									<a v-link="'/subject/'+recentSubject.idSubject"> {{recentSubject.titleSubject}} </a>
-								</li> -->
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -45,9 +45,9 @@
 						<div class="more-commented-talks">
 							<p class="title text-uppercase">Sujets<br>populaires</p>
 							<ul class="subjects">
-								<!-- <li  v-for="mostPopularSubject in mostPopularSubjects">
+								<li  v-for="mostPopularSubject in mostPopularSubjects">
 									<a v-link="'/subject/'+ mostPopularSubject.idSubject"> {{mostPopularSubject.titleSubject}} </a>
-								</li> -->
+								</li>
 							</ul>
 						</div>
 					</div>

@@ -1,5 +1,5 @@
 {
-    "/" : {
+    "" : {
         "request" : "Controllers/Home/getRecentSubjects.php"
     },
 
@@ -109,7 +109,7 @@
 
     "vote-delete/" : {
         "request" : "Controllers/Vote/deleteVote.php"
-    }, 
+    },
     "search/" : {
         "request" : "Controllers/search.php"
     }
