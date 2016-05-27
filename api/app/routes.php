@@ -57,8 +57,8 @@ $app->get('/user-get/{idUser}', 'App\Action\UserAction:readOne')
 	->setName("user");
 $app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
 	->setName("user");
-/*$app->any('/user-create/[{pseudoUser}]&[{statusUser}]&[{photoUser}]&[{emailUser}]&[{sexUser}]&[{bioUser}]&[{passUser}]', 'App\Action\UserAction:create')
-	->setName("user");*/
+$app->get('/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}', 'App\Action\UserAction:create')
+	->setName("user");
 $app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
 	->setName("user");
 $app->get('/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
