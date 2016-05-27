@@ -47,14 +47,18 @@ export default {
         resultsSearchUser: [],
         resultsSearchSubject: [],
         noResult: false,
-        actualSearch: ''
+        actualSearch: '',
+        data_POST: []
       }
     },
     route: {
       data ({ to }) {
         this.actualSearch = to.params.text;
+        this.data_POST = {
+          text: to.params.text
+        }
         this.noResult = false;
-        this.$http.get( apiRoot() + 'search/' + to.params.text + '&comment&0&0' ).then(
+        this.$http.post( apiRoot() + 'search/' + to.params.text + '&comment&0&0', this.data_POST ).then(
           (response)=>{
             this.resultsSearchComment = response.data
             if(response.data.length != 0){
@@ -65,7 +69,10 @@ export default {
             console.log('Search comments not found')
           }
         ),
-        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&user&0' ).then(
+        this.data_POST = {
+          text: to.params.text
+        }
+        this.$http.post( apiRoot() + 'search/' + to.params.text + '&0&user&0', this.data_POST ).then(
           (response)=>{
             this.resultsSearchUser = response.data
             if(response.data.length != 0){
@@ -76,7 +83,10 @@ export default {
             console.log('Search users not found')
           }
         ),
-        this.$http.get( apiRoot() + 'search/' + to.params.text + '&0&0&subject' ).then(
+        this.data_POST ={
+          text: to.params.text
+        }
+        this.$http.post( apiRoot() + 'search/' + to.params.text + '&0&0&subject', this.data_POST ).then(
           (response)=>{
             this.resultsSearchSubject = response.data
             console.log(response.data)

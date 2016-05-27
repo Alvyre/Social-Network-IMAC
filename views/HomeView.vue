@@ -86,7 +86,7 @@ data() {
           		console.log('Recent subjects not found')
         	}
   		),
-		this.$http.get( apiRoot() + 'getMostPopular').then(
+		this.$http.post( apiRoot() + 'getMostPopular').then(
   			(response)=>{
   				this.mostPopularSubjects = response.data;
   				console.log(response.data);
@@ -95,7 +95,7 @@ data() {
           		console.log('Popular subjects not found')
         	}
   		),
-		this.$http.get( apiRoot() + 'category-getall').then(
+		this.$http.post( apiRoot() + 'category-getall').then(
   			(response)=>{
   				this.categories = response.data;
   			},
