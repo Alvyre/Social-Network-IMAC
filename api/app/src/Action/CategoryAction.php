@@ -43,9 +43,8 @@ final class CategoryAction
 
         Category::firstOrCreate(array('titleCat' => $args['titleCat']));
 
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Catégorie ajouté !'
-        ]);
+        $ar = array("created");
+        echo json_encode($ar);
 
         return $response;
     }
@@ -78,7 +77,7 @@ final class CategoryAction
 
         Category::where('idCat', 'like', $args['idCat'])->update(array('titleCat' => $args['titleCat']));
 
-        $ar = array("created");
+        $ar = array("updated");
         echo json_encode($ar);
 
         return $response;
@@ -90,7 +89,7 @@ final class CategoryAction
 
         Category::where('titleCat',$args['titleCat'])->delete();
         
-        $ar = array("created");
+        $ar = array("deleted");
         echo json_encode($ar);
 
         return $response;
