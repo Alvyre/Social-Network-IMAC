@@ -4,12 +4,12 @@ var webpack = require('webpack')
 module.exports = {
   entry: ['webpack/hot/dev-server' , './main.js'],
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
     filename: 'build.js'
   },
   resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
+    root: path.resolve(__dirname, 'node_modules'),
   },
   module: {
     loaders: [

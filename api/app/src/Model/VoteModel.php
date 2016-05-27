@@ -13,6 +13,15 @@ class VoteModel extends Model
 
     protected $fillable = array('upVote', 'downVote');
 
+    public function user()
+	{
+        return $this->belongsTo('App\Model\UserModel','idUser', 'idUser');
+    }
+    public function subject()
+    {
+        return $this->belongsTo('App\Model\SubjectModel','idSubject','idSubject');
+    }
+
 }
 
 ?>
