@@ -8,7 +8,7 @@
       <i class="fa fa-quote-right" aria-hidden="true"></i>
     </h1>
     <div class="info">
-       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{  }}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{  }}</span></div>
+       <div class="subject-vote col-md-12 text-center"><div class="glyphicon glyphicon-arrow-up"></div> <span>{{ subject.vote.upVote }}</span> <div class="glyphicon glyphicon-arrow-down"></div> <span>{{ subject.vote.downVote }}</span></div>
       <p>Lancé par <a v-link="'/user/'+subject.user.idUser">{{subject.user.pseudoUser}}</a>, le {{subject.dateSubject}}</p>
     </div>
     <div class="content-subject">
