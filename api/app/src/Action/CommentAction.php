@@ -32,9 +32,8 @@ public function create(Request $request, Response $response, $args)
         $comment->user()->associate($args['idUser']);
         $comment->save();
 
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Commentaire ajouté !'
-        ]);
+        $ar = array("created");
+        echo json_encode($ar);
 
         return $response;
     }
@@ -67,9 +66,8 @@ public function create(Request $request, Response $response, $args)
 
         Comment::where('idcomment', 'like', $args['idComment'])->update(array('idComment' => $args['idComment']));
 
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Utilisateur modifié !'
-        ]);
+        $ar = array("updated");
+        echo json_encode($ar);
     }
 
     public function delete(Request $request, Response $response, $args)
@@ -78,9 +76,8 @@ public function create(Request $request, Response $response, $args)
 
         Comment::where('idComment',$args['idComment'])->delete();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'commentaire supprimé !'
-        ]);
+        $ar = array("deleted");
+        echo json_encode($ar);
     
         return $response;
     }

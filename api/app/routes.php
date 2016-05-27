@@ -68,13 +68,13 @@ $app->get('/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
 //vote
 
 //ici faut mettre 1&0 pour un upvote, 0&1 pour un downvote
-$app->get('/vote-create/{upVote}&{downVote}', 'App\Action\VoteAction:create')
+$app->get('/vote-create/{upVote}&{downVote}&{idSubject}&{idUser}', 'App\Action\VoteAction:create')
 ->setName("vote-create");
 
 $app->get('/vote-getall', 'App\Action\VoteAction:readAll')
 ->setName("vote-getall");
 
-$app->get('/vote-get', 'App\Action\VoteAction:readOne')
+$app->get('/vote-get/{idVote}', 'App\Action\VoteAction:readOne')
 ->setName("vote-get");
 
 $app->get('/vote-update/{idVote}&{upVote}&{downVote}', 'App\Action\VoteAction:update')

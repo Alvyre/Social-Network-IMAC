@@ -5,7 +5,7 @@ use Slim\Views\Twig;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
-use App\Model\CategoryModel as Category;
+use App\Model\SubjectModel as Subject;
 use App\Model\CommentModel as Comment;
 use App\Model\UserModel as User;
 
@@ -33,14 +33,14 @@ final class SearchAction
         $optionsTab[1] = $args['option2'];
         $optionsTab[2] = $args['option3'];
         /* init */
-        $categoryResults = "";
+        $subjectResults = "";
         $commentResults = "";
         $userResults = "";
         for ($i=0; $i < count($optionsTab); $i++) { 
             switch ($optionsTab[$i]) {
-                case 'category':
-                    $categoryResults = Category::where('titleCat', 'LIKE', '%'.$tag.'%')->get();
-                    echo json_encode($categoryResults);
+                case 'subject':
+                    $subjectResults = Subject::where('titleSubject', 'LIKE', '%'.$tag.'%')->get();
+                    echo json_encode($subjectResults);
                 break;
 
                 case 'comment':

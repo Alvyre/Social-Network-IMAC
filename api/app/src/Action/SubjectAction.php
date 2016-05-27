@@ -75,9 +75,8 @@ final class SubjectAction
             'contentSubject' => $args['contentSubject']
         ));
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'Sujet mis à jour magueule'
-        ]);
+        $ar = array("updated");
+        echo json_encode($ar);
 
         return $response;
     }
@@ -87,6 +86,9 @@ final class SubjectAction
         $this->logger->info("Home page action dispatched");
 
         $datas = Subject::where('titleSubject',$args['titleSubject'])->delete();
+
+        $ar = array("deleted");
+        echo json_encode($ar);
 
         return $response;
     }

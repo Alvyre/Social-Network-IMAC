@@ -20,7 +20,7 @@ class UserModel extends Model
 
     public function subject()
     {
-        return $this->hasMany('App\Model\CommentModel','idSubject','idSubject');
+        return $this->hasMany('App\Model\SubjectModel','idSubject','idSubject');
     }
 
 }

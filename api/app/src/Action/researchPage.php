@@ -10,7 +10,7 @@
 		<input type="text" name="researchText">
 		<input type="checkbox" name="choice[]" value="comment">Commentaires
 		<input type="checkbox" name="choice[]" value="user">Utilisateurs
-		<input type="checkbox" name="choice[]" value="category">Categories
+		<input type="checkbox" name="choice[]" value="subject">Categories
 	</form>
 
 </body>
