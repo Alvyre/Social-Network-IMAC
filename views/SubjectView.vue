@@ -131,6 +131,7 @@ export default {
       data ({ to }) {
         this.$http.get(apiRoot()  + 'subject-get/'+ to.params.id).then(
           (response)=>{
+            console.log(response)
             if(response.data.length == 0){
               this.$route.router.go('/404')
             }
