@@ -1,7 +1,7 @@
 <?php 
 	require_once(__DIR__."/../../Models/Category.php");
 	require_once(__DIR__."/../../Models/Subject.php");
-	$category = readIdCategories($_POST["id"]);
+	$category = readIdCategories($_POST["idCat"]);
 	$sujets = readAllSubjectsCategory($category[0]["idCat"]); 
 	$retour = [ 
 	"idCat" => $category[0]["idCat"], 
