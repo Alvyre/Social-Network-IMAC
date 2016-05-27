@@ -34,19 +34,19 @@ $app->map(['GET', 'POST'], '/comment-delete/{idComment}', 'App\Action\CommentAct
 ->setName("comment-delete");
 
 //subjects
-$app->get('/subject-create/{titleSubject}&{contentSubject}&{idUser}&{idCat}', 'App\Action\SubjectAction:create')
+$app->map(['GET', 'POST'], '/subject-create/{titleSubject}&{contentSubject}&{idUser}&{idCat}', 'App\Action\SubjectAction:create')
 ->setName("subject");
 
-$app->get('/subject-getall', 'App\Action\SubjectAction:readAll')
+$app->map(['GET', 'POST'], '/subject-getall', 'App\Action\SubjectAction:readAll')
 ->setName("subject");
 
-$app->get('/subject-get/{idSubject}', 'App\Action\SubjectAction:readOne')
+$app->map(['GET', 'POST'], '/subject-get/{idSubject}', 'App\Action\SubjectAction:readOne')
 ->setName("subject");
 
-$app->get('/subject-update/{idSubject}&{titleSubject}&{contentSubject}','App\Action\SubjectAction:update')
+$app->map(['GET', 'POST'], '/subject-update/{idSubject}&{titleSubject}&{contentSubject}','App\Action\SubjectAction:update')
 ->setName("subject");
 
-$app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
+$app->map(['GET', 'POST'], '/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
 ->setName("subject");
 
 
