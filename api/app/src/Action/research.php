@@ -6,5 +6,5 @@
 	 		$researchData[$i] = "0";
 	}
 
-	header('Location: ../../../public/search/'.$researchTag.'&'.$researchData[0].'&'.$researchData[1].'&'.$researchData[2], 'Content-Type: application/json');
+	/*header('Location: ../../../public/search/'.$researchTag.'&'.$researchData[0].'&'.$researchData[1].'&'.$researchData[2], 'Content-Type: application/json');*/
 ?>

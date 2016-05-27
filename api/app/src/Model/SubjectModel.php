@@ -34,6 +34,15 @@ class SubjectModel extends Model
             // ->groupBy('idSubject')
             //->orderBy('dateSubject');
     }
+
+     public function vote()
+    {
+        return $this
+            ->HasMany('App\Model\VoteModel', 'idVote', 'idVote');
+            // ->selectRaw('idSubject, count(idSubject) as countSubject')
+            // ->groupBy('idSubject')
+            //->orderBy('dateSubject');
+    }
 }
 
 ?>
