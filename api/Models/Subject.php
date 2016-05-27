@@ -27,7 +27,7 @@ function readAllSubjectsCategory($idCategory)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM subject WHERE IdCat = '".$idCategory."'";
+  $sql = "SELECT * FROM subject WHERE idCat = '".$idCategory."'";
 
   $result = $mysqli->query($sql);
 
@@ -43,7 +43,7 @@ function readIdSubjects($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM subject WHERE IdSubject = '".$id."'";
+  $sql = "SELECT * FROM subject WHERE idSubject = '".$id."'";
 
   $result = $mysqli->query($sql);
 
@@ -59,7 +59,7 @@ function readMostRecent()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM subject ORDER BY DateSubject LIMIT 5";
+  $sql = "SELECT * FROM subject ORDER BY dateSubject LIMIT 5";
 
   $result = $mysqli->query($sql);
 
@@ -75,7 +75,7 @@ function readMostCommented()
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM subject, (SELECT IdSubject, COUNT(IdSubject) as nbCom from comment group by IdSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5";
+  $sql = "SELECT * FROM subject, (SELECT idSubject, COUNT(idSubject) as nbCom from comment group by idSubject) AS tempTable WHERE subject.IdSubject = tempTable.IdSubject ORDER BY tempTable.nbCom DESC LIMIT 5";
 
   $result = $mysqli->query($sql);
 
@@ -92,7 +92,7 @@ function readMostCommented()
 function deleteSubject($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM subject WHERE ".$id." = IdSubject";
+  $sql = "DELETE FROM subject WHERE ".$id." = idSubject";
 
   $result = $mysqli->query($sql);
 }

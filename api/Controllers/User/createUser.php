@@ -1,13 +1,14 @@
-<?php 
+<?php
 
-$PhotoUser = NULL;
+$inscription = false;
+$echec = false;
+$PseudoAlreadyExist = false;
 
 if (!empty($_POST)) {
   if (isset($_POST['PseudoUser']) || $_POST['PseudoUser'] == '') {
     $PseudoUser = $_POST['PseudoUser'];
     if (readPseudoUser($PseudoUser)) {
-      echo "Le pseudo existe deja !";
-       return;
+      $PseudoAlreadyExist = true;
     }
   }
   if (isset($_POST['PassUser']) || $_POST['PassUser'] == '') {
@@ -28,11 +29,15 @@ if (!empty($_POST)) {
 }
 
 $result = createUser($PseudoUser, $PassUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
-  
-if($result){
-  echo "Félicitation vous avez un compte!";
-}else{
-  echo "SEGFAULT";
+
+if ($result) {
+  $inscription = true;
 }
 
+//Renvoie des données
+$array = [
+  "inscription" => $inscription,
+  "PseudoAlreadyExist" => $PseudoAlreadyExist,
+];
+echo json_encode($array);
 ?>

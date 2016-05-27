@@ -25,7 +25,7 @@ function readPseudoUser($pseudo)
 {
   $mysqli = connexionBDD();
 
-  $sql = 'SELECT * FROM user WHERE PseudoUser = "' .$pseudo .'"';
+  $sql = 'SELECT * FROM user WHERE pseudoUser = "' .$pseudo .'"';
 
   if (!$result = $mysqli->query($sql)) {
     echo "Sorry, the website is experiencing problems.";
@@ -40,7 +40,7 @@ function readPassUser($PseudoUser)
 {
   $mysqli = connexionBDD();
 
-  $sql = 'SELECT PassUser FROM user WHERE PseudoUser = "' .$PseudoUser.'"';
+  $sql = 'SELECT passUser FROM user WHERE pseudoUser = "' .$PseudoUser.'"';
 
   if (!$result = $mysqli->query($sql)) {
     echo "Sorry, the website is experiencing problems.";
@@ -55,7 +55,7 @@ function readIdUser($id)
 {
   $mysqli = connexionBDD();
 
-  $sql = "SELECT * FROM user WHERE IdUser = '".$id."'";
+  $sql = "SELECT * FROM user WHERE idUser = '".$id."'";
 
   $result = $mysqli->query($sql);
 
@@ -72,7 +72,7 @@ function readIdUser($id)
 function updateUserStatus($id, $StatusUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET StatusUser ='".$StatusUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET statusUser ='".$StatusUser."' WHERE idUser = ".$id;
 
   $result = $mysqli->query($sql);
 }
@@ -80,7 +80,7 @@ function updateUserStatus($id, $StatusUser) {
 function updateUserEmail($id, $EmailUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET EmailUser ='".$EmailUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET emailUser ='".$EmailUser."' WHERE idUser = ".$id;
 
   $result = $mysqli->query($sql);
 }
@@ -88,7 +88,7 @@ function updateUserEmail($id, $EmailUser) {
 function updateUserBio($id, $BioUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET BioUser ='".$BioUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET bioUser ='".$BioUser."' WHERE idUser = ".$id;
 
   $result = $mysqli->query($sql);
 }
@@ -96,7 +96,7 @@ function updateUserBio($id, $BioUser) {
 function updateUserPhoto($id, $PhotoUser) {
   $mysqli = connexionBDD();
 
-  $sql = "UPDATE user SET PhotoUser ='".$PhotoUser."' WHERE IdUser = ".$id;
+  $sql = "UPDATE user SET photoUser ='".$PhotoUser."' WHERE idUser = ".$id;
 
   $result = $mysqli->query($sql);
 }
@@ -106,10 +106,10 @@ function updateUserPhoto($id, $PhotoUser) {
 function createUser($PseudoUser, $PassUser ,$StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser) {
   $mysqli = connexionBDD();
 
-  $sql = "INSERT INTO user (PseudoUser, PassUser, StatusUser, PhotoUser, EmailUser, SexUser, BioUser) VALUES (?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO user (pseudoUser, passUser, statusUser, photoUser, emailUser, sexUser, bioUser) VALUES (?,?,?,?,?,?,?)";
 
   $stmt = $mysqli->prepare($sql);
-  $stmt->bind_param('sssssss', $PseudoUser, $PassUser, $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
+  $stmt->bind_param('sssssss', $PseudoUser, password_hash($PassUser, PASSWORD_DEFAULT), $StatusUser, $PhotoUser, $EmailUser, $SexUser, $BioUser);
   $stmt->execute();
   if ($stmt->affected_rows == 1) {
       return true;
@@ -123,7 +123,7 @@ function createUser($PseudoUser, $PassUser ,$StatusUser, $PhotoUser, $EmailUser,
 function deleteUser($id) {
   $mysqli = connexionBDD();
 
-  $sql = "DELETE FROM user WHERE ".$id." = IdUser";
+  $sql = "DELETE FROM user WHERE ".$id." = idUser";
 
   $result = $mysqli->query($sql);
 }
