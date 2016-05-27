@@ -1,36 +1,36 @@
 <?php
 
 //accueil
-$app->get('/', 'App\Action\HomeAction:getRecentSubjects')
+$app->map(['GET', 'POST'], '/', 'App\Action\HomeAction:getRecentSubjects')
 ->setName("home");
-$app->get('/getMostPopular', 'App\Action\HomeAction:getMostPopular')
+$app->map(['GET', 'POST'], '/getMostPopular', 'App\Action\HomeAction:getMostPopular')
 ->setName("home");
 
 //categories
-$app->get('/category-getall', 'App\Action\CategoryAction:readAll')
+$app->map(['GET', 'POST'], '/category-getall', 'App\Action\CategoryAction:readAll')
 	->setName("category-getall");
-$app->get('/category-get/{idCat}', 'App\Action\CategoryAction:readOne')
+$app->map(['GET', 'POST'], '/category-get/{idCat}', 'App\Action\CategoryAction:readOne')
 	->setName("category-get");
-$app->get('/category-create/{titleCat}', 'App\Action\CategoryAction:create')
+$app->map(['GET', 'POST'], '/category-create/{titleCat}', 'App\Action\CategoryAction:create')
 	->setName("category-create");
-$app->get('/category-update/{idCat}&{titleCat}', 'App\Action\CategoryAction:update')
+$app->map(['GET', 'POST'], '/category-update/{idCat}&{titleCat}', 'App\Action\CategoryAction:update')
 	->setName("category-update");
-$app->get('/category-delete/{titleCat}', 'App\Action\CategoryAction:delete')
+$app->map(['GET', 'POST'], '/category-delete/{titleCat}', 'App\Action\CategoryAction:delete')
 	->setName("category-delete");
-$app->get('/category-sub/{idCat}', 'App\Action\CategoryAction:getSubjectsFromCat')
+$app->map(['GET', 'POST'], '/category-sub/{idCat}', 'App\Action\CategoryAction:getSubjectsFromCat')
 	->setName("category-sub");
 
 
 //comments
-$app->get('/comment-getall', 'App\Action\CommentAction:readAll')
+$app->map(['GET', 'POST'], '/comment-getall', 'App\Action\CommentAction:readAll')
 ->setName("comment-getall");
-$app->get('/comment-get', 'App\Action\CommentAction:readOne')
+$app->map(['GET', 'POST'], '/comment-get', 'App\Action\CommentAction:readOne')
 ->setName("comment-get");
-$app->get('/comment-create/{contentComment}&{idUser}&{idSubject}', 'App\Action\CommentAction:create')
+$app->map(['GET', 'POST'],'/comment-create/{contentComment}&{idUser}&{idSubject}', 'App\Action\CommentAction:create')
 ->setName("comment-create");
-$app->get('/comment-update/{idComment}', 'App\Action\CommentAction:update')
+$app->map(['GET', 'POST'], '/comment-update/{idComment}', 'App\Action\CommentAction:update')
 ->setName("comment-update");
-$app->get('/comment-delete/{idComment}', 'App\Action\CommentAction:delete')
+$app->map(['GET', 'POST'], '/comment-delete/{idComment}', 'App\Action\CommentAction:delete')
 ->setName("comment-delete");
 
 //subjects
@@ -51,39 +51,39 @@ $app->get('/subject-delete/{titleSubject}', 'App\Action\SubjectAction:delete')
 
 
 //users
-$app->get('/user-getall', 'App\Action\UserAction:readAll')
+$app->map(['GET', 'POST'], '/user-getall', 'App\Action\UserAction:readAll')
 	->setName("user");
-$app->get('/user-get/{idUser}', 'App\Action\UserAction:readOne')
+$app->map(['GET', 'POST'], '/user-get/{idUser}', 'App\Action\UserAction:readOne')
 	->setName("user");
-$app->get('/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
+$app->map(['GET', 'POST'], '/user-delete/{pseudoUser}', 'App\Action\UserAction:delete')
 	->setName("user");
 $app->map(['GET', 'POST'], '/user-create/{pseudoUser}&{statusUser}&{photoUser}&{emailUser}&{sexUser}&{bioUser}&{passUser}', 'App\Action\UserAction:create' )->setName("user");
-$app->get('/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
+$app->map(['GET', 'POST'], '/user-update/{idUser}&{pseudoUser}', 'App\Action\UserAction:update')
 	->setName("user");
-$app->get('/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
+$app->map(['GET', 'POST'], '/user-login/{pseudoUser}&{password}', 'App\Action\UserAction:login')
 	->setName("user-login");
 
 
 //vote
 
 //ici faut mettre 1&0 pour un upvote, 0&1 pour un downvote
-$app->get('/vote-create/{upVote}&{downVote}&{idSubject}&{idUser}', 'App\Action\VoteAction:create')
+$app->map(['GET', 'POST'], '/vote-create/{upVote}&{downVote}&{idSubject}&{idUser}', 'App\Action\VoteAction:create')
 ->setName("vote-create");
 
-$app->get('/vote-getall', 'App\Action\VoteAction:readAll')
+$app->map(['GET', 'POST'], '/vote-getall', 'App\Action\VoteAction:readAll')
 ->setName("vote-getall");
 
-$app->get('/vote-get/{idVote}', 'App\Action\VoteAction:readOne')
+$app->map(['GET', 'POST'], '/vote-get/{idVote}', 'App\Action\VoteAction:readOne')
 ->setName("vote-get");
 
-$app->get('/vote-update/{idVote}&{upVote}&{downVote}', 'App\Action\VoteAction:update')
+$app->map(['GET', 'POST'], '/vote-update/{idVote}&{upVote}&{downVote}', 'App\Action\VoteAction:update')
 ->setName("vote-update");
 
-$app->get('/vote-delete/{upVote}', 'App\Action\VoteAction:delete')
+$app->map(['GET', 'POST'], '/vote-delete/{upVote}', 'App\Action\VoteAction:delete')
 ->setName("vote-delete");
 
 //research
-$app->get('/search/{tag}&{option1}&{option2}&{option3}', 'App\Action\SearchAction:research')
+$app->map(['GET', 'POST'], '/search/{tag}&{option1}&{option2}&{option3}', 'App\Action\SearchAction:research')
 ->setName("search");
 
 ?>
