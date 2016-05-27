@@ -24,14 +24,15 @@ final class VoteAction
     {
         $this->logger->info("Home page action dispatched");
 
-        Vote::firstOrCreate(array(
-            'upVote' => $args['upVote'], 
-            'downVote' => $args['downVote'])
-        );
+        $vote = new Vote();
+        $vote->upVote = $args['upVote'];
+        $vote->downVote = $args['downVote'];
+        $vote->subject()->associate($args['idSubject']);
+        $vote->user()->associate($args['idUser']);
+        $vote->save();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'A voté !'
-        ]);
+        $ar = array("created");
+        echo json_encode($ar);
 
         return $response;
     }
@@ -40,13 +41,10 @@ final class VoteAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = Vote::all();
-        /*
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);*/
-        //var_dump($datas);
-        echo json_encode($datas);
+        $datas = Vote::with('subject','user')->get();
+
+        echo $datas->toJson();
+
         return $response;
     }
      
@@ -54,11 +52,11 @@ final class VoteAction
     {
         $this->logger->info("Home page action dispatched");
 
-        $datas = Vote::first();
+        $datas = Vote::with('subject','user')
+                ->where('idVote','like',$args['idVote'])
+                ->get();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => $datas
-        ]);
+        echo $datas->toJson();
 
         return $response;
     }
@@ -72,9 +70,8 @@ final class VoteAction
             'downVote' => $args['downVote']
             ));
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'vote modifie, ya que les imbeciles qui ne changent pas d avis'
-        ]);
+        $ar = array("updated");
+        echo json_encode($ar);
 
         return $response;
     }
@@ -85,9 +82,8 @@ final class VoteAction
 
         $datas = Vote::where('upVote',$args['upVote'])->delete();
         
-        $this->view->render($response, 'home.twig', [
-            'datas' => 'vote supprimé :('
-        ]);
+        $ar = array("deleted");
+        echo json_encode($ar);
 
         return $response;
     }
