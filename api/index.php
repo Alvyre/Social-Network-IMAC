@@ -16,7 +16,7 @@
     $parameter = $routing->getParameter();
 
     //Class Manager or route
-    include(__DIR__.'/'.$route);
+    include($route);
 
 
 ?>

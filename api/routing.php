@@ -57,7 +57,7 @@
                 if(array_key_exists($this->request,$this->routes)){
                     $this->route = $this->routes[$this->request]["request"];
                 } else {
-                    $this->route = $this->routes["404/"]["request"];
+                    //$this->route = $this->routes["404/"]["request"];
                 }
             }
         }
