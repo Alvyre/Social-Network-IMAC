@@ -102,7 +102,7 @@ export default {
             idUser: this.idUser,
             idSubject: this.idSubject
           }
-          this.$http.post(apiRoot()  + '/comment-create/' + this.addNewComment +'&' + this.idUser + '&' + this.idSubject, this.data_POST).then(
+          this.$http.post(apiRoot()  + 'comment-create/' + this.addNewComment +'&' + this.idUser + '&' + this.idSubject, this.data_POST).then(
             (response)=>{
               this.addCommentConfirm = true
               this.addCommentConfirmText = response

@@ -20,10 +20,10 @@
             <div class="col-md-6 subject">
           		<div class="col-xs-3 vote">
                 <div class="up">
-          			   <div class="glyphicon glyphicon-arrow-up"></div> {{ subject.voteUp }}
+          			   <div class="glyphicon glyphicon-arrow-up"></div> 0
                 </div>
                 <div class="down">
-          			   <div class="glyphicon glyphicon-arrow-down"></div> {{ subject.voteDown }}
+          			   <div class="glyphicon glyphicon-arrow-down"></div> 0
                 </div>
           		</div>
           		<div class="col-xs-9 title"><p><a v-link="'/subject/'+subject.idSubject">{{ subject.titleSubject }}</a></p></div>
